@@ -1,0 +1,29 @@
+.standardView{
+    display:none;
+}
+
+.callOutRight{
+    display:none;
+}
+
+#subMenu{
+    margin-bottom:1em;
+}
+
+#wrapper{
+    max-width:400px;
+    margin:10px;
+}
+
+.menu a{
+    color:white;
+    font-size:2em;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+#main{
+    width:90%;
+    padding:5%;
+    padding-top:0;
+}
