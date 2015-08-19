@@ -47,8 +47,7 @@
   }
 
   h3 {
-    margin-left: -3em;
-    text-align: left;
+    display: none;
   }
 }
 
