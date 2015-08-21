@@ -226,3 +226,17 @@ footer:before{
 footer:hover:before{
   content: "↓";
 }
+
+.rotator > blockquote > p:before{
+  content: open-quote;
+}
+
+.rotator > blockquote > p:after{
+  content: close-quote;
+}
+
+.rotator > div {
+  text-align: center;
+  font-size: 110%;
+  font-weight: bold;
+}
