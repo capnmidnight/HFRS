@@ -224,4 +224,6 @@ footer:hover:before{
 
 .rotator > div {
   text-align: center;
+  font-size: 110%;
+  font-weight: bold;
 }

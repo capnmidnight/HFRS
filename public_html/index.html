@@ -15,6 +15,7 @@
     <title>Highland FRS - non-profit fundraising consultancy</title>
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <link type="text/css" rel="stylesheet" href="css/desktop.css">
+    <link type="text/css" rel="stylesheet" href="css/button.css">
     <!--<script type="text/javascript" src="js/ga.min.js" async></script>-->
   </head>
   <body>
@@ -37,6 +38,7 @@
       <h2>Your institution. Your needs. Your mission.</h2>
 
       <div id="alt_services">
+        <h4>What is Highland FRS?</h4>
         <p>
           Highland FRS is a full-service consultancy serving non-profit
           fundraising departments. We consult for fundraising offices of all
@@ -52,6 +54,8 @@
           <li>Capital Campaign Preparation</li>
           <li>… and more</li>
         </ul>
+
+        <a href="#get_started" class="primary button">Let's get started!<br><small>Find out how HFRS can help your organization</small></a>
       </div>
 
       <video src="videos/demo.mp4" controls></video>
@@ -76,6 +80,8 @@
           <li>Capital Campaign Preparation</li>
           <li>… and more</li>
         </ul>
+
+        <a href="#get_started" class="secondary button">Find out more!<br><small>HFRS is well-situated to assist your non-profit.</small></a>
 
         <a href="#top">top</a>
       </article>
@@ -131,60 +137,80 @@
 
         </section>
         <script type="text/javascript">
+          var FADE_LEN = 500;
           function Rotator ( elem ) {
             var c = [ ],
                 len = elem.children.length,
                 n = 0,
                 pips = [ ],
                 pager = document.createElement( "div" ),
-                dt = elem.dataset.timeout || 3000;
+                t = 0,
+                ttl = elem.dataset.timeout || 3000,
+                mid = ttl / 2;
 
             for ( var i = 0; i < len; ++i ) {
               c[i] = elem.children[i];
               pips[i] = document.createElement( "span" );
+              pips[i].innerHTML = " ● ";
               pips[i].style.cursor = "pointer";
               pips[i].onclick = tick.bind( this, i );
               pager.appendChild( pips[i] );
 
-              hide( i );
+              if ( i > 0 ) {
+                hide( i );
+              }
+              else {
+                show( i );
+              }
             }
 
             elem.insertBefore( pager, c[0] );
 
             function hide ( i ) {
               c[i].style.display = "none";
-              pips[i].innerHTML = " o ";
+              pips[i].style.cursor = "pointer";
+              pips[i].style.opacity = 0.25;
             }
 
             function show ( i ) {
               c[i].style.display = "";
-              pips[i].innerHTML = " x ";
+              pips[i].style.cursor = "default";
+              pips[i].style.opacity = 1;
             }
 
             function tick ( i ) {
-              if ( timeout ) {
-                clearTimeout( timeout );
-              }
-              if ( n >= 0 ) {
-                hide( n );
-              }
+              hide( n );
+              t = 0;
               n = i;
               show( n );
-              timeout = setTimeout( update, dt );
             }
 
-            function update () {
-              timeout = null;
-              tick( ( n + 1 ) % len );
-            }
-
-            update();
+            var lt = 0;
+            this.update = function ( ft ) {
+              var dt = ft - lt;
+              lt = ft;
+              t += dt;
+              if ( t >= ttl ) {
+                tick( ( n + 1 ) % len );
+              }
+              c[n].style.opacity = Math.min(1, (mid - Math.abs(t - mid)) / FADE_LEN);
+            };
           }
 
-          var rotators = document.querySelectorAll( ".rotator" );
+          var rotators = Array.prototype.slice.call( document.querySelectorAll(
+              ".rotator" ) );
           for ( var i = 0; i < rotators.length; ++i ) {
             rotators[i] = new Rotator( rotators[i] );
           }
+
+          function updateAll ( dt ) {
+            requestAnimationFrame( updateAll );
+            for ( var i = 0; i < rotators.length; ++i ) {
+              rotators[i].update( dt );
+            }
+          }
+
+          requestAnimationFrame( updateAll );
         </script>
         <a href="#top">top</a>
       </article>
