@@ -54,6 +54,20 @@
   h3 {
     display: none;
   }
+
+  #customers > div > section {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  #customer_logos {
+    width: 65%;
+  }
+
+  #testimonials {
+    width: 33%;
+    font-size: 75%;
+  }
 }
 
 @media (min-width:735px){
@@ -83,5 +97,9 @@
 
   article#services {
     display: none;
+  }
+
+  #testimonials {
+    font-size: 100%;
   }
 }
