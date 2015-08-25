@@ -144,7 +144,7 @@ h4 > a {
 }
 
 #content > article:nth-child(4) {
-  background-color: rgb(232, 174, 174);
+  background-color: rgb(204, 255, 204);
 }
 
 #content > article {
@@ -159,19 +159,28 @@ h4 > a {
   margin-bottom: 2em;
 }
 
-#about img {
-  width: 100%;
-  border-radius: 50%;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+#customer_logos > a > img {
+  max-width: 100%;
 }
 
-#about > #employees > div {
+#employees > div {
   border-radius: 7px;
   border: solid 1px #c0c0c0;
   padding: 1em;
   margin: 1em;
   color: #1B1831;
   background-color: #f4f4f4;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+#employees > div > ul {
+  font-size: 90%;
+  list-style: none;
+}
+
+.portrait {
+  width: 100%;
+  border-radius: 50%;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
 }
 
