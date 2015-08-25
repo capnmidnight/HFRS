@@ -16,8 +16,18 @@
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <link type="text/css" rel="stylesheet" href="css/desktop.css">
     <link type="text/css" rel="stylesheet" href="css/button.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/rotator.js"></script>
+    <script type="text/javascript">
+      function waitFor ( c, v ) {
+        if ( !c() ) {
+          setTimeout( waitFor.bind( window, c, v ), 1 );
+        }
+        else {
+          v();
+        }
+      }
+    </script>
+    <script type="text/javascript" src="//platform.twitter.com/widgets.js" async></script>
+    <script type="text/javascript" src="js/rotator.js" async></script>
     <!--<script type="text/javascript" src="js/ga.min.js" async></script>-->
   </head>
   <body>
@@ -46,21 +56,16 @@
           We are a full-service consultancy serving non-profit
           fundraising departments. We specialize in database optimization
           to prepare institutions for capital campaigns. We offer a variety of
-          services covering the range of institutional needs for advancement:
+          services covering the range of institutional needs for advancement.
         </p>
 
-        <ul>
-          <li>Standarization and Optimization</li>
-          <li>Process Analysis</li>
-          <li>Reporting and Business Intelligence</li>
-          <li>Capital Campaign Preparation</li>
-          <li>… and more</li>
-        </ul>
-
-        <a href="#get_started" class="primary button">Let's get started!<br><small>Find out how HFRS can help your organization</small></a>
+        <a href="#get_started" class="yellow button">Let's get started!<br><small>Find out how HFRS can help your organization</small></a>
       </div>
 
-      <video src="videos/demo.mp4" controls></video>
+      <div id="introVideo">
+        <video src="videos/demo.mp4" controls onplay="document.querySelector('#introVideo > .button').style.display = 'none';" onpause="document.querySelector('#introVideo > .button').style.display = 'block';"></video>
+        <a href="javascript: document.querySelector('#introVideo > video').play();" class="green button">What is Highland FRS?</a>
+      </div>
     </header>
 
     <section id="content">
@@ -83,7 +88,7 @@
           <li>… and more</li>
         </ul>
 
-        <a href="#get_started" class="secondary button">Find out more!<br><small>HFRS is well-situated to assist your non-profit.</small></a>
+        <a href="#get_started" class="red button">Find out more!<br><small>HFRS is well-situated to assist your non-profit.</small></a>
 
         <a href="#top">top</a>
       </article>
@@ -174,6 +179,9 @@
 
           </section>
         </div>
+
+        <a href="#get_started" class="blue button">Find out more!<br><small>HFRS is well-situated to assist your non-profit.</small></a>
+
         <a href="#top">top</a>
       </article>
 
@@ -231,14 +239,9 @@
 
             <h4><a href="mailto:sean.mcbeth@highlandfrs.com?subject='Website contact'" target="_blank">Sean T. McBeth</a> – Chief Technology Officer</h4>
 
-            <p>
-              Sean is a software engineer with over 10 years of professional
-              experience in developing desktop, server, database, and Web
-              applications. He loves learning new programming languages and
-              running side projects to learn new concepts. From SQL to JavaScript,
-              Sean can do it all, and you can find much of it on his active
-              GitHub profile.
-            </p>
+            <p>Sean has over 10 years of professional experience in software engineering, having successfully bootstrapped and deployed multiple analytics-heavy OLTP applications for desktop, Web, and mobile Web. He emphasize open communication with stakeholders, frequent issue and user-story tracking and review, correct, normalized relational database design and simple, best-practice-based, DRY, agile software development. </p>
+
+            <p>He maintains a broad skill-set in programming languages, databases, operating systems, and other software packages, including: C#, Java, VB.NET, JavaScript, CSS3, HTML5, Node.js; MS SQL Server, MySQL, PostgreSQL; Windows XP - 8.1, Linux Mint, Android; Visual Studio, NetBeans, Git, Blender, Photoshop, Illustrator.</p>
 
             <ul>
               <li><a href="https://github.com/capnmidnight" target="_blank"><img src="images/GitHub-Mark-32px.png" alt="logo" title="View Sean's profile on GitHub" style="vertical-align: middle;"> View Sean's profile on GitHub</a></li>
@@ -250,6 +253,8 @@
           </div>
         </section>
 
+        <a href="#get_started" class="yellow button">Find out more!<br><small>HFRS is well-situated to assist your non-profit.</small></a>
+
         <a href="#top">top</a>
       </article>
 
@@ -257,13 +262,16 @@
 
         <h3><a name="get_started">Get Started</a></h3>
 
-        <p>Get started with Highland FRS today.</p>
+        <p>To get started with Highland FRS today, please let us know a few things about your non-profit organization.</p>
+
+        <form method="GET" action="mailto:sean@highlandfrs.com">
+          
+        </form>
 
         <h3><a name="contact">Contact Us</a></h3>
 
         <p>
-          For more information about how Highland Fundraising Solutions can help
-          your non-profit organization, please contact us at:
+          Or if you would like to contact us directly:
         </p>
 
         <ul>
@@ -283,28 +291,5 @@
       Crystal Reports&trade; is a registered trademark of SAP SE&REG;.<br>
       LinkedIn&REG; is a registered trademark of LinkedIn Corporation.
     </footer>
-    <script>!function ( d, s, id ) {
-        var js,
-            fjs = d.getElementsByTagName( s )[0],
-            p = /^http:/.test( d.location ) ?
-            'http' : 'https';
-        if ( !d.getElementById(
-            id ) ) {
-          js =
-              d.createElement(
-                  s );
-          js.id =
-              id;
-          js.src =
-              p +
-              '://platform.twitter.com/widgets.js';
-          fjs.parentNode.insertBefore(
-              js,
-              fjs );
-        }
-      }(
-          document,
-          'script',
-          'twitter-wjs' );</script>
   </body>
 </html>

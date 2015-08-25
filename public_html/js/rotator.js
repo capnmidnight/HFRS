@@ -1,13 +1,6 @@
-function LOAD_TEST ( v ) {
-  if ( !document.body ) {
-    setTimeout(LOAD_TEST.bind(window, v), 1);
-  }
-  else{
-    v();
-  }
-}
-
-LOAD_TEST( function () {
+waitFor( function () {
+  return document.body;
+}, function () {
   var FADE_LEN = 500;
   function Rotator ( elem ) {
     var c = [ ],

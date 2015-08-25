@@ -18,7 +18,7 @@
   header > nav {
     display: inline-block;
     margin-top: 4%;
-    width: 69%;
+    width: 66%;
   }
 
   header > nav > ul {
@@ -83,7 +83,7 @@
     padding-right: 20%;
   }
 
-  header video {
+  #introVideo {
     width: 66.67%;
     vertical-align: top;
   }
@@ -93,10 +93,6 @@
     width: 28%;
     margin-right: 4%;
     font-size: 85%;
-  }
-
-  article#services {
-    display: none;
   }
 
   #testimonials {
