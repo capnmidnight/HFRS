@@ -38,6 +38,10 @@ ul {
   text-align: left;
 }
 
+header {
+  text-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
+}
+
 header > nav > ul {
   list-style: none;
   padding: 0;
@@ -90,7 +94,7 @@ header {
   font-size: 85%;
 }
 
-#content > article > .button {
+#content > article .button {
   margin-top: 2em;
   margin-bottom: 2em;
 }
@@ -132,10 +136,6 @@ h3 {
   text-align: right;
 }
 
-h3 > a {
-  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.4);
-}
-
 h4 {
   margin-top: 1em;
 }
@@ -148,32 +148,16 @@ h4 > a {
   display: none;
 }
 
-#content > article:nth-child(1) {
-  background-color: rgb(174, 232, 177);
-}
-
-#content > article:nth-child(2) {
-  background-color: rgb(232, 229, 174);
-}
-
-#content > article:nth-child(3) {
-  background-color: rgb(29, 53, 103);
-  color: #f4f4f4;
-}
-
-#content > article:nth-child(4) {
-  background-color: rgb(204, 255, 204);
-}
-
 #content > article {
   margin: 0;
   padding: 1em;
   display: inline-block;
   width: 100%;
+  break-before: always;
 }
 
 #content > article:last-child {
-  margin-bottom: 2em;
+  padding-bottom: 2em;
 }
 
 #customer_logos > a > img {
@@ -187,6 +171,7 @@ h4 > a {
   margin: 1em;
   color: #1B1831;
   background-color: #f4f4f4;
+  break-before: always;
 }
 
 #employees > div > ul {
@@ -270,4 +255,86 @@ footer:hover:before{
   border-radius: 4px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
   padding-bottom: 1em;
+}
+
+label, input[type=text], input[type=email], input[type=tel], input[type=number], input[type=date], input[type=time],  textarea {
+  padding:0.75em;
+  border: 0;
+  font-size: 110%;
+  border-radius: 4px;
+  display: block;
+}
+
+label {
+  margin-top: 0.5em;
+}
+
+#contact > form > div > label, #contact > form > div > input {
+  display: inline;
+}
+
+label, input[type=text], input[type=email], input[type=tel], textarea {
+  width: 100%;
+}
+
+.required:after{
+  content:"*";
+  color: red;
+}
+
+.green{
+  background-color: rgb(174, 232, 177);
+  color: #413E2D;
+}
+
+.yellow{
+  background-color: rgb(232, 229, 174);
+  color: #413E2D;
+}
+
+.blue{
+  background-color: rgb(29, 53, 103);
+  color: #DCDEE6;
+}
+
+.red{
+  background-color: rgb(104, 87, 67);
+  color: #ffffff;
+}
+
+.message{
+  padding: 1em;
+  background-color: white;
+  border-style: dashed;
+  border-width: 5px;
+  display: none;
+}
+
+.message > h4{
+  font-weight: bold;
+  text-align: center;
+  margin-top: 0;
+  text-transform: none;
+}
+
+.message > p{
+  font-family: monospace;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.error.message{
+  border-color: red;
+}
+
+.error.message > h4{
+  color: red;
+}
+
+.success.message{
+  border-color: green;
+}
+
+.success.message > h4{
+  color: green;
 }

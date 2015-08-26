@@ -28,6 +28,7 @@
     </script>
     <script type="text/javascript" src="//platform.twitter.com/widgets.js" async></script>
     <script type="text/javascript" src="js/rotator.js" async></script>
+    <script type="text/javascript" src="js/client_onboard.js" async></script>
     <!--<script type="text/javascript" src="js/ga.min.js" async></script>-->
   </head>
   <body>
@@ -40,9 +41,9 @@
       <nav>
         <ul>
           <li><a href="#services">services</a></li>
-          <li><a href="#customers">customers</a></li>
           <li><a href="#about">about</a></li>
-          <li><a href="#get_started">contact</a></li>
+          <li><a href="#contact">contact</a></li>
+          <li><a href="#customers">customers</a></li>
         </ul>
       </nav>
 
@@ -59,7 +60,7 @@
           services covering the range of institutional needs for advancement.
         </p>
 
-        <a href="#get_started" class="yellow button">Let's get started!<br><small>Find out how HFRS can help your organization</small></a>
+        <a href="#contact" class="yellow button">Let's get started!<br><small>Find out how HFRS can help your organization</small></a>
       </div>
 
       <div id="introVideo">
@@ -69,7 +70,7 @@
     </header>
 
     <section id="content">
-      <article id="services">
+      <article id="services" class="red">
         <h3><a name="services">Services</a></h3>
 
         <p>
@@ -88,12 +89,181 @@
           <li>… and more</li>
         </ul>
 
-        <a href="#get_started" class="red button">Find out more!<br><small>HFRS is well-situated to assist your non-profit.</small></a>
+        <a href="#contact" class="green button">Find out more!<br><small>HFRS is well-situated to assist your non-profit.</small></a>
 
         <a href="#top">top</a>
       </article>
 
-      <article id="customers">
+      <article id="about" class="blue">
+
+        <h3><a name="about">About Us</a></h3>
+
+        <p>
+          We help assess, mitigate, and refine fundraising operations,
+          specializing in The Raiser’s Edge&trade; and Crystal Reports&trade;.
+        </p>
+
+        <p>
+          We don’t believe in one-size-fits-all solutions. We are dedicated to
+          working with your organization to discover what is needed and then
+          create a solution that will work for you – all with minimal demands on
+          your staff’s valuable time.
+        </p>
+        <section id="employees">
+          <div>
+
+            <img src="images/Melody_McBeth2.jpg" class="portrait" alt="photo" title="Melody McBeth">
+
+            <h4><a href="mailto:melody.mcbeth@highlandfrs.com?subject='Website contact'" target="_blank">Melody McBeth</a> - Principal</h4>
+
+            <p>
+              Melody has more than 15 years of experience in fundraising, almost
+              10 of which were spent in independent secondary school development.
+              She has served as a solicitor, volunteer manager, event coordinator,
+              the database/systems administrator and senior Crystal Reports™
+              architect, and as the Director of Advancement Services. Her work
+              has been recognized by her peers, other consultants, and software
+              manufacturers alike.
+            </p>
+
+            <p>
+              Before entering the development field, Melody served in the Armed
+              Forces, managed various other businesses including a karate studio,
+              and held state and local offices with the Pennsylvania Jaycees.
+              Her cross industry experience has proven vital to formulating highly
+              successful solutions to sticky data challenges.
+            </p>
+
+            <ul>
+              <li><a href="https://twitter.com/HighlandFRS" class="twitter-follow-button" data-show-count="false" data-size="large" target="_blank">Follow @HighlandFRS</a></li>
+              <li><a href="https://www.linkedin.com/in/melodymcbethhfrs" target="_blank">
+                  <img src="https://static.licdn.com/scds/common/u/img/webpromo/btn_myprofile_160x33.png" alt="logo" title="View Melody McBeth's profile on LinkedIn">
+                </a></li>
+            </ul>
+          </div>
+
+          <div>
+
+            <img src="images/Sean_McBeth.jpg" class="portrait" alt="photo" title="Melody McBeth">
+
+            <h4><a href="mailto:sean.mcbeth@highlandfrs.com?subject='Website contact'" target="_blank">Sean T. McBeth</a> – Chief Technology Officer</h4>
+
+            <p>Sean has over 10 years of professional experience in software engineering, having successfully bootstrapped and deployed multiple analytics-heavy OLTP applications for desktop, Web, and mobile Web. He emphasize open communication with stakeholders, frequent issue and user-story tracking and review, correct, normalized relational database design and simple, best-practice-based, DRY, agile software development. </p>
+
+            <p>He maintains a broad skill-set in programming languages, databases, operating systems, and other software packages, including: C#, Java, VB.NET, JavaScript, CSS3, HTML5, Node.js; MS SQL Server, MySQL, PostgreSQL; Windows XP - 8.1, Linux Mint, Android; Visual Studio, NetBeans, Git, Blender, Photoshop, Illustrator.</p>
+
+            <ul>
+              <li><a href="https://github.com/capnmidnight" target="_blank"><img src="images/GitHub-Mark-32px.png" alt="logo" title="View Sean's profile on GitHub" style="vertical-align: middle;"> View Sean's profile on GitHub</a></li>
+              <li><a href="https://twitter.com/Sean_McBeth" class="twitter-follow-button" data-show-count="false" data-size="large" target="_blank">Follow @Sean_McBeth</a></li>
+              <li><a href="https://www.linkedin.com/pub/sean-mcbeth/6/727/378" target="_blank">
+                  <img src="https://static.licdn.com/scds/common/u/img/webpromo/btn_myprofile_160x33.png" alt="logo" title="View Sean McBeth's profile on LinkedIn">
+                </a></li>
+            </ul>
+          </div>
+        </section>
+
+        <a href="#contact" class="yellow button">Find out more!<br><small>HFRS is well-situated to assist your non-profit.</small></a>
+
+        <a href="#top">top</a>
+      </article>
+
+      <article id="contact" class="green">
+
+        <h3><a name="contact">Contact Us</a></h3>
+        <p>To get started with Highland FRS today, please let us know a few things about your non-profit organization.</p>
+
+        <div id="submissionSuccess" class="success message">
+          <h4>Thank you, <span id="callbackName"></span>!</h4>
+          <p>
+            We've recorded your message in our database and we will be in contact
+            with you as soon as possible. Our business hours are Monday through Friday,
+            9AM to 5PM, Eastern Daylight Savings Time.
+          </p>
+          <p>
+            If your message is urgent, please contact Melody McBeth at one of the
+            following:
+          </p>
+          <ul>
+            <li>Email: <a href="mailto:info@highlandfrs.com">melody.mcbeth@highlandfrs.com</a></li>
+            <li>Phone: <a href="tel:+0117174146900">717.414.6900</a></li>
+          </ul>
+        </div>
+
+        <div id="submissionError" class="error message">
+          <h4>Oh no!</h4>
+          <p>It seems there was an errrrrrrrrrrrror.</p>
+          <p>
+            If your message is urgent, please contact Melody McBeth at one of the
+            following:
+          </p>
+          <ul>
+            <li>Email: <a href="mailto:info@highlandfrs.com">melody.mcbeth@highlandfrs.com</a></li>
+            <li>Phone: <a href="tel:+0117174146900">717.414.6900</a></li>
+          </ul>
+        </div>
+
+        <form id="contactForm">
+          <label for="contact_name" class="required">Please enter your name.</label>
+          <input type="text" id="contact_name" placeholder="Jane Doe" required>
+
+          <label for="contact_email" class="required">Please enter an email address where you may be reached.</label>
+          <input type="email" id="contact_email" placeholder="jane.doe@awesomeuniversity.edu" required>
+
+          <label for="contact_phone" class="required">Please enter a phone number where you may be reached.</label>
+          <input type="tel" id="contact_phone" placeholder="555-555-5555 ext 215" required pattern="(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?">
+
+          <label for="contact_company" class="required">Please enter the name of your organization.</label>
+          <input type="text" id="contact_company" placeholder="The Awesome University of Awesomeness" required>
+
+          <label for="contact_description">Please describe your organization.</label>
+          <textarea id="contact_description" placeholder="We are small, but awesome!" rows="10"></textarea>
+
+          <label for="contact_records">Approximately how many constituent records are held in your database?</label>
+          <input type="number" id="contact_records" placeholder="15,000" min="1000" max="1000000000" step="1000">
+
+          <label for="contact_message" class="required">Please describe your project.</label>
+          <textarea id="contact_message" placeholder="We would be even more awesome if..." rows="10" required></textarea>
+
+          <label for="contact_contacton_date1">Please enter the three earliest dates on which we may contact you.</label>
+          <div>
+            <label for="contact_contacton_date1">Date:</label>
+            <input type="date" id="contact_contacton_date1">
+            <label for="contact_contacton_time1">Time:</label>
+            <input type="time" id="contact_contacton_time1">
+          </div>
+          <div>
+            <label for="contact_contacton_date2">Date:</label>
+            <input type="date" id="contact_contacton_date2">
+            <label for="contact_contacton_time2">Time:</label>
+            <input type="time" id="contact_contacton_time2">
+          </div>
+          <div>
+            <label for="contact_contacton_date3">Date:</label>
+            <input type="date" id="contact_contacton_date3">
+            <label for="contact_contacton_time3">Time:</label>
+            <input type="time" id="contact_contacton_time3">
+          </div>
+
+          <label for="contact_starton">By when would you need us to start?</label><br>
+          <input type="date" id="contact_starton">
+
+          <a href="javascript:sendContact(document.querySelector('#contactForm'), document.querySelector('#submissionSuccess'), document.querySelector('#submissionError'));" class="red button">Drop us a line!</a>
+
+        <p>
+          Or if you would like to contact us directly:
+        </p>
+
+        <ul>
+          <li>Email: <a href="mailto:info@highlandfrs.com">info@highlandfrs.com</a></li>
+          <li>Phone: <a href="tel:+0117174146900">717.414.6900</a></li>
+          <li>Twitter: <a href="http://www.twitter.com/HighlandFRS" target="_blank">@HighlandFRS</a></li>
+        </ul>
+        </form>
+
+        <a href="#top">top</a>
+      </article>
+
+      <article id="customers" class="yellow">
 
         <h3><a name="customers">Customers</a></h3>
 
@@ -180,105 +350,7 @@
           </section>
         </div>
 
-        <a href="#get_started" class="blue button">Find out more!<br><small>HFRS is well-situated to assist your non-profit.</small></a>
-
-        <a href="#top">top</a>
-      </article>
-
-      <article id="about">
-
-        <h3><a name="about">About Us</a></h3>
-
-        <p>
-          We help assess, mitigate, and refine fundraising operations,
-          specializing in The Raiser’s Edge&trade; and Crystal Reports&trade;.
-        </p>
-
-        <p>
-          We don’t believe in one-size-fits-all solutions. We are dedicated to
-          working with your organization to discover what is needed and then
-          create a solution that will work for you – all with minimal demands on
-          your staff’s valuable time.
-        </p>
-        <section id="employees">
-          <div>
-
-            <img src="images/Melody_McBeth2.jpg" class="portrait" alt="photo" title="Melody McBeth">
-
-            <h4><a href="mailto:melody.mcbeth@highlandfrs.com?subject='Website contact'" target="_blank">Melody McBeth</a> - Principal</h4>
-
-            <p>
-              Melody has more than 15 years of experience in fundraising, almost
-              10 of which were spent in independent secondary school development.
-              She has served as a solicitor, volunteer manager, event coordinator,
-              the database/systems administrator and senior Crystal Reports™
-              architect, and as the Director of Advancement Services. Her work
-              has been recognized by her peers, other consultants, and software
-              manufacturers alike.
-            </p>
-
-            <p>
-              Before entering the development field, Melody served in the Armed
-              Forces, managed various other businesses including a karate studio,
-              and held state and local offices with the Pennsylvania Jaycees.
-              Her cross industry experience has proven vital to formulating highly
-              successful solutions to sticky data challenges.
-            </p>
-
-            <ul>
-              <li><a href="https://twitter.com/HighlandFRS" class="twitter-follow-button" data-show-count="false" data-size="large" target="_blank">Follow @HighlandFRS</a></li>
-              <li><a href="https://www.linkedin.com/in/melodymcbethhfrs" target="_blank">
-                  <img src="https://static.licdn.com/scds/common/u/img/webpromo/btn_myprofile_160x33.png" alt="logo" title="View Melody McBeth's profile on LinkedIn">
-                </a></li>
-            </ul>
-          </div>
-
-          <div>
-
-            <img src="images/Sean_McBeth.jpg" class="portrait" alt="photo" title="Melody McBeth">
-
-            <h4><a href="mailto:sean.mcbeth@highlandfrs.com?subject='Website contact'" target="_blank">Sean T. McBeth</a> – Chief Technology Officer</h4>
-
-            <p>Sean has over 10 years of professional experience in software engineering, having successfully bootstrapped and deployed multiple analytics-heavy OLTP applications for desktop, Web, and mobile Web. He emphasize open communication with stakeholders, frequent issue and user-story tracking and review, correct, normalized relational database design and simple, best-practice-based, DRY, agile software development. </p>
-
-            <p>He maintains a broad skill-set in programming languages, databases, operating systems, and other software packages, including: C#, Java, VB.NET, JavaScript, CSS3, HTML5, Node.js; MS SQL Server, MySQL, PostgreSQL; Windows XP - 8.1, Linux Mint, Android; Visual Studio, NetBeans, Git, Blender, Photoshop, Illustrator.</p>
-
-            <ul>
-              <li><a href="https://github.com/capnmidnight" target="_blank"><img src="images/GitHub-Mark-32px.png" alt="logo" title="View Sean's profile on GitHub" style="vertical-align: middle;"> View Sean's profile on GitHub</a></li>
-              <li><a href="https://twitter.com/Sean_McBeth" class="twitter-follow-button" data-show-count="false" data-size="large" target="_blank">Follow @Sean_McBeth</a></li>
-              <li><a href="https://www.linkedin.com/pub/sean-mcbeth/6/727/378" target="_blank">
-                  <img src="https://static.licdn.com/scds/common/u/img/webpromo/btn_myprofile_160x33.png" alt="logo" title="View Sean McBeth's profile on LinkedIn">
-                </a></li>
-            </ul>
-          </div>
-        </section>
-
-        <a href="#get_started" class="yellow button">Find out more!<br><small>HFRS is well-situated to assist your non-profit.</small></a>
-
-        <a href="#top">top</a>
-      </article>
-
-      <article id="get_started">
-
-        <h3><a name="get_started">Get Started</a></h3>
-
-        <p>To get started with Highland FRS today, please let us know a few things about your non-profit organization.</p>
-
-        <form method="GET" action="mailto:sean@highlandfrs.com">
-          
-        </form>
-
-        <h3><a name="contact">Contact Us</a></h3>
-
-        <p>
-          Or if you would like to contact us directly:
-        </p>
-
-        <ul>
-          <li>Email: <a href="mailto:info@highlandfrs.com">info@highlandfrs.com</a></li>
-          <li>Phone: <a href="tel:+0117174146900">717.261.7688</a></li>
-          <li>Twitter: <a href="http://www.twitter.com/HighlandFRS" target="_blank">@HighlandFRS</a></li>
-        </ul>
+        <a href="#contact" class="blue button">Find out more!<br><small>HFRS is well-situated to assist your non-profit.</small></a>
 
         <a href="#top">top</a>
       </article>

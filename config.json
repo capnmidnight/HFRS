@@ -1,0 +1,9 @@
+{
+  "database": {
+    "connectionLimit": 10,
+    "host": "localhost",
+    "user": "hfrs",
+    "password": "ppyptky7",
+    "database": "hfrs"
+  }
+}

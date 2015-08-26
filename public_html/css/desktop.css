@@ -51,10 +51,6 @@
     clear: right;
   }
 
-  h3 {
-    display: none;
-  }
-
   #customers > div > section {
     display: inline-block;
     vertical-align: top;
