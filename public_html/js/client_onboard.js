@@ -54,12 +54,6 @@ waitFor(
           .forEach( function ( elem ) {
             elem.addEventListener( "blur", clearField.bind( elem ), false );
           } );
-      var f = document.forms.contactForm;
-      f.contact_name.value = "Sean T. McBeth";
-      f.contact_email.value = "sean.mcbeth@gmail.com";
-      f.contact_phone.value = "7172617689";
-      f.contact_company.value = "hfrs";
-      f.contact_message.value = "hello";
     } );
 
 function sendContact ( form, successMessage, errorMessage ) {
