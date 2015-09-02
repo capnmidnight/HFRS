@@ -9,7 +9,7 @@ html, body {
 
 body {
   background-color: #C3C3C4;
-  background-image: url(/images/highlands.jpg);
+  background-image: url(../images/highlands.jpg);
   background-repeat: no-repeat;
   background-size: 100%;
   background-attachment: fixed;
@@ -78,7 +78,7 @@ header {
   padding: 0;
 }
 
-#introVideo, #introVideo > video {
+#introVideo, #introVideo > video, #introVideo > .video {
   position: relative;
   display: inline-block;
   width: 100%;
