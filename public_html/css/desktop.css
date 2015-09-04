@@ -54,10 +54,6 @@
     clear: right;
   }
 
-  #customer_logos {
-    width: 65%;
-  }
-
   article > div > section {
     display: inline-block;
     vertical-align: top;

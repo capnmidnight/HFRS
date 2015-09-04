@@ -173,7 +173,6 @@ function send ( path, data, success, fail, progress ) {
     xhr.responseType = "json";
     xhr.setRequestHeader( "Content-Type",
         "application/json;charset=UTF-8" );
-    xhr.setRequestHeader( "origin", document.location.origin );
     xhr.send( JSON.stringify( data ) );
   }
   catch ( exp ) {
