@@ -1,6 +1,5 @@
 var express = require("express"),
         fs = require("fs"),
-        config = require("../config"),
         router = express.Router(),
         originTest = /^https?:\/\/(localhost|(www\.)?highlandfrs.com)(:\d+)?(\/|$)/;
 
