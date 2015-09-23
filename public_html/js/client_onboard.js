@@ -63,16 +63,7 @@ function sendContact ( form, successMessage, errorMessage ) {
       email: form.contact_email.value,
       phone: form.contact_phone.value,
       company: form.contact_company.value,
-      description: form.contact_description.value,
-      records: form.contact_records.value,
-      message: form.contact_message.value,
-      contacton1: ( form.contact_contacton_date1.value + " " +
-          form.contact_contacton_time1.value ),
-      contacton2: ( form.contact_contacton_date2.value + " " +
-          form.contact_contacton_time2.value ),
-      contacton3: ( form.contact_contacton_date3.value + " " +
-          form.contact_contacton_time3.value ),
-      starton: form.contact_starton.value
+      description: form.contact_description.value
     };
 
     Object.keys( data )

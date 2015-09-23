@@ -169,7 +169,7 @@ h4 > a {
   max-width: 100%;
 }
 
-article > div > section, #employees > div {
+article > div > section, #leadership > div {
   border-radius: 7px;
   border: solid 1px #c0c0c0;
   padding: 1em;
@@ -184,7 +184,7 @@ article > div > section > img {
     height: 100px;
 }
 
-#employees > div > ul {
+#leadership > div > ul {
   font-size: 90%;
   list-style: none;
 }

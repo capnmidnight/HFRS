@@ -43,13 +43,13 @@
     margin-right: 1.25em;
   }
 
-  #about > #employees > div {
+  #about > #leadership > div {
     display: inline-block;
     width: 43%;
     vertical-align: top;
   }
 
-  #about > #employees > div:last-child{
+  #about > #leadership > div:last-child{
     break-after: always;
     clear: right;
   }
