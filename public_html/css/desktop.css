@@ -54,10 +54,10 @@
     clear: right;
   }
 
-  article > div > section {
+  #services > div > section {
     display: inline-block;
     vertical-align: top;
-    width: 30%;
+    width: 27.7%;
     font-size: 75%;
   }
 }
