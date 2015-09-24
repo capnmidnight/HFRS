@@ -165,6 +165,31 @@ h4 > a {
   padding-bottom: 2em;
 }
 
+blockquote > p:before{
+  content: open-quote;
+}
+
+blockquote > p:after{
+  content: close-quote;
+}
+
+blockquote > h4 {
+  text-transform: none;
+  color: #4E5F4F;
+}
+
+blockquote > cite {
+  font-size: 80%;
+  color: #657F66;
+}
+
+#news > blockquote {
+  background-color: #DEF7DF;
+  padding: 2em;
+  padding-top: 1em;
+  border-radius: 3px;
+}
+
 #customer_logos > a > img {
   max-width: 100%;
 }
@@ -252,14 +277,6 @@ footer:hover:before{
   font-size:24pt;
   margin:0;
   padding:0.25em;
-}
-
-.rotator > blockquote > p:before{
-  content: open-quote;
-}
-
-.rotator > blockquote > p:after{
-  content: close-quote;
 }
 
 .rotator > div {
