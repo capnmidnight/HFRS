@@ -86,6 +86,10 @@
     margin-right: 4%;
     font-size: 85%;
   }
+  
+  #main_services{
+    display: none;
+  }
 
   #testimonials {
     font-size: 100%;
