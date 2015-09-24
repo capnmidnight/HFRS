@@ -53,6 +53,15 @@ waitFor(
     } );
 
 function sendContact ( form, successMessage, errorMessage ) {
+  var btn = document.getElementById("submitContact");
+  var oldClass = btn.className;
+  var oldHref = btn.href;
+  btn.className += " disabled";
+  btn.href = "javascript:return false";
+  function resetButton(){
+    btn.className = oldClass;
+    btn.href = oldHref;
+  }
   if ( form.reportValidity() ) {
     var data = {
       name: form.contact_name.value,
@@ -80,11 +89,15 @@ function sendContact ( form, successMessage, errorMessage ) {
           var b = document.querySelector( "#callbackName" );
           b.innerHTML = "";
           b.appendChild( document.createTextNode( data.name ) );
+          resetButton();
+          ga("send", "event", "contactlist", "success");
         },
         function ( msg ) {
           form.style.display = "none";
           errorMessage.style.display = "block";
           errorMessage.scrollIntoView();
+          resetButton();
+          ga("send", "event", "contactlist", "fail");
         } );
   }
 }
