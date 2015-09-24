@@ -42,17 +42,13 @@ if ( !HTMLFormElement.prototype.reportValidity ) {
 }
 
 waitFor(
+    function () { return document.forms.contactForm; },
     function () {
-      return document.forms.contactForm;
-    },
-    function () {
-      function clearField () {
-        this.value = this.value.trim();
-      }
+      function trimField () { this.value = this.value.trim(); }
       Array.prototype.slice.call( document.forms.contactForm.querySelectorAll(
           "input, textarea" ) )
           .forEach( function ( elem ) {
-            elem.addEventListener( "blur", clearField.bind( elem ), false );
+            elem.addEventListener( "blur", trimField.bind( elem ), false );
           } );
     } );
 
