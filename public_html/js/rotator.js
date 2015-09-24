@@ -15,8 +15,8 @@ waitFor( function () {
     for ( var i = 0; i < len; ++i ) {
       c[i] = elem.children[i];
       pips[i] = document.createElement( "span" );
-      pips[i].innerHTML = " ● ";
-      pips[i].style.cursor = "pointer";
+      pips[i].innerHTML = "●";
+      pips[i].className = "pip";
       pips[i].onclick = tick.bind( this, i );
       pager.appendChild( pips[i] );
 

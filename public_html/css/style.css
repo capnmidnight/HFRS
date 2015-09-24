@@ -109,7 +109,7 @@ h1, h2, h3, h4, h5 {
 }
 
 h1, h2, h3, h4, h5, a, input, textarea {
-    font-family: Calibri, Verdan, sans-serif;
+  font-family: Calibri, Verdan, sans-serif;
 }
 
 h1, h2 {
@@ -179,9 +179,9 @@ article > div > section, #leadership > div {
 }
 
 article > div > section > img {
-    display: block;
-    margin: 30px auto;
-    height: 100px;
+  display: block;
+  margin: 30px auto;
+  height: 100px;
 }
 
 #leadership > div > ul {
@@ -245,6 +245,13 @@ footer:before{
 
 footer:hover:before{
   content: "-";
+}
+
+.rotator .pip{
+  cursor: pointer;
+  font-size:24pt;
+  margin:0;
+  padding:0.25em;
 }
 
 .rotator > blockquote > p:before{
