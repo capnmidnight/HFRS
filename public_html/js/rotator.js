@@ -49,16 +49,27 @@ waitFor( function () {
       show( n );
     }
 
+    function isInViewport () {
+      var rect = elem.getBoundingClientRect(),
+          inBounds = rect.bottom >= 0
+          && rect.top <= window.innerHeight;
+
+      return inBounds;
+    }
+
     var lt = 0;
     this.update = function ( ft ) {
       var dt = ft - lt;
       lt = ft;
       t += dt;
-      if ( t >= ttl ) {
-        tick( ( n + 1 ) % len );
+      if ( isInViewport() )
+      {
+        if ( t >= ttl ) {
+          tick( ( n + 1 ) % len );
+        }
+        c[n].style.opacity = Math.min( 1, ( mid - Math.abs( t - mid ) ) /
+            FADE_LEN );
       }
-      c[n].style.opacity = Math.min( 1, ( mid - Math.abs( t - mid ) ) /
-          FADE_LEN );
     };
   }
 
