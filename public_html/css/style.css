@@ -11,7 +11,6 @@ body {
   background-color: #C3C3C4;
   background-image: url(../images/highlands.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
   background-attachment: fixed;
   font-family: Cambria, Georgia, serif;
   font-size: 18px;
@@ -447,7 +446,10 @@ header, .clear{
 }
 
 @media (min-width:870px){
-
+  body{
+    background-size: cover;
+  }
+  
   #about > #leadership > div {
     display: inline-block;
     width: 43%;
