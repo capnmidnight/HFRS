@@ -7,6 +7,10 @@ html, body {
   padding: 0;
 }
 
+#customer_logos {
+  text-align: center;
+}
+
 body {
   background-color: #C3C3C4;
   background-image: url(../images/highlands.jpg);
