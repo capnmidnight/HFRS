@@ -58,9 +58,12 @@ header > nav > ul > li {
   margin: 0.5%;
 }
 
+header, header > nav > ul > li > a {
+  width: 100%;
+}
+
 header > nav > ul > li > a {
   display: inline-block;
-  width:100%;
   text-align: center;
   text-transform: capitalize;
   color: rgb(247, 247, 247);
@@ -70,12 +73,6 @@ header > nav > ul > li > a {
   padding-bottom: 1em;
   border-radius: 2px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
-}
-
-header {
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 20%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0));
-  margin: 0;
-  padding: 0;
 }
 
 #introVideo, #introVideo > video, #introVideo > .video {
@@ -130,8 +127,8 @@ h2 {
   margin-bottom: 1.5em;
   font-size: 100%;
   margin-top:-0.5em;
-  color: rgb(215, 215, 215);
-  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+  color: rgb(255, 255, 255);
+  text-shadow: 0px 0px 12px rgb(0, 0, 0);
 }
 
 h3 {
@@ -147,6 +144,10 @@ h4 {
 
 h4 > a {
   text-decoration: underline;
+}
+
+ul {
+  list-style-type: circle;
 }
 
 #alt_services {
@@ -183,8 +184,8 @@ blockquote > cite {
   color: #657F66;
 }
 
-#news > blockquote {
-  background-color: #DEF7DF;
+article > blockquote, article > p {
+  background-color: rgba(255, 255, 255, 0.75);
   padding: 2em;
   padding-top: 1em;
   border-radius: 3px;
@@ -321,8 +322,8 @@ label, input[type=text], input[type=email], input[type=tel], textarea {
   color: #413E2D;
 }
 
-.yellow{
-  background-color: rgb(232, 229, 174);
+header, .clear{
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 20%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0));
   color: #413E2D;
 }
 
@@ -373,8 +374,7 @@ label, input[type=text], input[type=email], input[type=tel], textarea {
   color: green;
 }
 
-.button
-{
+.button {
   cursor: pointer;
   display: inline-block;
   text-align: center;
@@ -431,59 +431,27 @@ label, input[type=text], input[type=email], input[type=tel], textarea {
 }
 
 @media (min-width:600px){
+  
   header, #content > article {
     padding-left: 5%;
     padding-right: 5%;
   }
-
-  h2 {
-  color: hsl(0, 0%, 40%);
-  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 }
 
-  #mainLogo {
-    width: 30.5%;
-    vertical-align: top;
+@media (min-width:735px){
+  
+  header, #content > article {
+    padding-left: 10%;
+    padding-right: 10%;
   }
+}
 
-  ul {
-    list-style-type: circle;
-  }
-
-  header > nav {
-    display: inline-block;
-    margin-top: 4%;
-    width: 66%;
-  }
-
-  header > nav > ul {
-    text-align: left;
-    font-size: 110%;
-  }
-
-  header > nav > ul > li {
-    width: auto;
-  }
-
-  header > nav > ul > li > a {
-    margin-top: 1em;
-    box-shadow: none;
-    color: #353434;
-    background-image: none;
-    text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.9);
-    font-weight: normal;
-    margin-right: 1.25em;
-  }
+@media (min-width:870px){
 
   #about > #leadership > div {
     display: inline-block;
     width: 43%;
     vertical-align: top;
-  }
-
-  #about > #leadership > div:last-child{
-    break-after: always;
-    clear: right;
   }
 
   #services > div > section {
@@ -492,16 +460,46 @@ label, input[type=text], input[type=email], input[type=tel], textarea {
     width: 27.7%;
     font-size: 75%;
   }
-}
 
-@media (min-width:735px){
-  header, #content > article {
-    padding-left: 10%;
-    padding-right: 10%;
+  #mainLogoWrapper {
+    width: 33%;
+    display: inline-block;
+    text-align: center;
   }
-}
+  
+  #mainLogo {
+    width: 10em;
+    margin: -2em auto -2em auto;
+    vertical-align: top;
+  }
+  
+  header > nav {
+    display: inline-block;
+    width: 66%;
+  }
 
-@media (min-width:870px){
+  header {
+    background-color: white;
+  }
+  
+  header > nav > ul {
+    text-align: left;
+    font-size: 108%;
+  }
+
+  header > nav > ul > li {
+    width: 18%;
+  }
+
+  header > nav > ul > li > a {
+    box-shadow: none;
+    color: #353434;
+    background-image: none;
+    text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.9);
+    font-weight: bold;
+    margin-right: 1.25em;
+  }
+  
   header, #content > article {
     padding-left: 20%;
     padding-right: 20%;
@@ -521,10 +519,6 @@ label, input[type=text], input[type=email], input[type=tel], textarea {
   
   #main_services{
     display: none;
-  }
-
-  #testimonials {
-    font-size: 100%;
   }
 
   .rotator .pip{
