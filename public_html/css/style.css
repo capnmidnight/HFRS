@@ -198,13 +198,30 @@ article > blockquote {
   max-width: 100%;
 }
 
-article > div > section, #leadership > div {
+#services > div {
+  display: inline-block;
+  vertical-align: top;
+  min-width: 200px;
+  width: 32%;
+  font-size: 75%;
+}
+
+article > div > section, #leadership > div > div {
   border-radius: 7px;
   border: solid 1px #c0c0c0;
   padding: 1em;
   margin: 1em;
   color: #1B1831;
   background-color: #f4f4f4;
+}
+
+#leadership > div {
+  display: inline-block;
+  min-width: 300px;
+  width: 49%;
+  margin:0;
+  border:0;
+  vertical-align: top;
 }
 
 article > div > section > img {
@@ -439,16 +456,8 @@ header, .clear{
   box-shadow: none;
 }
 
-@media (min-width:600px){
-  
-  header, #content > article {
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-}
-
 @media (min-width:735px){
-  
+
   header, #content > article {
     padding-left: 10%;
     padding-right: 10%;
@@ -456,7 +465,7 @@ header, .clear{
 }
 
 @media (min-width:870px){
-  
+
   header, #content > article {
     padding-left: 20%;
     padding-right: 20%;
@@ -466,19 +475,6 @@ header, .clear{
     width: 66.67%;
     vertical-align: top;
   }
-  
-  #about > #leadership > div {
-    display: inline-block;
-    width: 43%;
-    vertical-align: top;
-  }
-
-  #services > div > section {
-    display: inline-block;
-    vertical-align: top;
-    width: 27.7%;
-    font-size: 75%;
-  }
 
   #alt_services {
     display: inline-block;
@@ -486,7 +482,7 @@ header, .clear{
     margin-right: 4%;
     font-size: 85%;
   }
-  
+
   #main_services{
     display: none;
   }
