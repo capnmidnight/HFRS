@@ -12,8 +12,8 @@ html, body {
 }
 
 body {
-  background-color: #C3C3C4;
-  background-image: url(../images/highlands.jpg);
+  background-color: #A7B0D8;
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: Cambria, Georgia, serif;
@@ -321,18 +321,17 @@ label, input[type=text], input[type=email], input[type=tel], textarea {
 }
 
 .green{
-  background-color: rgb(174, 232, 177);
+  background-color: rgb(36, 178, 75);
   color: #413E2D;
 }
 
 header, .clear{
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 20%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0));
   color: #413E2D;
 }
 
 .blue{
-  background-color: rgb(29, 53, 103);
-  color: #DCDEE6;
+  background-color: rgb(241, 240, 160);
+  color: #393B44;
 }
 
 .red{
