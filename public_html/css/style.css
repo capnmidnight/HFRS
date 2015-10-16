@@ -192,6 +192,7 @@ article > blockquote, article > p {
   padding: 2em;
   padding-top: 1em;
   border-radius: 3px;
+  color: #4e5f4f;
 }
 
 #customer_logos > a > img {
@@ -322,7 +323,7 @@ label, input[type=text], input[type=email], input[type=tel], textarea {
 
 .green{
   background-color: rgb(36, 178, 75);
-  color: #413E2D;
+  color: rgb(241, 240, 160);
 }
 
 header, .clear{
