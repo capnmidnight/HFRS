@@ -296,24 +296,26 @@ footer:hover:before{
   padding-bottom: 1em;
 }
 
-label, input[type=text], input[type=email], input[type=tel], input[type=number], input[type=date], input[type=time],  textarea {
+label, input, textarea {
   padding:0.75em;
   border: 0;
   font-size: 110%;
   border-radius: 4px;
+  width: 100%;
   display: block;
+}
+
+input, textarea {
+  margin-top: 0;
 }
 
 label {
   margin-top: 0.5em;
+  padding-bottom: 0;
 }
 
 #contact > form > div > label, #contact > form > div > input {
   display: inline;
-}
-
-label, input[type=text], input[type=email], input[type=tel], textarea {
-  width: 100%;
 }
 
 .required:after{
@@ -321,9 +323,9 @@ label, input[type=text], input[type=email], input[type=tel], textarea {
   color: red;
 }
 
-.green{
+.green {
   background-color: rgb(36, 178, 75);
-  color: rgb(241, 240, 160);
+  color: rgb(255, 255, 255);
 }
 
 header, .clear{
