@@ -14,7 +14,12 @@
     <meta property="og:description" content="Highland FRS is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations.">
     <title>Highland FRS - non-profit fundraising consultancy</title>
     <link rel="stylesheet" href="css/style.css">
-    <script type="text/javascript" src="js/code.min.js" async></script>
+    <script type="text/javascript">function waitFor ( c, v ) {
+        !c() && setTimeout( waitFor.bind( window, c, v ), 1 ) || v()
+      }</script>
+    <script type="text/javascript" src="js/mapResizer.js" async defer></script>
+    <script type="text/javascript" src="js/rotator.js" async defer></script>
+    <!--<script type="text/javascript" src="js/code.min.js" async defer></script>-->
   </head>
   <body>
     <header>
@@ -48,7 +53,7 @@
             advancement and development.
           </p>
 
-          <a href="#contact" class="secondary button" title="Jump to contact form">Get in contact!<br><small>Find out how HFRS can help your organization</small></a>
+          <a href="#contact" class="primary button" title="Jump to contact form">Get in contact!<br><small>Find out how HFRS can help your organization</small></a>
         </div>
 
         <div id="introVideo" class="rotator" data-timeout="5000">
@@ -58,7 +63,7 @@
         </div>
       </article>
 
-      <article id="services" class="primary">
+      <article id="services" class="secondary">
         <h3><a name="services">Services</a></h3>
 
 
@@ -75,41 +80,44 @@
           We do the field management "dirty work" so you don't have to.
         </p>
 
-        <div>
-          <section>
+        <section>
+          <div>
             <img src="images/icon-management.png" alt="icon" title="management">
-            <h4>Management</h4>
-            <ul>
-              <li>Process analysis</li>
-              <li>Training</li>
-              <li>Interim staffing</li>
-            </ul>
-          </section>
-        </div>
-        <div>
-          <section>
-            <img src="images/icon-data.png" alt="icon" title="data">
-            <h4>Data</h4>
-            <ul>
-              <li>Data standardization</li>
-              <li>Moves management pipelines</li>
-              <li>Add/sal correction & completion</li>
-            </ul>
-          </section>
-        </div>
-        <div>
-          <section>
-            <img src="images/icon-engineering.png" alt="icon" title="engineering">
-            <h4>Engineering</h4>
-            <ul>
-              <li>Reporting and business intelligence</li>
-              <li>Software development</li>
-              <li>Rapid application development (RAD) & prototyping</li>
-            </ul>
-          </section>
-        </div>
+            <div>
+              <h4>Management</h4>
+              <ul>
+                <li>Process analysis</li>
+                <li>Training</li>
+                <li>Interim staffing</li>
+              </ul>
+            </div>
+          </div>
 
-        <a href="#contact" class="secondary button" title="Jump to contact form">... And much more!<br><small>No task too big or small.</small></a>
+          <div>
+            <img src="images/icon-data.png" alt="icon" title="data">
+            <div>
+              <h4>Data</h4>
+              <ul>
+                <li>Data standardization</li>
+                <li>Moves management pipelines</li>
+                <li>Add/sal correction & completion</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <img src="images/icon-engineering.png" alt="icon" title="engineering">
+            <div>
+              <h4>Engineering</h4>
+              <ul>
+                <li>Reporting and business intelligence</li>
+                <li>Software development</li>
+                <li>Rapid application development (RAD) & prototyping</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <a href="#contact" class="primary button" title="Jump to contact form">... And much more!<br><small>No task too big or small.</small></a>
 
         <a href="#top">top</a>
       </article>
@@ -129,11 +137,12 @@
           create a solution that will work for you – all with minimal demands on
           your staff’s valuable time.
         </p>
+
+        <h3>Leadership Team</h3>
         <section id="leadership">
-          <h3>Leadership Team</h3>
           <div>
+            <img src="images/Melody_McBeth2.jpg" alt="photo" title="Melody McBeth">
             <div>
-              <img src="images/Melody_McBeth2.jpg" class="portrait" alt="photo" title="Melody McBeth">
 
               <h4><a href="mailto:melody.mcbeth@highlandfrs.com?subject='Website contact'" target="_blank">Melody McBeth</a> - Principal</h4>
 
@@ -171,8 +180,8 @@
           </div>
 
           <div>
+            <img src="images/Sean_McBeth.jpg" alt="photo" title="Sean McBeth">
             <div>
-              <img src="images/Sean_McBeth.jpg" class="portrait" alt="photo" title="Sean McBeth">
 
               <h4><a href="mailto:sean.mcbeth@highlandfrs.com?subject='Website contact'" target="_blank">Sean T. McBeth</a> – Chief Technology Officer</h4>
 
@@ -273,12 +282,12 @@
 
         </section>
 
-        <a href="#contact" class="secondary button" title="Jump to contact form">Find out more!<br><small>We're like magical elves, except we work on data, not shoes.</small></a>
+        <a href="#contact" class="primary button" title="Jump to contact form">Find out more!<br><small>We're like magical elves, except we work on data, not shoes.</small></a>
 
         <a href="#top">top</a>
       </article>
 
-      <article id="contact" class="primary">
+      <article id="contact" class="secondary">
 
         <h3><a name="contact">Contact Us</a></h3>
         <p>To get started with Highland FRS today, please let us know a few things about your non-profit organization.</p>
@@ -299,7 +308,7 @@
           <label for="contact_description">Please describe your organization and project.</label>
           <textarea id="contact_description" placeholder="We are small, but awesome! We would be even more awesome if..." rows="10"></textarea>
 
-          <a class="secondary button" id="submitContact" href="javascript:sendContact(document.querySelector('#contactForm'), document.querySelector('#submissionSuccess'), document.querySelector('#submissionError'));" title="Submit form">Drop us a line!</a>
+          <a class="primary button" id="submitContact" href="javascript:sendContact(document.querySelector('#contactForm'), document.querySelector('#submissionSuccess'), document.querySelector('#submissionError'));" title="Submit form">Drop us a line!</a>
 
 
           <div id="submissionSuccess" class="success message" style="display:none">
@@ -373,77 +382,87 @@
           </map>
         </section>
 
-        <a href="#contact" class="secondary button" title="Jump to contact form">People seem to like us!<br><small>Schedule a meeting and find out why.</small></a>
+        <a href="#contact" class="primary button" title="Jump to contact form">People seem to like us!<br><small>Schedule a meeting and find out why.</small></a>
 
         <a href="#top">top</a>
       </article>
 
-      <article id="news" class="primary">
+      <article id="news" class="secondary">
         <h3><a name="#news">News</a></h3>
+        <div class="rotator" data-timeout="10000">
+          <blockquote>
+            <cite>
+              <a href="https://www.buzzsprout.com/49661/317648-d-c-entrepreneur-episode-2" target="_blank">D.C. Entrepreneur: Episode 2 - George Mocharko</a>
+              <small>(2015-10-22)</small>
+            </cite>            
+            <p>D.C. Entrepreneur interviews Sean T. McBeth about his work in web VR, talking about the future potential of Virtual Reality.</p>
+          </blockquote>
 
-        <blockquote>
-          <cite>
-            <a href="http://dcinno.streetwise.co/2015/08/14/washington-dc-virtual-reality-vr-tech-startups-hub/" target="_blank">DCInno: The State of DC Virtual Reality Innovation: Part 1 - Chris Bing</a>
-            <small>(2015-08-14)</small>
-          </cite>
-          <p>The Washington, D.C., area could very well become a hub for virtual reality innovation in the coming years&hellip;</p>
-        </blockquote>
+          <blockquote>
+            <cite>
+              <a href="http://dcinno.streetwise.co/2015/08/14/washington-dc-virtual-reality-vr-tech-startups-hub/" target="_blank">DCInno: The State of DC Virtual Reality Innovation: Part 1 - Chris Bing</a>
+              <small>(2015-08-14)</small>
+            </cite>
+            <p>The Washington, D.C., area could very well become a hub for virtual reality innovation in the coming years&hellip;</p>
+          </blockquote>
 
-        <blockquote>
-          <cite>
-            <a href="http://virtualworldsociety.org/wordpress1/dream-of-the-future/" target="_blank">Virtual World Society: Dream of the Future</a>
-            <small>(2015-08-04)</small>
-          </cite>
-          <p>Virtual Worlds are blending into our habitable universe and expanding future possibilities within our everyday lives.  Our ability to connect and share ideas, dreams and accomplishments is unprecedented. Virtual worlds are no longer just branded escapist experiences, but they are augmenting our human powers of creativity, passion and the imagination. We are getting ready to launch into the next “giant leap” into the empowered human experience&hellip;</p>
-        </blockquote>
+          <blockquote>
+            <cite>
+              <a href="http://virtualworldsociety.org/wordpress1/dream-of-the-future/" target="_blank">Virtual World Society: Dream of the Future</a>
+              <small>(2015-08-04)</small>
+            </cite>
+            <p>Virtual Worlds are blending into our habitable universe and expanding future possibilities within our everyday lives.  Our ability to connect and share ideas, dreams and accomplishments is unprecedented. Virtual worlds are no longer just branded escapist experiences, but they are augmenting our human powers of creativity, passion and the imagination. We are getting ready to launch into the next “giant leap” into the empowered human experience&hellip;</p>
+          </blockquote>
 
-        <blockquote>
-          <cite>
-            <a href="https://www.linkedin.com/pulse/i-just-hacked-my-brain-sean-mcbeth" target="_blank">I Just Hacked my Brain - Sean T. McBeth</a>
-            <small>(2015-07-15)</small>
-          </cite>
-          <p>I think, when you start experimenting on yourself, you officially upgrade to actual, real-life mad scientist, not just playing one at Halloween&hellip;</p>
-        </blockquote>
+          <blockquote>
+            <cite>
+              <a href="https://www.linkedin.com/pulse/i-just-hacked-my-brain-sean-mcbeth" target="_blank">I Just Hacked my Brain - Sean T. McBeth</a>
+              <small>(2015-07-15)</small>
+            </cite>
+            <p>I think, when you start experimenting on yourself, you officially upgrade to actual, real-life mad scientist, not just playing one at Halloween&hellip;</p>
+          </blockquote>
 
-        <blockquote>
-          <cite>
-            <a href="https://www.linkedin.com/pulse/looking-technical-co-founder-nobody-work-free-sean-mcbeth" target="_blank">"Looking for technical co-founder, but nobody will work for free." - Sean T. McBeth</a>
-            <small>(2015-04-09)</small>
-          </cite>
-          <p>I see this on the entrepreneurial-bent message boards across the internet. A guy in a suit comes on and complains they can't find a programmer to build their idea "for equity," or what people who didn't go to MBA school call "for free."&hellip;</p>
-        </blockquote>
+          <blockquote>
+            <cite>
+              <a href="https://www.linkedin.com/pulse/looking-technical-co-founder-nobody-work-free-sean-mcbeth" target="_blank">"Looking for technical co-founder, but nobody will work for free." - Sean T. McBeth</a>
+              <small>(2015-04-09)</small>
+            </cite>
+            <p>I see this on the entrepreneurial-bent message boards across the internet. A guy in a suit comes on and complains they can't find a programmer to build their idea "for equity," or what people who didn't go to MBA school call "for free."&hellip;</p>
+          </blockquote>
 
-        <blockquote>
-          <cite>
-            <a href="https://www.linkedin.com/pulse/passion-work-sean-mcbeth" target="_blank">On "Passion" for Work - Sean T. McBeth</a>
-            <small>(2015-02-15)</small>
-          </cite>
-          <p>Read any blog post from any self-espoused entrepreneurship guru and they will tell you that the secret to success is something called Passion. The only way you're going to get through the slog, the long hours, and the naysayers is to be working on something that excites you&hellip;</p>
-        </blockquote>
+          <blockquote>
+            <cite>
+              <a href="https://www.linkedin.com/pulse/passion-work-sean-mcbeth" target="_blank">On "Passion" for Work - Sean T. McBeth</a>
+              <small>(2015-02-15)</small>
+            </cite>
+            <p>Read any blog post from any self-espoused entrepreneurship guru and they will tell you that the secret to success is something called Passion. The only way you're going to get through the slog, the long hours, and the naysayers is to be working on something that excites you&hellip;</p>
+          </blockquote>
 
-        <blockquote>
-          <cite>
-            <a href="https://www.linkedin.com/pulse/20141209195902-19711820-learning-to-program" target="_blank">Learning to Program - Sean T. McBeth</a>
-            <small>(2014-12-09)</small>
-          </cite>
-          <p>Some friends of mine had recently started a discussion of starting a study group to learn to program. The discussion fell to what programming language to learn, and I started to write a reply, but it got a bit long. The TL;DR is: if you want to make programming your career, your first language largely doesn't matter. But if you want to get a certain job done, then you're likely extremely restricted on what you should use&hellip;</p>
-        </blockquote>
+          <blockquote>
+            <cite>
+              <a href="https://www.linkedin.com/pulse/20141209195902-19711820-learning-to-program" target="_blank">Learning to Program - Sean T. McBeth</a>
+              <small>(2014-12-09)</small>
+            </cite>
+            <p>Some friends of mine had recently started a discussion of starting a study group to learn to program. The discussion fell to what programming language to learn, and I started to write a reply, but it got a bit long. The TL;DR is: if you want to make programming your career, your first language largely doesn't matter. But if you want to get a certain job done, then you're likely extremely restricted on what you should use&hellip;</p>
+          </blockquote>
 
-        <blockquote>
-          <cite>
-            <a href="https://www.linkedin.com/pulse/20141017132846-19711820-why-i-turned-down-a-great-job-offer" target="_blank">Why I turned down a great job offer - Sean T. McBeth</a>
-            <small>(2014-10-17)</small>
-          </cite>
-          <p>I recently received a very generous job offer from a rather prestigious company. There is a chance someone in the company is reading this, because I didn't even apply; they contacted me through LinkedIn. To say that I was honored to even receive a cold contact from such a company is an understatement. "Flabbergasted" is a much more appropriate term&hellip;</p>
-        </blockquote>
+          <blockquote>
+            <cite>
+              <a href="https://www.linkedin.com/pulse/20141017132846-19711820-why-i-turned-down-a-great-job-offer" target="_blank">Why I turned down a great job offer - Sean T. McBeth</a>
+              <small>(2014-10-17)</small>
+            </cite>
+            <p>I recently received a very generous job offer from a rather prestigious company. There is a chance someone in the company is reading this, because I didn't even apply; they contacted me through LinkedIn. To say that I was honored to even receive a cold contact from such a company is an understatement. "Flabbergasted" is a much more appropriate term&hellip;</p>
+          </blockquote>
 
-        <blockquote>
-          <cite>
-            <a href="https://www.linkedin.com/pulse/20140714123456-19711820-one-weird-trick-to-getting-work-done" target="_blank">Getting Work Done - Sean T. McBeth</a>
-            <small>(2014-07-14)</small>
-          </cite>
-          <p>How do I get work done?&hellip;</p>
-        </blockquote>
+          <blockquote>
+            <cite>
+              <a href="https://www.linkedin.com/pulse/20140714123456-19711820-one-weird-trick-to-getting-work-done" target="_blank">Getting Work Done - Sean T. McBeth</a>
+              <small>(2014-07-14)</small>
+            </cite>
+            <p>How do I get work done?&hellip;</p>
+          </blockquote>
+
+        </div>
 
         <a href="#top">top</a>
       </article>

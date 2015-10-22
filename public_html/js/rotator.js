@@ -11,9 +11,12 @@ waitFor( function () {
         t = 0,
         ttl = elem.dataset.timeout || 3000,
         mid = ttl / 2;
-
+    
     for ( var i = 0; i < len; ++i ) {
       c[i] = elem.children[i];
+      c[i].style.position = "absolute";
+      c[i].style.marginTop = 0;
+      c[i].style.marginBottom = 0;
       pips[i] = document.createElement( "span" );
       pips[i].innerHTML = "●";
       pips[i].className = "pip";
@@ -27,17 +30,30 @@ waitFor( function () {
         show( i );
       }
     }
-
+    
+    pager.style.margin = 0;
+    pager.style.padding = 0;
     elem.insertBefore( pager, c[0] );
+    
+    function resize() {      
+      var maxHeight = 0;
+      for(var i = 0; i < c.length; ++i){
+        maxHeight = Math.max(maxHeight, c[i].clientHeight);
+      }
+      elem.style.position = "relative";
+      elem.style.height = (maxHeight + pager.clientHeight) + "px";
+    }
+    resize();
+    window.addEventListener("resize", resize, false);
 
     function hide ( i ) {
-      c[i].style.display = "none";
+      c[i].style.opacity = 0;
       pips[i].style.cursor = "pointer";
       pips[i].style.opacity = 0.25;
     }
 
     function show ( i ) {
-      c[i].style.display = "";
+      c[i].style.opacity = 1;
       pips[i].style.cursor = "default";
       pips[i].style.opacity = 1;
     }
