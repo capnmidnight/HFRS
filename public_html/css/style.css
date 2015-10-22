@@ -41,10 +41,6 @@ ul {
   text-align: left;
 }
 
-header {
-  text-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
-}
-
 header > nav > ul {
   list-style: none;
   padding: 0;
@@ -71,11 +67,9 @@ header > nav > ul > li > a {
   text-transform: capitalize;
   color: rgb(247, 247, 247);
   background-image: linear-gradient(176deg, rgba(0, 0, 0, 0.5), rgba(0, 38, 16, 0.25));
-  text-shadow: none;
   padding-top: 1em;
   padding-bottom: 1em;
   border-radius: 2px;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
 }
 
 #introVideo, #introVideo > video, #introVideo > .video {
@@ -111,7 +105,6 @@ h1 {
   color: hsl(0, 0%, 20%);
   text-transform: uppercase;
   font-weight: bold;
-  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7);
 }
 
 h2 {
@@ -203,6 +196,10 @@ article > div > section, #leadership > div > div {
   vertical-align: top;
 }
 
+#leadership ul {
+  list-style: none;
+}
+
 article > div > section > img {
   display: block;
   margin: 30px auto;
@@ -287,7 +284,6 @@ footer:hover:before{
 #testimonials {
   background-color: #f4f4f4;
   border-radius: 4px;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
   padding-bottom: 1em;
 }
 
@@ -314,7 +310,7 @@ label {
   color: red;
 }
 
-.green {
+.primary {
   background-color: rgb(36, 178, 75);
   color: rgb(255, 255, 255);
 }
@@ -323,7 +319,7 @@ header, .clear{
   color: #413E2D;
 }
 
-.blue{
+.secondary{
   background-color: rgb(241, 240, 160);
   color: #393B44;
 }
@@ -385,11 +381,11 @@ header, .clear{
   opacity: 0.85;
 }
 
-.button:hover{
-  box-shadow: 0px 0px 15px #bbb;
-}
-
 @media (min-width:735px){
+  
+  nav {
+    font-size: 24pt;
+  }
 
   header, #content > article {
     padding-left: 10%;
