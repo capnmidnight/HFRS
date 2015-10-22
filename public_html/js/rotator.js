@@ -1,6 +1,4 @@
-waitFor( function () {
-  return document.body;
-}, function () {
+( function () {
   var FADE_LEN = 500;
   function Rotator ( elem ) {
     var c = [ ],
@@ -11,7 +9,7 @@ waitFor( function () {
         t = 0,
         ttl = elem.dataset.timeout || 3000,
         mid = ttl / 2;
-    
+
     for ( var i = 0; i < len; ++i ) {
       c[i] = elem.children[i];
       c[i].style.position = "absolute";
@@ -30,21 +28,21 @@ waitFor( function () {
         show( i );
       }
     }
-    
+
     pager.style.margin = 0;
     pager.style.padding = 0;
     elem.insertBefore( pager, c[0] );
-    
-    function resize() {      
+
+    function resize () {
       var maxHeight = 0;
-      for(var i = 0; i < c.length; ++i){
-        maxHeight = Math.max(maxHeight, c[i].clientHeight);
+      for ( var i = 0; i < c.length; ++i ) {
+        maxHeight = Math.max( maxHeight, c[i].clientHeight );
       }
       elem.style.position = "relative";
-      elem.style.height = (maxHeight + pager.clientHeight) + "px";
+      elem.style.height = ( maxHeight + pager.clientHeight ) + "px";
     }
     resize();
-    window.addEventListener("resize", resize, false);
+    window.addEventListener( "resize", resize, false );
 
     function hide ( i ) {
       c[i].style.opacity = 0;
@@ -89,18 +87,20 @@ waitFor( function () {
     };
   }
 
-  var rotators = Array.prototype.slice.call( document.querySelectorAll(
-      ".rotator" ) );
-  for ( var i = 0; i < rotators.length; ++i ) {
-    rotators[i] = new Rotator( rotators[i] );
-  }
-
-  function updateAll ( dt ) {
-    requestAnimationFrame( updateAll );
+  window.addEventListener( "load", function Rotators () {
+    var rotators = Array.prototype.slice.call( document.querySelectorAll(
+        ".rotator" ) );
     for ( var i = 0; i < rotators.length; ++i ) {
-      rotators[i].update( dt );
+      rotators[i] = new Rotator( rotators[i] );
     }
-  }
 
-  requestAnimationFrame( updateAll );
-} );
+    function updateAll ( dt ) {
+      requestAnimationFrame( updateAll );
+      for ( var i = 0; i < rotators.length; ++i ) {
+        rotators[i].update( dt );
+      }
+    }
+
+    requestAnimationFrame( updateAll );
+  }, false );
+} )();
