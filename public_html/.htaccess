@@ -1,18 +1,18 @@
 #Gzip
 <ifmodule mod_deflate.c>
-AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript image/svg+xml image/png image/gif image/jpeg
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript image/svg+xml image/png image/gif image/jpeg image/x-icon
 </ifmodule>
 #End Gzip
 # BEGIN Caching
 <ifModule mod_headers.c>
 <filesMatch "\\.(ico|pdf|flv|jpg|jpeg|png|gif|swf|js|svg)$">
-Header set Cache-Control "max-age=2592000, public"
+Header set Cache-Control "max-age=2592000"
 </filesMatch>
 <filesMatch "\\.(css|json)$">
-Header set Cache-Control "max-age=604800, public"
+Header set Cache-Control "max-age=604800"
 </filesMatch>
 <filesMatch "\\.(html)$">
-Header set Cache-Control "max-age=1, private, must-revalidate"
+Header set Cache-Control "max-age=3600, must-revalidate"
 </filesMatch>
 </ifModule>
 # END Caching
