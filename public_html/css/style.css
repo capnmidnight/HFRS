@@ -16,11 +16,10 @@ body {
   background-image: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
   background-repeat: no-repeat;
   background-attachment: fixed;
-  font-family: Calibri, Verdan, sans-serif;
+  font-family: -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
   font-size: 18px;
   line-height: 1.4;
   color: #1B1831;
-  text-align: justify;
 }
 
 img {
@@ -200,7 +199,7 @@ article > section > div {
 article > section > div > div {
   color: black;
   padding: 1em;
-  text-align: justify;
+  text-align: left;
 }
 
 #leadership ul {
