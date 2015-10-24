@@ -26,6 +26,41 @@ img {
   border: 0;
 }
 
+.icon-management, .icon-data, .icon-engineering, .icon-github, .icon-twitter, .icon-linkedin{
+  display: inline-block;
+  background-image: url(../images/icons.png);
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+.icon-management{
+}
+
+.icon-engineering{
+  background-position-y: -100px;
+}
+
+.icon-data{
+  background-position-y: -200px;
+}
+
+.icon-linkedin, .icon-twitter, .icon-github {
+  zoom: 0.33;
+}
+.icon-linkedin{
+  background-position-y: -300px;
+}
+
+.icon-twitter{
+  background-position-y: -400px;
+}
+
+.icon-github{
+  background-position-y: -500px;
+}
+
 a {
   text-decoration: none;
   color: inherit;
