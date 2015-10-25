@@ -41,24 +41,24 @@ if ( !HTMLFormElement.prototype.reportValidity ) {
   };
 }
 
-waitFor(
-    function () { return document.forms.contactForm; },
-    function () {
-      function trimField () { this.value = this.value.trim(); }
-      Array.prototype.slice.call( document.forms.contactForm.querySelectorAll(
-          "input, textarea" ) )
-          .forEach( function ( elem ) {
-            elem.addEventListener( "blur", trimField.bind( elem ), false );
-          } );
-    } );
+window.addEventListener( "load", function () {
+  function trimField () {
+    this.value = this.value.trim();
+  }
+  Array.prototype.slice.call( document.forms.contactForm.querySelectorAll(
+      "input, textarea" ) )
+      .forEach( function ( elem ) {
+        elem.addEventListener( "blur", trimField.bind( elem ), false );
+      } );
+}, false );
 
 function sendContact ( form, successMessage, errorMessage ) {
-  var btn = document.getElementById("submitContact");
+  var btn = document.getElementById( "submitContact" );
   var oldClass = btn.className;
   var oldHref = btn.href;
   btn.className += " disabled";
   btn.href = "javascript:return false";
-  function resetButton(){
+  function resetButton () {
     btn.className = oldClass;
     btn.href = oldHref;
   }
@@ -90,14 +90,14 @@ function sendContact ( form, successMessage, errorMessage ) {
           b.innerHTML = "";
           b.appendChild( document.createTextNode( data.name ) );
           resetButton();
-          ga("send", "event", "contactlist", "success");
+          ga( "send", "event", "contactlist", "success" );
         },
         function ( msg ) {
           form.style.display = "none";
           errorMessage.style.display = "block";
           errorMessage.scrollIntoView();
           resetButton();
-          ga("send", "event", "contactlist", "fail");
+          ga( "send", "event", "contactlist", "fail" );
         } );
   }
 }
