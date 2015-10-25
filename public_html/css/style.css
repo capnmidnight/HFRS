@@ -29,10 +29,14 @@ img {
 .icon-management, .icon-data, .icon-engineering, .icon-github, .icon-twitter, .icon-linkedin{
   display: inline-block;
   background-image: url(../images/icons.png);
-  width: 100px;
-  height: 100px;
   background-repeat: no-repeat;
   vertical-align: middle;
+  background-size: 100%;
+}
+
+.icon-management, .icon-data, .icon-engineering {
+  width: 100px;
+  height: 100px;
 }
 
 .icon-management{
@@ -47,18 +51,20 @@ img {
 }
 
 .icon-linkedin, .icon-twitter, .icon-github {
-  transform: scale(0.33);
+  width: 33px;
+  height: 33px;
 }
+
 .icon-linkedin{
-  background-position: 0 -300px;
+  background-position: 0 -100px;
 }
 
 .icon-twitter{
-  background-position: 0 -400px;
+  background-position: 0 -133px;
 }
 
 .icon-github{
-  background-position: 0 -500px;
+  background-position: 0 -167px;
 }
 
 a {
