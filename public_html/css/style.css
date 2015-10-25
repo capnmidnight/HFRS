@@ -39,26 +39,26 @@ img {
 }
 
 .icon-engineering{
-  background-position-y: -100px;
+  background-position: 0 -100px;
 }
 
 .icon-data{
-  background-position-y: -200px;
+  background-position: 0 -200px;
 }
 
 .icon-linkedin, .icon-twitter, .icon-github {
-  zoom: 0.33;
+  transform: scale(0.33);
 }
 .icon-linkedin{
-  background-position-y: -300px;
+  background-position: 0 -300px;
 }
 
 .icon-twitter{
-  background-position-y: -400px;
+  background-position: 0 -400px;
 }
 
 .icon-github{
-  background-position-y: -500px;
+  background-position: 0 -500px;
 }
 
 a {
