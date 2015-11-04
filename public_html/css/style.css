@@ -202,14 +202,6 @@ blockquote > cite {
   color: #657F66;
 }
 
-article > blockquote {
-  background-color: rgba(255, 255, 255, 0.75);
-  padding: 2em;
-  padding-top: 1em;
-  border-radius: 3px;
-  color: #4e5f4f;
-}
-
 article > section {
   position: relative;
   text-align: center;
@@ -245,12 +237,6 @@ article > section > div > div {
 
 #leadership ul {
   list-style: none;
-}
-
-#services > section > div > img {
-  display: block;
-  margin: 30px auto;
-  height: 100px;
 }
 
 #leadership > div > img {
