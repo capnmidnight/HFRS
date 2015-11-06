@@ -182,11 +182,16 @@ article {
   padding: 1em;
   display: inline-block;
   width: 100%;
-  break-before: always;
 }
 
 article:last-child {
   padding-bottom: 2em;
+}
+
+
+#news > blockquote {
+  display: inline-block;
+  width: 95%;
 }
 
 blockquote > p:before{
@@ -198,8 +203,61 @@ blockquote > p:after{
 }
 
 blockquote > cite {
-  font-size: 80%;
   color: #657F66;
+  display: block;
+  padding: 0.5em;
+}
+
+#news > blockquote > img {
+  padding: 1em;
+  min-width: 240px;
+  max-width: 33%;
+  cursor: pointer;
+}
+
+blockquote:nth-child(odd) > img {
+  float: right;
+}
+
+blockquote:nth-child(even) > img {
+  float: left;
+}
+
+#shadowbox {
+  position: fixed;
+  left: 0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.75);
+  padding: 1em;
+  text-align: center;
+  transition: opacity 1s ease-out;
+}
+
+#shadowbox.hide{
+  opacity: 0;
+  pointer-events: none;
+}
+
+#shadowbox.show {
+  opacity: 1;
+}
+
+#shadowbox > img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@keyframes shadowboxfadein{
+  from{
+    opacity: 0;
+    display: block;
+  }
+  to{
+    opacity: 1;
+    display: block;
+  }
 }
 
 article > section {
@@ -357,11 +415,11 @@ a.primary:active {
   background-color: #38AB58;
 }
 
-header, .clear{
+header, article:nth-child(odd){
   color: #413E2D;
 }
 
-.secondary{
+.secondary, article:nth-child(even){
   background-color: #F1F0A0;
   color: #393B44;
 }
