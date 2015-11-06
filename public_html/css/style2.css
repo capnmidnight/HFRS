@@ -208,6 +208,10 @@ blockquote > cite {
   padding: 0.5em;
 }
 
+blockquote > cite > small {
+  white-space: nowrap;  
+}
+
 #news > blockquote > img {
   padding: 1em;
   min-width: 240px;
