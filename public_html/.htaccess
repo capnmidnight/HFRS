@@ -5,14 +5,8 @@ AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css a
 #End Gzip
 # BEGIN Caching
 <ifModule mod_headers.c>
-<filesMatch "\\.(ico|pdf|flv|jpg|jpeg|png|gif|swf|js|svg)$">
-Header set Cache-Control "max-age=2592000"
-</filesMatch>
-<filesMatch "\\.(css|json)$">
-Header set Cache-Control "max-age=604800"
-</filesMatch>
-<filesMatch "\\.(html)$">
-Header set Cache-Control "max-age=3600, must-revalidate"
+<filesMatch "\\.(ico|pdf|flv|jpg|jpeg|png|gif|swf|js|svg|html|css|json)$">
+Header set Cache-Control "max-age=2592000, must-revalidate"
 </filesMatch>
 </ifModule>
 # END Caching

@@ -31,7 +31,7 @@ img.thumbnail{
   cursor: pointer;
 }
 
-.icon-management, .icon-data, .icon-engineering, .icon-github, .icon-twitter, .icon-linkedin, .icon-pdf{
+.icon-management, .icon-data, .icon-engineering, .icon-github, .icon-twitter, .icon-linkedin, .icon-pdf, .icon-powerpoint{
   display: inline-block;
   background-image: url(../images/icons.png);
   background-repeat: no-repeat;
@@ -55,7 +55,7 @@ img.thumbnail{
   background-position: 0 -200px;
 }
 
-.icon-linkedin, .icon-twitter, .icon-github, .icon-pdf {
+.icon-linkedin, .icon-twitter, .icon-github, .icon-pdf, .icon-powerpoint {
   width: 33px;
   height: 33px;
 }
@@ -74,6 +74,10 @@ img.thumbnail{
 
 .icon-pdf{
   background-position: 0 -198px;
+}
+
+.icon-powerpoint{
+  background-position: 0 -231px;
 }
 
 a {

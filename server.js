@@ -1,3 +1,4 @@
+/* global require, process */
 var express = require( "express" ),
     path = require( "path" ),
     favicon = require( "serve-favicon" ),
@@ -28,11 +29,6 @@ options.port = parseInt( options.port, 10 );
 console.log( "setting up to run on port", options.port );
 options.dev = options.dev !== "false" || !keys.key;
 
-// view engine setup
-app.set( "view engine", "jade" );
-
-// uncomment after placing your favicon in /public
-app.use( logger( "dev" ) );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( {extended: false} ) );
 app.use( cookieParser() );
@@ -50,6 +46,7 @@ app.use( function ( req, res, next ) {
 // development error handler
 // will print stacktrace
 if ( options.dev ) {
+  app.use( logger( "dev" ) );
   app.use( function ( err, req, res, next ) {
     res.status( err.status || 500 );
     res.render( "error", {
