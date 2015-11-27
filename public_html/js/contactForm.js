@@ -85,19 +85,23 @@ function sendContact ( form, successMessage, errorMessage ) {
         function ( msg ) {
           form.style.display = "none";
           successMessage.style.display = "block";
-          successMessage.scrollIntoView();
+          form.parentNode.scrollIntoView();
           var b = document.querySelector( "#callbackName" );
           b.innerHTML = "";
           b.appendChild( document.createTextNode( data.name ) );
           resetButton();
-          ga( "send", "event", "contactlist", "success" );
+          if ( window.ga ) {
+            ga( "send", "event", "contactlist", "success" );
+          }
         },
         function ( msg ) {
           form.style.display = "none";
           errorMessage.style.display = "block";
           errorMessage.scrollIntoView();
           resetButton();
-          ga( "send", "event", "contactlist", "fail" );
+          if ( window.ga ) {
+            ga( "send", "event", "contactlist", "fail" );
+          }
         } );
   }
 }
