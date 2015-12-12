@@ -1,0 +1,214 @@
+<!DOCTYPE html><html class=''>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name="robots" content="noindex">
+    <title>Video tutorials</title>
+    <script type="text/javascript" src="js/bag.js"></script>
+    <style type="text/css">
+      *{
+        box-sizing: border-box;
+      }
+      html, body, #vidContainer, #canv, #output {
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border: 0;
+      }
+      #vid {
+        max-width: 100%;
+      }
+      #vid, #canv {
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="vidContainer">
+      <video id="vid" autoplay muted>
+        <source src="resources/calculator.ogg" type="video/ogg"/>
+        <source src="resources/calculator.mp4" type="video/mp4"/>
+      </video>
+      <canvas id="canv"></canvas>
+    </div>
+    <textarea id="output"></textarea>
+    <script type="text/javascript">
+      /* global devicePixelRatio, SYS_FONTS, Event */
+
+      function Frame ( evt ) {
+        if ( evt instanceof Event ) {
+          this.t = vid.currentTime;
+          this.x = ( evt.clientX - bounds.left ) / bounds.width;
+          this.y = ( evt.clientY - bounds.top ) / bounds.height;
+          this.width = 0;
+          this.height = 0;
+          this.text = "";
+        }
+        else {
+          this.t = evt.t;
+          this.x = evt.x;
+          this.y = evt.y;
+          this.width = evt.width;
+          this.height = evt.height;
+          this.text = evt.text;
+        }
+      }
+
+      Frame.byTime = function ( a, b ) {
+        return a.t - b.t;
+      };
+
+      Frame.prototype.inBounds = function ( evt ) {
+        var end = new Frame( evt );
+        return this.x <= end.x && end.x < this.x + this.width &&
+            this.y <= end.y && end.y < this.y + this.height;
+      };
+
+      Frame.prototype.draw = function () {
+        ctx.strokeStyle = "rgba(255, 0, 0, 0.5)";
+        ctx.fillStyle = "rgba(255, 0, 0, 0.25)";
+        ctx.lineWidth = STROKE_WIDTH * devicePixelRatio;
+        ctx.fillRect( this.x * canv.width, this.y * canv.height,
+            this.width * canv.width, this.height * canv.height );
+        ctx.strokeRect( this.x * canv.width, this.y * canv.height,
+            this.width * canv.width, this.height * canv.height );
+
+        var fontHeight = ( FONT_SIZE * devicePixelRatio ),
+            textX = ( this.x + this.width ) * canv.width,
+            textY = this.y * canv.height - 10,
+            padding = TEXT_PADDING * devicePixelRatio;
+        ctx.font = fontHeight + "px " + SYS_FONTS;
+        var textBounds = ctx.measureText( this.text );
+        ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
+        ctx.fillRect( textX - padding, textY - fontHeight - padding,
+            textBounds.width + 2 * padding, fontHeight + 2 * padding );
+        ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        ctx.fillText( this.text, textX, textY );
+      };
+
+      Frame.prototype.rectify = function ( frame ) {
+        var left = Math.min( frame.x, this.x ),
+            top = Math.min( frame.y, this.y ),
+            right = Math.max( frame.x, this.x ),
+            bottom = Math.max( frame.y, this.y ),
+            width = right - left,
+            height = bottom - top;
+        this.x = left;
+        this.y = top;
+        this.width = width;
+        this.height = height;
+      };
+
+      var STROKE_WIDTH = 3,
+          FONT_SIZE = 20,
+          TEXT_PADDING = 10,
+          vid = document.querySelector( "#vid" ),
+          vidContainer = document.querySelector( "#vidContainer" ),
+          canv = document.querySelector( "#canv" ),
+          ctx = canv.getContext( "2d" ),
+          output = document.querySelector( "#output" ),
+          bounds = null,
+          start = null,
+          frames = [ { "t": 6, "x": 0.03302180685358255,
+              "y": 0.3223260643821391, "width": 0.2193146417445483,
+              "height": 0.06313603322949118, "text": "Choose Calculator" }, {
+              "t": 16.76967, "x": 0.157942238267148, "y": 0.5968712394705175,
+              "width": 0.03971119133574008, "height": 0.05294825511432011,
+              "text": "Click 3!" }, { "t": 23.587146, "x": 0.20667870036101083,
+              "y": 0.6626554352186121, "width": 0.032490974729241895,
+              "height": 0.04011231448054553, "text": "click equals" }, {
+              "t": 26.11691, "x": 0.2148014440433213, "y": 0.03529883674288006,
+              "width": 0.0207581227436823, "height": 0.028880866425992788,
+              "text": "close the window" } ]
+          .sort( Frame.byTime ),
+          curFrames = frames.map( function ( f ) {
+            return new Frame( f );
+          } );
+
+      output.value = JSON.stringify( frames );
+
+      function clearscr () {
+        ctx.clearRect( 0, 0, canv.width, canv.height );
+      }
+
+      setInterval( function ( ) {
+        var frame = curFrames[0];
+        if ( frame && vid.currentTime >= frame.t ) {
+          vid.pause();
+          clearscr();
+          frame.draw();
+        }
+      }, 1000 / 30 );
+
+      E( canv, "mousedown", function ( evt ) {
+        if ( !vid.paused ) {
+          start = new Frame( evt );
+          vid.pause();
+        }
+        evt.preventDefault();
+      } );
+
+      E( canv, "mousemove", function ( evt ) {
+        if ( bounds ) {
+          if ( start ) {
+            var end = new Frame( evt );
+            end.rectify( start );
+            clearscr();
+            end.draw();
+            evt.preventDefault( );
+          }
+          else if ( vid.paused && curFrames.length > 0 ) {
+            var frame = curFrames[0];
+            canv.style.cursor = frame.inBounds( evt ) ? "pointer" : "";
+          }
+        }
+      } );
+
+      E( canv, "mouseup", function ( evt ) {
+        if ( start ) {
+          var end = new Frame( evt );
+          end.rectify( start );
+          if ( end.width > 0 && end.height > 0 ) {
+            end.text = prompt();
+            frames.push( end );
+            frames.sort( Frame.byTime );
+            output.value = JSON.stringify( frames );
+            clearscr();
+          }
+          start = null;
+          vid.play();
+        }
+        else if ( vid.paused && curFrames.length > 0 ) {
+          var frame = curFrames[0];
+
+          if ( frame.inBounds( evt ) ) {
+            canv.style.cursor = "";
+            curFrames.shift();
+            output.value = JSON.stringify( curFrames );
+            clearscr();
+            vid.play();
+          }
+          else {
+            evt.cancelBubble = true;
+            vid.pause();
+          }
+        }
+        evt.preventDefault();
+      } );
+
+      function resize () {
+        bounds = vid.getBoundingClientRect();
+        canv.style.left = bounds.left + "px";
+        canv.style.top = bounds.top + "px";
+        canv.style.width = bounds.width + "px";
+        vidContainer.style.height = canv.style.height = bounds.height + "px";
+        canv.width = bounds.width * devicePixelRatio;
+        canv.height = bounds.height * devicePixelRatio;
+        output.style.height = ( window.innerHeight - bounds.height ) + "px";
+      }
+
+      E( window, "resize", resize );
+      E( window, "load", resize );
+    </script>
+  </body>
+</html>
