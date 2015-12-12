@@ -36,7 +36,7 @@
       /* global devicePixelRatio, SYS_FONTS, Event */
 
       function Frame ( evt ) {
-        if ( evt instanceof Event ) {
+        if ( evt instanceof Event || evt instanceof Touch ) {
           this.t = vid.currentTime;
           this.x = ( evt.clientX - bounds.left ) / bounds.width;
           this.y = ( evt.clientY - bounds.top ) / bounds.height;
@@ -140,31 +140,42 @@
         }
       }, 1000 / 30 );
 
-      E( canv, "mousedown", function ( evt ) {
+      function startPoint ( evt ) {
+        console.log(evt);
         if ( !vid.paused ) {
           start = new Frame( evt );
           vid.pause();
         }
-        evt.preventDefault();
-      } );
+        if ( evt.preventDefault ) {
+          evt.preventDefault();
+        }
+      }
 
-      E( canv, "mousemove", function ( evt ) {
+      E( canv, "mousedown", startPoint );
+      E( canv, "touchstart", startPoint, true );
+
+      function movePoint ( evt ) {
         if ( bounds ) {
           if ( start ) {
             var end = new Frame( evt );
             end.rectify( start );
             clearscr();
             end.draw();
-            evt.preventDefault( );
+            if ( evt.preventDefault ) {
+              evt.preventDefault( );
+            }
           }
           else if ( vid.paused && curFrames.length > 0 ) {
             var frame = curFrames[0];
             canv.style.cursor = frame.inBounds( evt ) ? "pointer" : "";
           }
         }
-      } );
+      }
 
-      E( canv, "mouseup", function ( evt ) {
+      E( canv, "mousemove", movePoint );
+      E( canv, "touchmove", movePoint, true );
+
+      function endPoint ( evt ) {
         if ( start ) {
           var end = new Frame( evt );
           end.rectify( start );
@@ -193,8 +204,13 @@
             vid.pause();
           }
         }
-        evt.preventDefault();
-      } );
+        if ( evt.preventDefault ) {
+          evt.preventDefault();
+        }
+      }
+
+      E( canv, "mouseup", endPoint );
+      E( canv, "touchend", endPoint, true );
 
       function resize () {
         bounds = vid.getBoundingClientRect();
