@@ -301,7 +301,7 @@ article > section > div {
 
 #leadership > div {
   min-width: 300px;
-  width: 49%;
+  width: 33%;
 }
 
 
@@ -396,6 +396,11 @@ footer:hover:before{
   border-radius: 3px;
   padding-bottom: 1em;
 }
+
+#announcement > img {
+  width: 100%;
+}
+
 
 label, input, textarea {
   padding:0.75em;
@@ -508,6 +513,7 @@ a.secondary:active {
   header > nav {
     font-size: 17pt;
   }
+
 }
 
 @media (min-width:735px){
@@ -520,13 +526,19 @@ a.secondary:active {
   nav {
     font-size: 26pt;
   }
+
+  #announcement > img {
+    width: 50%;
+    float: right;
+    padding: 1em;
+  }
 }
 
 @media (min-width:870px){
 
   header, #content > article {
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 20%;
+    padding-right: 20%;
   }
 
   #introVideo {
