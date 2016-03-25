@@ -9,5 +9,5 @@ read -e -p "delete old log file? " -i "N" choice
 if [ $choice != "N" ]; then
     rm ~/.forever/HFRSServer.log
 fi
-git pull
+./pull.sh
 forever --uid "HFRSServer" -a start /usr/local/bin/npm start
