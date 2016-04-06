@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>HFRS</Name>
+    <RootNamespace>HFRS</RootNamespace>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0ab50445-5ce1-4ebd-a7fd-01c523ad3a0c}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>server.js</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <ProjectView>ProjectFiles</ProjectView>
+    <NodejsPort>80</NodejsPort>
+    <StartWebBrowser>True</StartWebBrowser>
+    <Environment>
+    </Environment>
+    <LaunchUrl>index.html</LaunchUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="blog.html.jade" />
+    <Content Include="blog.html" />
+    <Content Include="css\style.css" />
+    <Content Include="css\style.min.css" />
+    <Content Include="css\style2.css" />
+    <Content Include="css\style2.min.css" />
+    <Content Include="downloads.html.jade" />
+    <Content Include="downloads.html" />
+    <Content Include="favicon.gif" />
+    <Content Include="images\aasp.jpg" />
+    <Content Include="images\AASP2015_Award.jpg" />
+    <Content Include="images\AASP2015_Award_full.jpg" />
+    <Content Include="images\AASP2015_Award_thumb.jpg" />
+    <Content Include="images\adrp.jpg" />
+    <Content Include="images\anon.png" />
+    <Content Include="images\answers.png" />
+    <Content Include="images\apra.jpg" />
+    <Content Include="images\banner.png" />
+    <Content Include="images\bg.png" />
+    <Content Include="images\brookwood-logo.png" />
+    <Content Include="images\chop-logo.png" />
+    <Content Include="images\chop-logo.svg" />
+    <Content Include="images\clients.jpg" />
+    <Content Include="images\contact.png" />
+    <Content Include="images\DCInno.png" />
+    <Content Include="images\dream.jpg" />
+    <Content Include="images\GitHub-Mark-32px.png" />
+    <Content Include="images\gru-logo.png" />
+    <Content Include="images\GTsimpleOrange.jpg" />
+    <Content Include="images\hampton-roads-logo.png" />
+    <Content Include="images\highlands - Copy.jpg" />
+    <Content Include="images\highlands-original.jpg" />
+    <Content Include="images\highlands.jpg" />
+    <Content Include="images\highlands2.jpg" />
+    <Content Include="images\icon-data.png" />
+    <Content Include="images\icon-data.svg" />
+    <Content Include="images\icon-engineering.png" />
+    <Content Include="images\icon-engineering.svg" />
+    <Content Include="images\icon-management.png" />
+    <Content Include="images\icons.png" />
+    <Content Include="images\learn_more.png" />
+    <Content Include="images\linkedin.png" />
+    <Content Include="images\logo-large.png" />
+    <Content Include="images\logo-small.png" />
+    <Content Include="images\logo-very-large.png" />
+    <Content Include="images\logo-very-small.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\logo.svg" />
+    <Content Include="images\marylhurst-logo.png" />
+    <Content Include="images\mclean-logo.png" />
+    <Content Include="images\melodytammy.jpg" />
+    <Content Include="images\Melody_McBeth.jpg" />
+    <Content Include="images\Melody_McBeth2.jpg" />
+    <Content Include="images\menu-about.png" />
+    <Content Include="images\menu-contact.png" />
+    <Content Include="images\menu-customers.png" />
+    <Content Include="images\menu-home.png" />
+    <Content Include="images\menu-services.png" />
+    <Content Include="images\menu.png" />
+    <Content Include="images\menuback.png" />
+    <Content Include="images\mercersburg-logo.png" />
+    <Content Include="images\nmwa-logo.png" />
+    <Content Include="images\oes-logo.png" />
+    <Content Include="images\RE.PNG" />
+    <Content Include="images\rieker-logo.png" />
+    <Content Include="images\Sean_McBeth.jpg" />
+    <Content Include="images\st-marys-logo.png" />
+    <Content Include="images\stock1.jpg" />
+    <Content Include="images\stock2.jpg" />
+    <Content Include="images\stock3.jpg" />
+    <Content Include="images\stock4.jpg" />
+    <Content Include="images\stock5.jpg" />
+    <Content Include="images\stock5.png" />
+    <Content Include="images\SUMMIT2015.png" />
+    <Content Include="images\tesc-logo.png" />
+    <Content Include="images\twitter-highland.png" />
+    <Content Include="images\twitter-smcbeth.png" />
+    <Content Include="images\Wayne_Combs.jpg" />
+    <Content Include="images\Wayne_Combs_full.jpg" />
+    <Content Include="images\Wayne_Combs_thumb.jpg" />
+    <Content Include="images\wvdo.jpg" />
+    <Content Include="partnership.html.jade" />
+    <Content Include="partnership.html" />
+    <Content Include="README" />
+    <Content Include="resources\calculator.mp4" />
+    <Content Include="resources\calculator.ogg" />
+    <Content Include="resources\CASE_CCA_2015_Economics.pptx" />
+    <Content Include="resources\The_Economics_of_Data_Integrity.pdf" />
+    <Content Include="templates\main.jade" />
+    <Content Include="index.html.jade" />
+    <Content Include="robots.txt" />
+    <Content Include="index.html" />
+    <Content Include="missing.html" />
+    <Content Include="favicon.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="package.json" />
+    <Content Include="sitemap.xml" />
+    <Compile Include="lib\analytics.js" />
+    <Compile Include="lib\ga.js" />
+    <Compile Include="Gruntfile.js" />
+    <Compile Include="src\analytics.js" />
+    <Compile Include="src\analytics.min.js" />
+    <Compile Include="src\bag.js" />
+    <Compile Include="src\clientOnboard.js" />
+    <Compile Include="src\clientOnboard.min.js" />
+    <Compile Include="src\code.min.js" />
+    <Compile Include="src\contactForm.js" />
+    <Compile Include="src\contactForm.min.js" />
+    <Compile Include="src\ga.js" />
+    <Compile Include="src\ga.min.js" />
+    <Compile Include="src\imageFader.js" />
+    <Compile Include="src\imageFader.min.js" />
+    <Compile Include="src\mapResizer.js" />
+    <Compile Include="src\mapResizer.min.js" />
+    <Compile Include="src\min.js" />
+    <Compile Include="src\rotator.js" />
+    <Compile Include="src\rotator.min.js" />
+    <Compile Include="src\twitter.min.js" />
+    <Compile Include="src\vid\VideoCue.js" />
+    <Compile Include="src\vid\VideoPlayer.js" />
+    <Compile Include="server.js" />
+    <Compile Include="server\controllers.js" />
+    <Compile Include="server\controllers\contact.js" />
+    <Compile Include="server\core.js" />
+    <Compile Include="server\data\users.js" />
+    <Compile Include="server\http\get.js" />
+    <Compile Include="server\http\getBuffer.js" />
+    <Compile Include="server\http\getObject.js" />
+    <Compile Include="server\http\getText.js" />
+    <Compile Include="server\http\post.js" />
+    <Compile Include="server\http\request.js" />
+    <Compile Include="server\http\sendObject.js" />
+    <Compile Include="server\options.js" />
+    <Compile Include="server\requireDirectory.js" />
+    <Compile Include="server\starter.js" />
+    <Compile Include="server\webServer.js" />
+    <Compile Include="server\data\User.js" />
+    <Content Include="server\templates\game.html" />
+    <Content Include="server\templates\master.html" />
+    <Content Include="video.html" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="css\" />
+    <Folder Include="images\" />
+    <Folder Include="src\" />
+    <Folder Include="src\vid\" />
+    <Folder Include="lib\" />
+    <Folder Include="resources\" />
+    <Folder Include="server\http\" />
+    <Folder Include="templates\" />
+    <Folder Include="server" />
+    <Folder Include="server\controllers" />
+    <Folder Include="server\data\" />
+    <Folder Include="server\templates" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

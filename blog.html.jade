@@ -1,0 +1,31 @@
+extends ./templates/main.jade
+
+block head
+  +fullTitle("Highland FRS - non-profit fundraising consultancy - Blog")
+  style #mainLogo{display:block;margin:0 auto;width:50%;}
+
+block content
+  article#intro
+    div
+      mixin articleLink(linkSrc, linkTitle, date, descrip)
+        blockquote
+        cite
+          a(href=linkSrc, target="_blank")= linkTitle
+          small= date
+        p
+          = descrip
+          | &hellip;
+
+      +articleLink("https://www.linkedin.com/pulse/i-just-hacked-my-brain-sean-mcbeth", "I Just Hacked my Brain - Sean T. McBeth", "(2015-07-15)", "I think, when you start experimenting on yourself, you officially upgrade to actual, real-life mad scientist, not just playing one at Halloween")
+
+      +articleLink("https://www.linkedin.com/pulse/looking-technical-co-founder-nobody-work-free-sean-mcbeth", "\"Looking for technical co-founder, but nobody will work for free.\" - Sean T. McBeth", "(2015-04-09)", "I see this on the entrepreneurial-bent message boards across the internet. A guy in a suit comes on and complains they can't find a programmer to build their idea \"for equity,\" or what people who didn't go to MBA school call \"for free.\"")
+
+      +articleLink("https://www.linkedin.com/pulse/passion-work-sean-mcbeth", "On \"Passion\" for Work - Sean T. McBeth", "(2015-02-15)", "Read any blog post from any self-espoused entrepreneurship guru and they will tell you that the secret to success is something called Passion. The only way you're going to get through the slog, the long hours, and the naysayers is to be working on something that excites you")
+
+      +articleLink("https://www.linkedin.com/pulse/20141209195902-19711820-learning-to-program", "Learning to Program - Sean T. McBeth", "(2014-12-09)", ">Some friends of mine had recently started a discussion of starting a study group to learn to program. The discussion fell to what programming language to learn, and I started to write a reply, but it got a bit long. The TL;DR is: if you want to make programming your career, your first language largely doesn't matter. But if you want to get a certain job done, then you're likely extremely restricted on what you should use")
+
+      +articleLink("https://www.linkedin.com/pulse/20141017132846-19711820-why-i-turned-down-a-great-job-offer", "Why I turned down a great job offer - Sean T. McBeth", "(2014-10-17)", "I recently received a very generous job offer from a rather prestigious company. There is a chance someone in the company is reading this, because I didn't even apply; they contacted me through LinkedIn. To say that I was honored to even receive a cold contact from such a company is an understatement. \"Flabbergasted\" is a much more appropriate term")
+      
+      +articleLink("https://www.linkedin.com/pulse/20140714123456-19711820-one-weird-trick-to-getting-work-done", "Getting Work Done - Sean T. McBeth", "(2014-07-14)", "How do I get work done?")
+
+    a(href="index.html") back
