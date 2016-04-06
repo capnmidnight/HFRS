@@ -5,7 +5,7 @@ var fs = require("fs"),
   url = require("url"),
   core = require("./core.js"),
   routes = require("./controllers.js"),
-  originTest = /^https?:\/\/(localhost|(www\.)?highlandfrs.com)(:\d+)?(\/|$)/;
+  originTest = /^https?:\/\/(localhost|(www\.)?highlandfrs.com|hfrs.azurewebsites.net)(:\d+)?(\/|$)/;
 
 function accessControl(request, response, headers) {
   var origin = request.headers.origin || request.headers.referer,
