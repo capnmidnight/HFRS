@@ -1,41 +1,46 @@
 ﻿doctype html
 html
   head
-    meta(charset="utf-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-
-    meta(name="keywords", content="Consulting, data, integrity, data integry, non-profits, fund raising, stewardship, reporting, software development")
-
-    meta(property="og:type", content="website")
-    meta(property="og:url", content="http://www.highlandfrs.com/" + filename)
-    meta(property="og:site_name", content="Highland FRS")
-    meta(name="twitter:card", content="summary_large_image")
-    meta(name="twitter:site", content="@HighlandFRS")
 
     mixin themeColor(color)
       meta(name="web-app-capable", content="yes")
       meta(name="theme-color", content=color)
       meta(name="apple-mobile-web-app-capable", content="yes")
       meta(name="apple-mobile-web-app-status-bar-style", content=color)
-    +themeColor("#002610")
 
     mixin description(txt)
       meta(name="description", content=txt)
       meta(property="og:description", content=txt)
       meta(name="twitter:description", content=txt)
-    +description("Highland FRS is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations.")
     
     mixin logo(img)
       meta(name="twitter:image", content=img)
       meta(property="og:image", content=img)
-    +logo("http://www.highlandfrs.com/images/logo.jpg")
 
     mixin fullTitle(txt)  
       meta(property="og:title", content=txt)
       meta(name="twitter:title", content=txt)
       title= txt
 
-    link(rel="stylesheet", href="/css/style.min.css")
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+    meta(name="keywords", content=pkg.keywords.join(", "))
+
+    meta(property="og:type", content="website")
+    meta(property="og:url", content=pkg.homepage + filename)
+    meta(property="og:site_name", content="Highland FRS")
+    meta(name="twitter:card", content="summary_large_image")
+    meta(name="twitter:site", content="@HighlandFRS")
+
+    +themeColor("#002610")
+    +description(pkg.description)
+    +logo("http://www.highlandfrs.com/images/logo.jpg")
+
+    if debug
+      link(rel="stylesheet", href="/css/style.css")
+    else
+      link(rel="stylesheet", href="/css/style.min.css")
     block head
   body
     header
@@ -52,7 +57,7 @@ html
       block content
     footer
       block footer
-        div Copyright © Highland FRS LLC, 2010 - 2016.
-        div The Raiser's Edge™ is a registered trademark of Blackbaud&REG;, Inc.
-        div Crystal Reports™ is a registered trademark of SAP SE&REG;.
-        div LinkedIn&REG; is a registered trademark of LinkedIn Corporation.
+        div Copyright &copy; Highland FRS LLC, 2010 - 2016.
+        div The Raiser's Edge&trade; is a registered trademark of Blackbaud&reg;, Inc.
+        div Crystal Reports&trade; is a registered trademark of SAP SE&reg;.
+        div LinkedIn&reg; is a registered trademark of LinkedIn Corporation.

@@ -17,7 +17,7 @@
     <OutputPath>.</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
     <NodejsPort>80</NodejsPort>
     <StartWebBrowser>True</StartWebBrowser>
     <Environment>
@@ -112,6 +112,7 @@
     <Content Include="images\Wayne_Combs_full.jpg" />
     <Content Include="images\Wayne_Combs_thumb.jpg" />
     <Content Include="images\wvdo.jpg" />
+    <Content Include="LICENSE" />
     <Content Include="partnership.html.jade" />
     <Content Include="partnership.html" />
     <Content Include="README" />
@@ -132,22 +133,13 @@
     <Compile Include="lib\ga.js" />
     <Compile Include="Gruntfile.js" />
     <Compile Include="src\analytics.js" />
-    <Compile Include="src\analytics.min.js" />
     <Compile Include="src\bag.js" />
-    <Compile Include="src\clientOnboard.js" />
-    <Compile Include="src\clientOnboard.min.js" />
     <Compile Include="src\code.min.js" />
     <Compile Include="src\contactForm.js" />
-    <Compile Include="src\contactForm.min.js" />
     <Compile Include="src\ga.js" />
-    <Compile Include="src\ga.min.js" />
     <Compile Include="src\imageFader.js" />
-    <Compile Include="src\imageFader.min.js" />
     <Compile Include="src\mapResizer.js" />
-    <Compile Include="src\mapResizer.min.js" />
-    <Compile Include="src\min.js" />
     <Compile Include="src\rotator.js" />
-    <Compile Include="src\rotator.min.js" />
     <Compile Include="src\twitter.min.js" />
     <Compile Include="src\vid\VideoCue.js" />
     <Compile Include="src\vid\VideoPlayer.js" />

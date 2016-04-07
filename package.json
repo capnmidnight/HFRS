@@ -1,7 +1,11 @@
 {
   "name": "hfrs",
   "version": "4.0.0",
-  "description": "blah",
+  "private": true,
+  "author":  "Sean T. McBeth",
+  "description": "Highland FRS is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations.",
+  "keywords": [ "Consulting", "data", "integrity", "data integry", "non-profits", "fund raising", "stewardship", "reporting", "software development" ],
+  "homepage": "http://www.highlandfrs.com/",
   "repository": "http://www.github.com/capnmidnight/HFRS.git",
   "license": "none",
   "engines": {
@@ -11,12 +15,14 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "azure-storage": "^0.10.0",
     "marked": "^0.3.5",
     "mime": "^1.3.4"
   },
   "devDependencies": {
     "ansi-regex": "^2.0.0",
     "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.0",
     "grunt-contrib-cssmin": "^1.0.1",
     "grunt-contrib-jade": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",

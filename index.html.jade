@@ -2,13 +2,8 @@ extends ./templates/main.jade
 
 block head
   +fullTitle("Highland FRS - non-profit fundraising consultancy")
-  script(type="text/javascript", src="src/analytics" + jsExt)
-  script(type="text/javascript", src="src/ga" + jsExt)
-  script(type="text/javascript", src="src/contactForm" + jsExt, async, defer)
-  script(type="text/javascript", src="src/imageFader" + jsExt, async, defer)
-  script(type="text/javascript", src="src/mapResizer" + jsExt, async, defer)
-  script(type="text/javascript", src="src/rotator" + jsExt, async, defer)
-  script(type="text/javascript", src="src/clientOnboard" + jsExt, async, defer)
+  each file in indexFiles
+    script(type="text/javascript", src=file, async, defer)
 
 block content
   article#intro
@@ -132,7 +127,7 @@ block content
         p Sean is a highly skilled developer. He has an eye for attention to detail. He strives to learn new technologies and keep his skills up to date. He thinks outside the box and uses his skills provide superior work products.
         cite Gene Duffey, Project Specialist, Grove US LLC, managed Sean indirectly at Global Data Consultants, LLC
       blockquote
-        p I have worked with Sean on several projects… He pays close attention to detail and listens to the clients' requirements. He is able to effectively communicate with his peers as well as upper management. Sean has been known to do whatever it takes to get the job done and still maintain his professionalism! Definitely a true team player… It was a wonderful experience working with Sean.
+        p I have worked with Sean on several projects&hellip; He pays close attention to detail and listens to the clients' requirements. He is able to effectively communicate with his peers as well as upper management. Sean has been known to do whatever it takes to get the job done and still maintain his professionalism! Definitely a true team player&hellip; It was a wonderful experience working with Sean.
         cite Anna Succi-Kozlowski, Business Analyst, The Manitowoc Company, worked directly with Sean at Global Data Consultants, LLC
     a.primary.button(href="#contact", title="Jump to contact form")
       | Find out more!
@@ -215,7 +210,7 @@ block content
       img(src="images/SUMMIT2015.png", title="AASP SUMMIT 2015 logo", alt="logo")
       cite
         a(href="http://www.advserv.org/?page=Summit2015", target="_blank") Association of Advancement Services Professionals SUMMIT 2015 Silver-level Sponsor
-      p Summit 2015 took place Oct. 28-30 in Chicago. Over the three-day conference, a record-breaking attendance of over 440 advancement services professionals participated in educational sessions, networking events, and special outings in downtown Chicago…
+      p Summit 2015 took place Oct. 28-30 in Chicago. Over the three-day conference, a record-breaking attendance of over 440 advancement services professionals participated in educational sessions, networking events, and special outings in downtown Chicago&hellip;
       small (2015-10-28)
     blockquote
       img(src="images/GTsimpleOrange.jpg", title="GeoTech Consulting logo", alt="logo")
@@ -227,18 +222,18 @@ block content
       img(src="images/DCInno.png", title="DCInno logo", alt="logo")
       cite
         a(href="http://dcinno.streetwise.co/2015/08/14/washington-dc-virtual-reality-vr-tech-startups-hub/", target="_blank") DCInno: The State of DC Virtual Reality Innovation: Part 1 - Chris Bing
-      p The Washington, D.C., area could very well become a hub for virtual reality innovation in the coming years…
+      p The Washington, D.C., area could very well become a hub for virtual reality innovation in the coming years&hellip;
       small (2015-08-14)
     blockquote
       img(src="images/dream.jpg", title="dream", alt="illustration")
       cite
         a(href="http://virtualworldsociety.org/wordpress1/dream-of-the-future/", target="_blank") Virtual World Society: Dream of the Future
-      p Virtual Worlds are blending into our habitable universe and expanding future possibilities within our everyday lives.  Our ability to connect and share ideas, dreams and accomplishments is unprecedented. Virtual worlds are no longer just branded escapist experiences, but they are augmenting our human powers of creativity, passion and the imagination. We are getting ready to launch into the next “giant leap” into the empowered human experience…
+      p Virtual Worlds are blending into our habitable universe and expanding future possibilities within our everyday lives.  Our ability to connect and share ideas, dreams and accomplishments is unprecedented. Virtual worlds are no longer just branded escapist experiences, but they are augmenting our human powers of creativity, passion and the imagination. We are getting ready to launch into the next "giant leap" into the empowered human experience&hellip;
       small (2015-08-04)
     blockquote
       img(src="images/melodytammy.jpg", title="Melody and Tammy", alt="photo")
       cite
         a(href="http://www.advserv.org/?page=AASPirationMarch14#Member", target="_blank") AASPiration March 2014 Member Spotlight
-      p AASP strives to create a close community of Advancement Services professionals, but for Melody Allen McBeth and Tammy Armstrong, the industry truly is a family affair. Melody, Director of Development Information Systems and Services and Interim Director of Gift Administration at The Children's Hospital Foundation, and her daughter Tammy, Director of Analytics at Oregon Episcopal School, share a passion for analytics and child welfare. Though their unique career paths brought them to different areas of the nonprofit sector, the two never run out of stories to share. Whether it's working out puzzling Crystal Reports over the phone or recapping sessions from the latest annual Summit, Melody and Tammy always find a resource in each other's encouragement and expertise…
+      p AASP strives to create a close community of Advancement Services professionals, but for Melody Allen McBeth and Tammy Armstrong, the industry truly is a family affair. Melody, Director of Development Information Systems and Services and Interim Director of Gift Administration at The Children's Hospital Foundation, and her daughter Tammy, Director of Analytics at Oregon Episcopal School, share a passion for analytics and child welfare. Though their unique career paths brought them to different areas of the nonprofit sector, the two never run out of stories to share. Whether it's working out puzzling Crystal Reports over the phone or recapping sessions from the latest annual Summit, Melody and Tammy always find a resource in each other's encouragement and expertise&hellip;
       div (2014-03-13)
     a(href="#top") top
