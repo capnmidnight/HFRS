@@ -20,8 +20,7 @@
     <ProjectView>ShowAllFiles</ProjectView>
     <NodejsPort>80</NodejsPort>
     <StartWebBrowser>True</StartWebBrowser>
-    <Environment>
-    </Environment>
+    <Environment>NODE_ENV=dev</Environment>
     <LaunchUrl>index.html</LaunchUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -117,6 +116,7 @@
     <Content Include="resources\calculator.ogg" />
     <Content Include="resources\CASE_CCA_2015_Economics.pptx" />
     <Content Include="resources\The_Economics_of_Data_Integrity.pdf" />
+    <Content Include="server\controllers\secrets.json" />
     <Content Include="templates\main.jade" />
     <Content Include="index.html.jade" />
     <Content Include="robots.txt" />
