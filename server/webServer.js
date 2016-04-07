@@ -7,17 +7,6 @@ var fs = require("fs"),
   routes = require("./controllers.js"),
   originTest = /^https?:\/\/(localhost|(www\.)?highlandfrs.com|hfrs.azurewebsites.net)(:\d+)?(\/|$)/;
 
-function accessControl(request, response, headers) {
-  var origin = request.headers.origin || request.headers.referer,
-    allowed = originTest.test(origin);
-  if (allowed) {
-    headers["Access-Control-Allow-Origin"] = origin;
-    headers["Access-Control-Allow-Methods"] = "POST";
-    headers["Access-Control-Allow-Headers"] = "Content-Type";
-  }
-  return allowed;
-};
-
 function serverError(response, requestedURL, httpStatusCode) {
   var rest = Array.prototype.slice.call(arguments, 3),
     msg = core.fmt("URL: [$1] $2: $3", requestedURL, httpStatusCode, http.STATUS_CODES[httpStatusCode]);
@@ -39,14 +28,14 @@ function serverError(response, requestedURL, httpStatusCode) {
   response.end(msg);
 }
 
-function findController(request) {
+function findController(request, response) {
   for (var i = 0; i < routes.length; ++i) {
     var matches = request.url.match(routes[i].pattern);
     if (matches) {
       matches.shift();
       var handler = routes[i][request.method.toUpperCase()];
       if (!handler) {
-        serverError(res, request.url, 405);
+        serverError(response, request.url, 405);
       }
       else {
         return {
@@ -59,49 +48,45 @@ function findController(request) {
 }
 
 function matchController(request, response) {
-  var controller = findController(request);
+  var controller = findController(request, response);
   if (controller) {
-    var headers = {};
-    if (!accessControl(request, response, headers)) {
-      serverError(response, request.url, 403);
+    function execute(body) {
+      controller.handler(
+        controller.parameters,
+        sendData.bind(this, request, response),
+        serverError.bind(this, response, request.url),
+        body);
+    }
+    if (request.method === "PUT" || request.method === "POST") {
+      var body = [];
+      request.on("data", function (chunk) {
+        body.push(chunk);
+      }).on("end", function () {
+        var text = Buffer.concat(body).toString();
+        if (request.headers["content-type"].indexOf("json") > -1) {
+          text = JSON.parse(text);
+        }
+        execute(text);
+      });
     }
     else {
-      function execute(body) {
-        controller.handler(
-          controller.parameters,
-          sendData.bind(this, request, response, headers),
-          serverError.bind(this, response, request.url),
-          body);
-      }
-      if (request.method === "PUT" || request.method === "POST") {
-        var body = [];
-        request.on("data", function (chunk) {
-          body.push(chunk);
-        }).on("end", function () {
-          var text = Buffer.concat(body).toString();
-          if (request.headers["content-type"].indexOf("json") > -1) {
-            text = JSON.parse(text);
-          }
-          execute(text);
-        });
-      }
-      else {
-        execute();
-      }
-      return true;
+      execute();
     }
+    return true;
   }
   return false;
 }
 
-function sendData(request, response, headers, mimeType, content, contentLength) {
+function sendData(request, response, mimeType, content, contentLength) {
   if (!mimeType) {
     response.writeHead(415);
     response.end();
   }
   else {
-    headers["content-type"] = mimeType;
-    headers["connection"] = "keep-alive";
+    var headers = {
+      "content-type": mimeType,
+      "connection": "keep-alive"
+    };
 
     if (!content) {
       headers["content-length"] = 0;
@@ -139,7 +124,7 @@ function serveRequest(request, response) {
         response.end();
       }
       else {
-        sendData(request, response, {}, mime.lookup(file), fs.createReadStream(file), stat.size);
+        sendData(request, response, mime.lookup(file), fs.createReadStream(file), stat.size);
       }
     });
   }
