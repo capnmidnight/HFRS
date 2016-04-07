@@ -11,19 +11,6 @@ else {
   tables = azure.createTableService();
 }
 
-
-tables.createTableIfNotExists("contacts", function (error, result, response) {
-  if (error) {
-    console.error(error);
-  }
-  else if (result.created) {
-    console.warn("Had to create the contacts table!");
-  }
-  else {
-    console.log("Contacts table already exists.");
-  }
-});
-
 var trans = {
   "name": "PartitionKey",
   "email": "RowKey"
@@ -51,16 +38,31 @@ module.exports = {
     });
   },
   POST: function (params, sendData, serverError, body) {
-    tables.insertOrMergeEntity("contacts", makeEntity(body), function (err, res) {
-      if (err) {
-        console.error("contacts.insertOrMergeEntity:", err);
-        serverError(500);
+
+
+    tables.createTableIfNotExists("contacts", function (error, result, response) {
+      if (error) {
+        console.error(error);
       }
       else {
-        sendData("application/json", JSON.stringify({
-          status: "success",
-          message: res
-        }));
+        if (result.created) {
+          console.warn("Had to create the contacts table!");
+        }
+        else {
+          console.log("Contacts table already exists.");
+        }
+        tables.insertOrMergeEntity("contacts", makeEntity(body), function (err, res) {
+          if (err) {
+            console.error("contacts.insertOrMergeEntity:", err);
+            serverError(500);
+          }
+          else {
+            sendData("application/json", JSON.stringify({
+              status: "success",
+              message: res
+            }));
+          }
+        });
       }
     });
   }
