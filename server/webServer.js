@@ -44,7 +44,7 @@ function findController(request) {
     var matches = request.url.match(routes[i].pattern);
     if (matches) {
       matches.shift();
-      var handler = routes[i][request.method];
+      var handler = routes[i][request.method.toUpperCase()];
       if (!handler) {
         serverError(res, request.url, 405);
       }
