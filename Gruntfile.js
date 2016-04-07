@@ -8,7 +8,7 @@ function jadeConfiguration(options, defaultData) {
     options: options,
     files: [{
       expand: true,
-      src: ["*.jade"],
+      src: ["*.html.jade"],
       dest: "",
       ext: "",
       extDot: "last"
@@ -47,11 +47,11 @@ module.exports = function (grunt) {
 
     watch: {
       debug: {
-        files: ["*.jade"],
+        files: ["*.jade", "templates/*.jade"],
         tasks: ["jade:debug"]
       },
       release: {
-        files: ["src/*.js", "*.jade", "css/*.css", "!src/*.min.js", "!css/*.min.css"],
+        files: ["src/*.js", "*.jade", "templates/*.jade", "css/*.css", "!src/*.min.js", "!css/*.min.css"],
         tasks: ["clean", "cssmin", "uglify", "concat", "jade:release", "jade:release"]
       }
     },

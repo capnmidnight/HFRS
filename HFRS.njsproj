@@ -30,8 +30,10 @@
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="about.jade" />
     <Content Include="blog.html.jade" />
     <Content Include="blog.html" />
+    <Content Include="contact.jade" />
     <Content Include="css\style.css" />
     <Content Include="downloads.html.jade" />
     <Content Include="downloads.html" />
@@ -108,7 +110,10 @@
     <Content Include="images\Wayne_Combs_full.jpg" />
     <Content Include="images\Wayne_Combs_thumb.jpg" />
     <Content Include="images\wvdo.jpg" />
+    <Content Include="intro.jade" />
     <Content Include="LICENSE" />
+    <Content Include="customers.jade" />
+    <Content Include="news.jade" />
     <Content Include="partnership.html.jade" />
     <Content Include="partnership.html" />
     <Content Include="README" />
@@ -117,6 +122,7 @@
     <Content Include="resources\CASE_CCA_2015_Economics.pptx" />
     <Content Include="resources\The_Economics_of_Data_Integrity.pdf" />
     <Content Include="server\controllers\secrets.json" />
+    <Content Include="services.jade" />
     <Content Include="templates\main.jade" />
     <Content Include="index.html.jade" />
     <Content Include="robots.txt" />

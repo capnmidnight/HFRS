@@ -433,11 +433,11 @@ label {
   color: rgb(255, 255, 255);
 }
 
-a.primary:hover {
+.primary:hover {
   background-color: #15DC3E;
 }
 
-a.primary:active {
+.primary:active {
   background-color: #38AB58;
 }
 
@@ -450,11 +450,11 @@ header, article:nth-child(odd) {
   color: #393B44;
 }
 
-a.secondary:hover {
+.secondary:hover {
   background-color: #3AD665;
 }
 
-a.secondary:active {
+.secondary:active {
   background-color: #D0CF8D;
 }
 
@@ -505,6 +505,7 @@ a.secondary:active {
   font-weight: bold;
   width: 100%;
   border-radius: 3px;
+  border-width: 0;
 }
 
   .button > small {
@@ -541,6 +542,10 @@ a.secondary:active {
     width: 15%;
     margin-left: auto;
     font-size: 100%;
+  }
+
+  .disabled {
+    opacity: 0.5;
   }
 
   header, #content > article {
