@@ -93,15 +93,15 @@ function sendData(request, response, mimeType, content, contentLength) {
       response.writeHead(200, headers);
       response.end();
     }
+    else if (typeof content === "string" || content instanceof String) {
+      headers["content-length"] = content.length;
+      response.writeHead(200, headers);
+      response.end(content);
+    }
     else if (content instanceof stream.Readable) {
       headers["content-length"] = contentLength;
       response.writeHead(200, headers);
       content.pipe(response);
-    }
-    else {
-      headers["content-length"] = content.length;
-      response.writeHead(200, headers);
-      response.end(content);
     }
   }
 }

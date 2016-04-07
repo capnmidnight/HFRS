@@ -80,7 +80,7 @@ function sendContact(form, successMessage, errorMessage) {
       });
 
     send(
-      "contacts",
+      "/contacts/",
       data,
       function (msg) {
         form.style.display = "none";
@@ -106,52 +106,6 @@ function sendContact(form, successMessage, errorMessage) {
   }
 }
 
-function makeURL(protocol, domain, port, path, queryMap) {
-
-  if (!protocol) {
-    protocol = "http:";
-  }
-  else if (protocol[protocol.length - 1] !== ":") {
-    protocol += ":";
-  }
-
-  if (!domain) {
-    domain = "localhost";
-  }
-  else if (domain[domain.length - 1] === "/") {
-    domain = domain.substring(0, domain.length - 1);
-  }
-
-  var url = protocol + "//" + domain;
-
-  if ((typeof port === "number" || port instanceof Number) && port !== 80) {
-    url += ":" + port;
-  }
-
-  if (path) {
-    if (path[path.length - 1] === "/") {
-      path = path.substring(0, path.length - 1);
-    }
-    url += "/" + path;
-  }
-
-  if (queryMap) {
-    var output = [];
-    for (var key in queryMap) {
-      if (queryMap.hasOwnProperty(key) &&
-        typeof queryMap[key] !== "function") {
-        output.push(encodeURIComponent(key) + "=" + encodeURIComponent(
-          queryMap[key]));
-      }
-    }
-
-    return url + "?" + output.join("&");
-  }
-  else {
-    return url;
-  }
-}
-
 function send(path, data, success, fail, progress) {
   try {
     var xhr = new XMLHttpRequest();
@@ -168,15 +122,9 @@ function send(path, data, success, fail, progress) {
         fail(xhr.status);
       }
     };
-    var url = makeURL(
-      location.protocol,
-      location.hostname,
-      location.port,
-      path);
-    xhr.open("POST", url);
+    xhr.open("POST", path);
     xhr.responseType = "json";
-    xhr.setRequestHeader("Content-Type",
-      "application/json;charset=UTF-8");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(data));
   }
   catch (exp) {
