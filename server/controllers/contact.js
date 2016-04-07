@@ -31,7 +31,9 @@ var trans = {
 function makeEntity(body) {
   var obj = {};
   for (var k in body) {
-    obj[trans[k] || k] = ent.String(body[k]);
+    if (body[k] !== null && body[k] !== undefined) {
+      obj[trans[k] || k] = ent.String(body[k]);
+    }
   }
   return obj;
 }
