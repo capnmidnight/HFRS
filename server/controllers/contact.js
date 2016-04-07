@@ -1,6 +1,16 @@
 var azure = require("azure-storage"),
-  tables = azure.createTableService(),
-  ent = azure.TableUtilities.entityGenerator;
+  ent = azure.TableUtilities.entityGenerator,
+  tables = null;
+
+if (process.env.NODE_ENV === "dev") {
+  var secrets = require("./secrets");
+  console.log("running DEV database", secrets);
+  tables = azure.createTableService(secrets.connectionString);
+}
+else {
+  tables = azure.createTableService();
+}
+
 
 tables.createTableIfNotExists("contacts", function (error, result, response) {
   if (error) {
