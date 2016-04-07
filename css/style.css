@@ -236,9 +236,7 @@ blockquote > small {
 }
 
 #news > blockquote > img {
-  margin: 1em;
-  min-width: 325px;
-  max-width: 33%;
+  width: 100%;
 }
 
 blockquote:nth-child(odd) > img {
@@ -305,10 +303,6 @@ article > section {
   border-radius: 3px;
   background-color: white;
   margin-right: 1em;
-}
-
-#leadership > div {
-  width: 49%;
 }
 
 
@@ -568,6 +562,15 @@ a.secondary:active {
 
   #main_services {
     display: none;
+  }
+
+  #leadership > div {
+    width: 49%;
+  }
+
+  #news > blockquote > img {
+    margin: 1em;
+    width: 33%;
   }
 
   .rotator .pip {
