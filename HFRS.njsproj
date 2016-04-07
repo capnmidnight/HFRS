@@ -34,9 +34,6 @@
     <Content Include="blog.html.jade" />
     <Content Include="blog.html" />
     <Content Include="css\style.css" />
-    <Content Include="css\style.min.css" />
-    <Content Include="css\style2.css" />
-    <Content Include="css\style2.min.css" />
     <Content Include="downloads.html.jade" />
     <Content Include="downloads.html" />
     <Content Include="favicon.gif" />
@@ -129,18 +126,15 @@
     <Content Include="favicon.ico" />
     <Content Include="package.json" />
     <Content Include="sitemap.xml" />
-    <Compile Include="lib\analytics.js" />
-    <Compile Include="lib\ga.js" />
     <Compile Include="Gruntfile.js" />
     <Compile Include="src\analytics.js" />
     <Compile Include="src\bag.js" />
-    <Compile Include="src\code.min.js" />
     <Compile Include="src\contactForm.js" />
     <Compile Include="src\ga.js" />
     <Compile Include="src\imageFader.js" />
     <Compile Include="src\mapResizer.js" />
     <Compile Include="src\rotator.js" />
-    <Compile Include="src\twitter.min.js" />
+    <Compile Include="src\twitter.js" />
     <Compile Include="src\vid\VideoCue.js" />
     <Compile Include="src\vid\VideoPlayer.js" />
     <Compile Include="server.js" />
@@ -171,7 +165,6 @@
     <Folder Include="images\" />
     <Folder Include="src\" />
     <Folder Include="src\vid\" />
-    <Folder Include="lib\" />
     <Folder Include="resources\" />
     <Folder Include="server\http\" />
     <Folder Include="templates\" />

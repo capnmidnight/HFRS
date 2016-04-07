@@ -36,17 +36,23 @@ function jadeConfiguration(options, defaultData) {
 module.exports = function (grunt) {
   grunt.initConfig({
 
+    clean: ["src/*.min.js", "css/*.min.css"],
+
     pkg: pkg,
 
     jade: {
-      release: jadeConfiguration({}, { jsExt: ".min.js" }),
-      debug: jadeConfiguration({ pretty: true }, { debug: true, jsExt: ".js" })
+      release: jadeConfiguration({}, {}),
+      debug: jadeConfiguration({ pretty: true }, { debug: true })
     },
 
     watch: {
-      jade: {
-        files: "*.jade",
+      debug: {
+        files: ["*.jade"],
         tasks: ["jade:debug"]
+      },
+      release: {
+        files: ["src/*.js", "*.jade", "css/*.css", "!src/*.min.js", "!css/*.min.css"],
+        tasks: ["clean", "cssmin", "uglify", "concat", "jade:release", "jade:release"]
       }
     },
 
@@ -54,7 +60,7 @@ module.exports = function (grunt) {
       default: {
         files: [{
           expand: true,
-          src: ["css/**/*.css", "!*.min.css"],
+          src: ["css/*.css"],
           dest: "",
           ext: ".min.css"
         }]
@@ -65,7 +71,7 @@ module.exports = function (grunt) {
       default: {
         files: [{
           expand: true,
-          src: ["src/**/*.js", "!*.min.js"],
+          src: ["src/*.js", "!src/*.min.js"],
           dest: "",
           ext: ".min.js"
         }]
@@ -97,10 +103,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-contrib-concat");
+  grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-jade");
 
   grunt.registerTask("none", []);
-  grunt.registerTask("debug", ["jade:debug", "watch:jade"]);
-  grunt.registerTask("release", ["cssmin", "uglify", "concat", "jade:release"]);
+  grunt.registerTask("debug", ["jade:debug", "watch:debug"]);
+  grunt.registerTask("release", ["clean", "cssmin", "uglify", "concat", "jade:release", "watch:release"]);
   grunt.registerTask("default", ["debug"]);
 };
