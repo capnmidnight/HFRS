@@ -1,32 +1,21 @@
+"use strict";
+
 var azure = require("azure-storage"),
+  Message = require("../Message.js"),
   ent = azure.TableUtilities.entityGenerator,
-  tables = null;
+  escape = require("escape-html"),
+  tables = azure.createTableService(process.env.NODE_ENV === "dev" && require("./secrets").connectionString || null);
 
-if (process && process.env && process.env.NODE_ENV === "dev") {
-  var secrets = require("./secrets");
-  console.log("running DEV database", secrets);
-  tables = azure.createTableService(secrets.connectionString);
-}
-else {
-  tables = azure.createTableService();
-}
+tables = require("../promisify.js")(tables);
 
-tables.createTableIfNotExists("contacts", function (error, result, response) {
-  if (error) {
-    console.error(error);
-  }
-  else if (result.created) {
-    console.warn("Had to create the contacts table!");
-  }
-  else {
-    console.log("Contacts table already exists.");
-  }
-});
+var tablesReady = tables.createTableIfNotExists("contacts")
+  .then(console.log.bind(console, "OK for contacts"));
 
 var trans = {
   "name": "PartitionKey",
   "email": "RowKey"
-};
+},
+  retrans = Object.keys(trans).reduce((obj, k) => (obj[trans[k]] = k, obj), {});
 
 function makeEntity(body) {
   var obj = {};
@@ -38,31 +27,49 @@ function makeEntity(body) {
   return obj;
 }
 
+function json2html(obj) {
+  var html = "<!DOCTYPE html><html><head><title>CONTACTS</title></head><body><table><thead><tr>",
+    ents = obj.entries,
+    columns = {},
+    i, columnName;
+  for (i = 0; i < ents.length; ++i) {
+    var entity = ents[i];
+    for (columnName in entity) {
+      if (!columns[columnName]) {
+        columns[columnName] = [];
+      }
+      columns[columnName][i] = entity[columnName]._;
+    }
+  }
+  for (columnName in columns) {
+    html += "<th>" + (retrans[columnName] || columnName) + "</th>";
+  }
+  html += "</tr></thead><tbody>";
+  for (i = 0; i < ents.length; ++i) {
+    html += "<tr>";
+    for (columnName in columns) {
+      html += "<td>" + escape(columns[columnName][i]) + "</td>";
+    }
+    html += "</tr>";
+  }
+  html += "</tbody></table></body></html>";
+  return html;
+}
+
 module.exports = {
   pattern: /^\/contacts\/?$/,
-  GET: function (params, sendData, serverError) {
-    tables.queryEntities("contacts", null, null, function (err, res) {
-      if (err) {
-        console.error("contacts.queryEntities:", err);
-        serverError(500);
-      }
-      else {
-        sendData("application/json", JSON.stringify(res));
-      }
-    });
+  GET: function (state) {
+    if (!state || !state.cookies || !state.cookies.token) {
+      return Promise.resolve(Message.redirect("/login?return=contacts"));
+    }
+    else {
+      return tablesReady.then(() => tables.queryEntities("contacts", null, null))
+        .then(json2html)
+        .then(Message.html);
+    }
   },
-  POST: function (params, sendData, serverError, body) {
-    tables.insertOrMergeEntity("contacts", makeEntity(body), function (err, res) {
-      if (err) {
-        console.error("contacts.insertOrMergeEntity:", err);
-        serverError(500);
-      }
-      else {
-        sendData("application/json", JSON.stringify({
-          status: "success",
-          message: res
-        }));
-      }
-    });
+  POST: function (state) {
+    return tablesReady.then(() => tables.insertOrMergeEntity("contacts", makeEntity(state.body)))
+      .then(Message.json);
   }
 };

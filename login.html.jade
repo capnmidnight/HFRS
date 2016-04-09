@@ -1,0 +1,27 @@
+﻿extends ./templates/main.jade
+block head
+  script(type="text/javascript", src="/src/requests.js")
+
+block content
+  article#about
+    form
+      div
+        label(for="username") Name:
+        input(type="text", id="username")
+      div
+        label(for="password") Password:
+        input(type="password", id="password")
+      button#login.primary.button(type="button") Login
+  script(type="text/javascript").
+    var btn = document.querySelector("#login"),
+      user = document.querySelector("#username"),
+      pass = document.querySelector("#password");
+
+    btn.addEventListener("click", function(){
+      sendObject("/salt", {
+        user: user.value
+      }).then(alert)
+        .catch(function(err){
+          alert("ERR " + err);
+        });
+    });

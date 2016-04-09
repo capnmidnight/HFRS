@@ -1,7 +1,7 @@
 /* global module */
 
 var pkg = require("./package.json"),
-  indexFiles = ["analytics", "ga", "contactForm", "imageFader", "mapResizer", "rotator"];
+  indexFiles = ["analytics", "ga", "requests", "contactForm", "imageFader", "mapResizer", "rotator"];
 
 function jadeConfiguration(options, defaultData) {
   var config = {

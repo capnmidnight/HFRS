@@ -71,6 +71,10 @@
     if (form.reportValidity()) {
       form.parentElement.style.backgroundColor = "#c0c0c0";
       btn.className += " disabled";
+      btn.innerHTML = "Submitting...";
+      var interval = setInterval(function () {
+        btn.innerHTML += ".";
+      }, 1000);
       btn.removeEventListener("click", sendContact);
       btn.style.cursor = "wait";
       var data = fields.reduce(function (obj, k) {
@@ -84,56 +88,25 @@
         return obj;
       }, {});
 
-      send(
-        "/contacts/",
-        data,
-        function (msg) {
-          form.parentElement.style.backgroundColor = "";
-          form.style.display = "none";
-          successMessage.style.display = "block";
-          form.parentNode.scrollIntoView();
+      function clear(box, msg) {
+        clearInterval(interval);
+        form.parentElement.style.backgroundColor = "";
+        form.style.display = "none";
+        box.style.display = "block";
+        box.scrollIntoView();
+        if (window.ga) {
+          ga("send", "event", "contactlist", msg);
+        }
+      }
+
+      sendObject("/contacts/", { data: data })
+        .then(function (msg) {
+          clear(successMessage, "success");
           var b = document.querySelector("#callbackName");
           b.innerHTML = "";
           b.appendChild(document.createTextNode(data.name));
-          if (window.ga) {
-            ga("send", "event", "contactlist", "success");
-          }
-        },
-        function (msg) {
-          form.parentElement.style.backgroundColor = "";
-          form.style.display = "none";
-          errorMessage.style.display = "block";
-          errorMessage.scrollIntoView();
-          if (window.ga) {
-            ga("send", "event", "contactlist", "fail");
-          }
-        });
-    }
-  }
-
-  function send(path, data, success, fail, progress) {
-    try {
-      var xhr = new XMLHttpRequest();
-      xhr.onerror = fail;
-      xhr.onabort = fail;
-      xhr.onprogress = progress;
-      xhr.onload = function () {
-        if (xhr.status < 400) {
-          if (success) {
-            success(xhr.response);
-          }
-        }
-        else if (fail) {
-          fail(xhr.status);
-        }
-      };
-      xhr.open("POST", path);
-      xhr.responseType = "json";
-      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-      xhr.send(JSON.stringify(data));
-    }
-    catch (exp) {
-      fail(exp);
+        })
+        .catch(clear.bind(null, errorMessage, "fail"));
     }
   }
 })();

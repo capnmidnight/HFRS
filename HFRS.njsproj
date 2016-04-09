@@ -17,11 +17,11 @@
     <OutputPath>.</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <NodejsPort>80</NodejsPort>
     <StartWebBrowser>True</StartWebBrowser>
     <Environment>NODE_ENV=dev</Environment>
-    <LaunchUrl>index.html</LaunchUrl>
+    <LaunchUrl>contacts</LaunchUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -113,6 +113,8 @@
     <Content Include="intro.jade" />
     <Content Include="LICENSE" />
     <Content Include="customers.jade" />
+    <Content Include="login.html" />
+    <Content Include="login.html.jade" />
     <Content Include="news.jade" />
     <Content Include="partnership.html.jade" />
     <Content Include="partnership.html" />
@@ -133,12 +135,16 @@
     <Content Include="package.json" />
     <Content Include="sitemap.xml" />
     <Compile Include="Gruntfile.js" />
+    <Compile Include="server\controllers\login.js" />
+    <Compile Include="server\Message.js" />
+    <Compile Include="server\promisify.js" />
     <Compile Include="src\analytics.js" />
     <Compile Include="src\bag.js" />
     <Compile Include="src\contactForm.js" />
     <Compile Include="src\ga.js" />
     <Compile Include="src\imageFader.js" />
     <Compile Include="src\mapResizer.js" />
+    <Compile Include="src\requests.js" />
     <Compile Include="src\rotator.js" />
     <Compile Include="src\twitter.js" />
     <Compile Include="src\vid\VideoCue.js" />
@@ -164,6 +170,7 @@
   <ItemGroup>
     <Folder Include="css\" />
     <Folder Include="images\" />
+    <Folder Include="server\data\" />
     <Folder Include="src\" />
     <Folder Include="src\vid\" />
     <Folder Include="resources\" />

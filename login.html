@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Consulting, data, integrity, data integry, non-profits, fund raising, stewardship, reporting, software development">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://www.highlandfrs.com/downloads.html">
+    <meta property="og:url" content="http://www.highlandfrs.com/login.html">
     <meta property="og:site_name" content="Highland FRS">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@HighlandFRS">
@@ -19,10 +19,7 @@
         <meta name="twitter:image" content="http://www.highlandfrs.com/images/logo.jpg">
         <meta property="og:image" content="http://www.highlandfrs.com/images/logo.jpg">
     <link rel="stylesheet" href="/css/style.css">
-        <meta property="og:title" content="Highland FRS - non-profit fundraising consultancy - Downloads">
-        <meta name="twitter:title" content="Highland FRS - non-profit fundraising consultancy - Downloads">
-        <title>Highland FRS - non-profit fundraising consultancy - Downloads</title>
-    <style>#mainLogo{display:block;margin:0 auto;width:50%;}</style>
+    <script type="text/javascript" src="/src/requests.js"></script>
   </head>
   <body>
     <header><a id="mainLogoWrapper" href="/index.html"><img id="mainLogo" src="/images/logo.svg" alt="logo" title="Highland FRS logo"></a>
@@ -38,17 +35,35 @@
       </nav>
     </header>
     <section id="content">
-      <article id="downloads">
-        <h3>Downloads</h3>
-        <ul>
-                    <li><a href="/resources/The_Economics_of_Data_Integrity.pdf">The Economics of Data Integrity (abridged)</a>- 
-                      <cite>AASP Summit, 29 OCT 2015, as presented by Melody Allen McBeth</cite><span title="pdf logo" class="icon-pdf"></span>(PDF 6.8MB)
-                    </li>
-                    <li><a href="/resources/CASE_CCA_2015_Economics.pptx">The Economics of Data Integrity</a>- 
-                      <cite>CASE Conference for Community Colleges, 2 OCT 2015, as presented by Melody Allen McBeth and Lynn Andrews</cite><span title="powerpoint logo" class="icon-powerpoint"></span>(PPTX 1.5MB)
-                    </li>
-        </ul><a href="index.html">back</a>
+      <article id="about">
+        <form>
+          <div>
+            <label for="username">Name:</label>
+            <input type="text" id="username">
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password">
+          </div>
+          <button id="login" type="button" class="primary button">Login</button>
+        </form>
       </article>
+      <script type="text/javascript">
+        var btn = document.querySelector("#login"),
+          user = document.querySelector("#username"),
+          pass = document.querySelector("#password");
+        
+        btn.addEventListener("click", function(){
+          sendObject("/salt", {
+            data: {
+              user: user.value
+            }
+          }).then(alert)
+            .catch(function(err){
+              alert("ERR " + err);
+            });
+        });
+      </script>
     </section>
     <footer>
       <div>Copyright &copy; Highland FRS LLC, 2010 - 2016.</div>
