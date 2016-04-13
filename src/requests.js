@@ -51,6 +51,20 @@ function XHR(method, responseType, url, options) {
   });
 }
 
+function del(type, url, options) {
+  return XHR("DELETE", type, url, options);
+}
+
+function delObject(url, options) {
+  options = options || {};
+  options.headers = options.headers || {};
+  options.headers["content-type"] = options.headers["content-type"] || "application/json;charset=UTF-8";
+  if (typeof options.data !== "string") {
+    options.data = JSON.stringify(options.data);
+  }
+  return del(null, url, options);
+}
+
 function post(type, url, options) {
   return XHR("POST", type, url, options);
 }

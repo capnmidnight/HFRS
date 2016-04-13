@@ -37,7 +37,7 @@ function findController(request) {
       if (handlers) {
         for (var type in handlers) {
           var handler = handlers[type];
-          if (accept.indexOf(type) >= 0) {
+          if (type === "*/*" || accept.indexOf(type) >= 0) {
             for (var k = 1; k < match.length; ++k) {
               handler = handler.bind(null, match[k]);
             }
@@ -54,7 +54,7 @@ function findController(request) {
   return () => Message.NotFound;
 }
 
-function serveRequest( request, response ) {
+function serveRequest(request, response) {
   return parseBody(request)
     .then((body) => {
       return {
@@ -64,48 +64,64 @@ function serveRequest( request, response ) {
       };
     })
     .then((state) => findController(request)(state))
-    .catch(( err ) => {
-      return ( err instanceof Message ) ? err : Message.InternalServerError;
+    .catch((err) => {
+      return (err instanceof Message) ? err : Message.InternalServerError;
     })
-    .then(( msg ) => msg.send( response ) );
+    .then((msg) => msg.send(response));
 }
 
 function parseBody(request) {
-  if (request.method === "PUT" || request.method === "POST") {
-    return new Promise((resolve, reject) => {
-      var len = request.headers["content-length"];
-      if (len === undefined || len === null) {
-        reject(Message.LengthRequired);
-      }
-      else {
-        len = parseFloat(len);
-        var body = [];
-        request
-          .on("data", (chunk) => body.push(chunk))
-          .on("end", () => {
-            var text = Buffer.concat( body ).toString();
+  return new Promise((resolve, reject) => {
+    var body = [],
+      size = 0,
+      len = 0;
+    request
+      .on("data", (chunk) => {
+        console.log(chunk);
+        body.push(chunk);
+        if (size === 0) {
+          len = request.headers["content-length"];
+          if (len === undefined || len === null) {
+            reject(Message.LengthRequired);
+          }
+          else {
+            len = parseFloat(len);
+          }
 
-            if (len !== text.length) {
+          size += chunk.length;
+        }
+
+        if (size > 5e6) {
+          reject(Message.PayloadTooLarge);
+        }
+      })
+      .on("end", () => {
+        var text = Buffer.concat(body).toString();
+        if (text.length === 0) {
+          resolve();
+        }
+        else{
+          var type = request.headers["content-type"];
+          if (!type) {
+            reject(Message.BadRequest);
+          }
+          else if (len !== text.length) {
+            reject(Message.BadRequest);
+          }
+          else {
+            try {
+              if (type.indexOf("application/json") > -1) {
+                text = JSON.parse(text);
+              }
+              resolve(text);
+            }
+            catch (exp) {
               reject(Message.BadRequest);
             }
-            else {
-              try {
-                if (request.headers["content-type"].indexOf("application/json") > -1) {
-                  text = JSON.parse(text);
-                }
-                resolve(text);
-              }
-              catch (exp) {
-                reject(Message.BadRequest);
-              }
-            }
-          }).on("error", reject);
-      }
-    });
-  }
-  else {
-    return Promise.resolve();
-  }
+          }
+        }
+      }).on("error", reject);
+  });
 }
 
 function parseCookies(request, body) {

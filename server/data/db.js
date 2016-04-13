@@ -37,9 +37,17 @@ module.exports = {
     tables.insertOrMergeEntity(table, ent,
       (err, state) => err && reject(err) || resolve(state))),
 
-  get: (table, partitionKey, rowKey) => new Promise((resolve, reject) => {
-    return tables.retrieveEntity(table, partitionKey, rowKey,
-      (err, state) => err && reject(err) || resolve(state))
+  get: (table, partitionKey, rowKey) => new Promise((resolve, reject) =>
+    tables.retrieveEntity(table, partitionKey, rowKey,
+      (err, state) => err && reject(err) || resolve(state))),
+
+  delete: (table, partitionKey, rowKey) => new Promise((resolve, reject) => {
+    var task = {
+      PartitionKey: ent.String(partitionKey),
+      RowKey: ent.String(rowKey)
+    };
+    return tables.deleteEntity(table, task,
+      (err, state) => err && reject(err) || resolve(state));
   }),
 
   search: (table, partitionKey, rowKey) => new Promise((resolve, reject) => {

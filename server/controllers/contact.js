@@ -7,7 +7,7 @@ var Message = require("../Message.js"),
 module.exports = {
   URLPattern: /^\/contacts(?:\/|\.html)?$/,
   GET: {
-    "text/html": function (state) {
+    "text/html": (state) => {
       if (Users.isAuthorized(state.cookies)) {
         return Message.file("./contacts.html");
       }
@@ -15,7 +15,7 @@ module.exports = {
         return Message.redirect("/login?return=contacts");
       }
     },
-    "application/json": function (state) {
+    "application/json": (state) => {
       if (Users.isAuthorized(state.cookies)) {
         return Contacts.get()
           .then(Message.json);
@@ -26,8 +26,17 @@ module.exports = {
     }
   },
   POST: {
-    "application/json": (state) => {
-      return Contacts.set(state.body).then(Message.noContent);
+    "*/*": (state) => Contacts.set(state.body).then(Message.noContent)
+  },
+  DELETE: {
+    "*/*": (state) => {
+      if (Users.isAuthorized(state.cookies)) {
+        return Contacts.delete(state.body)
+          .then(Message.noContent);
+      }
+      else {
+        return Message.Unauthorized;
+      }
     }
   }
 };

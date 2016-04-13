@@ -17,5 +17,8 @@ module.exports = {
 
   get: (partitionKey, rowKey) => ready
     .then(() => db.search("contacts", partitionKey, rowKey))
-    .then((contacts) => contacts.entries.map(db.unwrap.bind(db, untrans)))
+    .then((contacts) => contacts.entries.map(db.unwrap.bind(db, untrans))),
+
+  delete: (obj) => ready
+    .then(() => db.delete("contacts", obj.name, obj.email))
 };
