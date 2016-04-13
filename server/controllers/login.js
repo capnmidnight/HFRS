@@ -1,55 +1,52 @@
 "use strict";
 
-var azure = require("azure-storage"),
-  Message = require("../Message.js"),
-  ent = azure.TableUtilities.entityGenerator,
-  escape = require("escape-html"),
-  tables = azure.createTableService(process.env.NODE_ENV === "dev" && require("./secrets").connectionString || null);
-
-tables = require("../promisify.js")(tables);
-
-var tablesReady = tables.createTableIfNotExists("users")
-  .then(console.log.bind(console, "OK for users"));
-
-var trans = {
-  "name": "PartitionKey"
-},
-  retrans = Object.keys(trans).reduce((obj, k) => (obj[trans[k]] = k, obj), {});
-
-function makeEntity(body) {
-  var obj = {};
-  for (var k in body) {
-    if (body[k] !== null && body[k] !== undefined) {
-      obj[trans[k] || k] = ent.String(body[k]);
-    }
-  }
-  obj.RowKey = ent.String(0);
-  return obj;
-}
+var Message = require("../Message.js"),
+  Users = require("../data/Users.js"),
+  expireNow = new Date(0).toGMTString();
 
 module.exports = {
-  pattern: /^\/(login|salt)(?:\?return=(\w+))?$/,
-  GET: function (cmd, redir, state) {
-    if (state && state.cookies && state.cookies.token) {
-      return Message.redirect("index.html");
-    }
-    else if (cmd === "login") {
-      return Message.file("./login.html");
-    }
-    else {
-      return Message.methodNotAllowed("/" + cmd);
+  URLPattern: /^\/(login(?:\/?|.html?)|logout|salt|hash)(?:\?return=(\w+))?$/,
+  GET: {
+    "text/html": function (cmd, redir, state) {
+      if (Users.isAuthorized(state.cookies) && cmd !== "logout") {
+        return Message.redirect("index.html");
+      }
+      else if (cmd === "logout") {
+        return Users.logout(state.cookies)
+          .then(() => Message.redirect("/login")
+            .cookie({ token: "", Expires: expireNow }));
+      }
+      else if (cmd === "login") {
+        return Message.file("./login.html");
+      }
+      else {
+        return Message.MethodNotAllowed;
+      }
     }
   },
-  POST: function (cmd, redir, state) {
-    if (cmd === "salt") {
-      return tablesReady.then(() => tables.queryEntities("users", ent.String(state.body.name), ent.String(0)))
-        .then((obj) => {
-          console.log(obj);
-          return Message.OK;
-        });
-    }
-    else {
-      return Message.methodNotAllowed("/" + cmd);
+  POST: {
+    "text/plain": function (cmd, redir, state) {
+      if (Users.isAuthorized(state.cookies) || (cmd !== "salt" && cmd !== "hash")) {
+        return Message.MethodNotAllowed;
+      }
+      else if (cmd === "salt") {
+        return Users.getSalt(state.body.name)
+          .then(Message.text);
+      }
+      else if (cmd === "hash")
+        return Users.authenticate(state.body.name, state.body.hash)
+          .then((user) => {
+            if (user) {
+              return Message.noContent()
+                .cookie({
+                  token: user.token,
+                  Expires: new Date(Date.now() + 60 * 60 * 1000).toGMTString()
+                });
+            }
+            else {
+              return Message.Unauthorized;
+            }
+          });
     }
   }
 };

@@ -99,7 +99,7 @@
         }
       }
 
-      sendObject("/contacts/", { data: data })
+      sendObjectGetObject("/contacts/", { data: data })
         .then(function (msg) {
           clear(successMessage, "success");
           var b = document.querySelector("#callbackName");

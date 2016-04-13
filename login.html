@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -20,6 +20,7 @@
         <meta property="og:image" content="http://www.highlandfrs.com/images/logo.jpg">
     <link rel="stylesheet" href="/css/style.css">
     <script type="text/javascript" src="/src/requests.js"></script>
+    <script type="text/javascript" src="/src/sha512.js"></script>
   </head>
   <body>
     <header><a id="mainLogoWrapper" href="/index.html"><img id="mainLogo" src="/images/logo.svg" alt="logo" title="Highland FRS logo"></a>
@@ -36,40 +37,64 @@
     </header>
     <section id="content">
       <article id="about">
-        <form>
-          <div>
-            <label for="username">Name:</label>
-            <input type="text" id="username">
-          </div>
-          <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password">
-          </div>
-          <button id="login" type="button" class="primary button">Login</button>
-        </form>
+        <div>
+          <label for="username">Name:</label>
+          <input type="text" id="name">
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" id="password">
+        </div>
+        <div id="badAuth" style="display:none">Incorrect user name or password. Please try again.</div>
+        <button id="login" type="button" class="primary button">Login</button>
       </article>
       <script type="text/javascript">
         var btn = document.querySelector("#login"),
-          user = document.querySelector("#username"),
-          pass = document.querySelector("#password");
+          user = document.querySelector("#name"),
+          pass = document.querySelector("#password"),
+          bad = document.querySelector("#badAuth");
         
+        function hideBadAuthMsg(){
+          bad.style.display = "none";
+        }
+          
+        user.addEventListener("focus", hideBadAuthMsg, false);
+        pass.addEventListener("focus", hideBadAuthMsg, false);
         btn.addEventListener("click", function(){
-          sendObject("/salt", {
-            data: {
-              user: user.value
-            }
-          }).then(alert)
-            .catch(function(err){
-              alert("ERR " + err);
-            });
+          hideBadAuthMsg();
+          sendObjectGetText("/salt", { data: { name: user.value}})
+          .then(function(salt){
+            return sendObjectGetText("/hash", { data: {
+              name: user.value,
+              hash: CryptoJS.SHA512(salt + pass.value).toString()
+            }});
+          }).then((txt)=>{
+            var redir = location.search.match(/^\?return=(.+)$/);
+            location = redir && redir[1] || "/index.html";
+          }).catch((err)=>{
+            console.error(err);
+            bad.style.display = "block";
+            throw err;
+          });
         });
       </script>
     </section>
     <footer>
-      <div>Copyright &copy; Highland FRS LLC, 2010 - 2016.</div>
-      <div>The Raiser's Edge&trade; is a registered trademark of Blackbaud&reg;, Inc.</div>
-      <div>Crystal Reports&trade; is a registered trademark of SAP SE&reg;.</div>
-      <div>LinkedIn&reg; is a registered trademark of LinkedIn Corporation.</div>
+      Copyright &copy; Highland FRS LLC, 2010 - 2016.
+      The Raiser's Edge&trade; is a registered trademark of Blackbaud&reg;, Inc.
+      Crystal Reports&trade; is a registered trademark of SAP SE&reg;.
+      LinkedIn&reg; is a registered trademark of LinkedIn Corporation.
+      <div id="admin"><a id="login" href="/login">login</a><a id="logout" href="/logout">logout</a> - <a id="contacts" href="/contacts">contacts</a>
+        <script type="text/javascript">
+          window.addEventListener("load", function(){
+            var login = document.querySelector("#login"),
+              logout = document.querySelector("#logout"),
+              authed = /\btoken\b/.test(document.cookie);
+            login.style.display = authed ? "none" : "";
+            logout.style.display = authed ? "" : "none";
+          });
+        </script>
+      </div>
     </footer>
   </body>
 </html>

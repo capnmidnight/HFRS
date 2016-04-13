@@ -21,7 +21,7 @@
     <NodejsPort>80</NodejsPort>
     <StartWebBrowser>True</StartWebBrowser>
     <Environment>NODE_ENV=dev</Environment>
-    <LaunchUrl>contacts</LaunchUrl>
+    <LaunchUrl>login</LaunchUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +34,7 @@
     <Content Include="blog.html.jade" />
     <Content Include="blog.html" />
     <Content Include="contact.jade" />
+    <Content Include="contacts.html" />
     <Content Include="css\style.css" />
     <Content Include="downloads.html.jade" />
     <Content Include="downloads.html" />
@@ -77,6 +78,7 @@
     <Content Include="images\logo-very-small.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\logo.svg" />
+    <Content Include="images\Lynne_Becker.jpg" />
     <Content Include="images\marylhurst-logo.png" />
     <Content Include="images\mclean-logo.png" />
     <Content Include="images\melodytammy.jpg" />
@@ -114,6 +116,7 @@
     <Content Include="LICENSE" />
     <Content Include="customers.jade" />
     <Content Include="login.html" />
+    <Content Include="contacts.html.jade" />
     <Content Include="login.html.jade" />
     <Content Include="news.jade" />
     <Content Include="partnership.html.jade" />
@@ -123,7 +126,7 @@
     <Content Include="resources\calculator.ogg" />
     <Content Include="resources\CASE_CCA_2015_Economics.pptx" />
     <Content Include="resources\The_Economics_of_Data_Integrity.pdf" />
-    <Content Include="server\controllers\secrets.json" />
+    <Content Include="server\data\secrets.json" />
     <Content Include="services.jade" />
     <Content Include="templates\main.jade" />
     <Content Include="index.html.jade" />
@@ -135,9 +138,11 @@
     <Content Include="package.json" />
     <Content Include="sitemap.xml" />
     <Compile Include="Gruntfile.js" />
+    <Compile Include="server\data\Contacts.js" />
+    <Compile Include="server\data\Users.js" />
+    <Compile Include="server\data\db.js" />
     <Compile Include="server\controllers\login.js" />
     <Compile Include="server\Message.js" />
-    <Compile Include="server\promisify.js" />
     <Compile Include="src\analytics.js" />
     <Compile Include="src\bag.js" />
     <Compile Include="src\contactForm.js" />
@@ -146,6 +151,7 @@
     <Compile Include="src\mapResizer.js" />
     <Compile Include="src\requests.js" />
     <Compile Include="src\rotator.js" />
+    <Compile Include="src\sha512.js" />
     <Compile Include="src\twitter.js" />
     <Compile Include="src\vid\VideoCue.js" />
     <Compile Include="src\vid\VideoPlayer.js" />

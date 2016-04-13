@@ -1,0 +1,55 @@
+﻿extends ./templates/main.jade
+block head
+  script(type="text/javascript", src="/src/requests.js")
+
+block content
+  article#about
+    h1 Contacts
+  #output
+  script(type="text/javascript").
+    var out = document.querySelector("#output");
+
+    function txt(elem, txt, def, pre){
+      elem.appendChild(document.createTextNode(txt || def));
+      if(elem.tagName === "A" && txt){
+        elem.href = pre + txt;
+      }
+    }
+    
+    getObject("/contacts")
+      .then((contacts) => {
+        out.innerHTML = "";
+        contacts.forEach(function(contact){
+          contact.Timestamp = Date.parse(contact.Timestamp);
+        });
+        contacts.sort(function(a, b){
+          return b.Timestamp - a.Timestamp;
+        });
+        contacts.map(function(contact){
+          var elem = document.createElement("article"),
+            name = document.createElement("h3"),
+            company = document.createElement("h4"),
+            phone = document.createElement("a"),
+            email = document.createElement("a"),
+            msg = document.createElement("blockquote");
+            
+          elem.appendChild(name);
+          elem.appendChild(document.createTextNode("  email: "));
+          elem.appendChild(email);
+          elem.appendChild(document.createTextNode("  phone: "));
+          elem.appendChild(phone);
+          elem.appendChild(msg);
+
+          var title = contact.name;
+          if(contact.company){
+            title += " - " + contact.company;
+          }
+          title += " - " + new Date(contact.Timestamp).toLocaleDateString();
+          txt(name, title);
+          txt(email, contact.email, null, "mailto:");
+          txt(phone, contact.phone, "no phone number provided.", "tel:");
+          txt(msg, contact.description, "no message provided.");
+          return elem;
+        }).forEach(out.appendChild.bind(out));
+      })
+      .catch(console.error.bind(console));

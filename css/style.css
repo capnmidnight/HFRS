@@ -103,7 +103,7 @@ ul {
   text-align: left;
 }
 
-header > nav > ul {
+nav > ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -113,27 +113,27 @@ header > nav > ul {
   text-align: center;
 }
 
-  header > nav > ul > li {
+  nav > ul > li {
     display: block;
     width: 80%;
     margin-left: 10%;
     font-size: 150%;
   }
 
-    header, header > nav > ul > li > a {
+    header, nav > ul > li > a {
       width: 100%;
     }
 
-      header > nav > ul > li > a {
-        display: inline-block;
-        text-align: center;
-        text-transform: capitalize;
-        color: rgb(247, 247, 247);
-        background-image: linear-gradient(176deg, rgba(0, 0, 0, 0.5), rgba(0, 38, 16, 0.25));
-        padding-top: 1em;
-        padding-bottom: 1em;
-        border-radius: 3px;
-      }
+    nav > ul > li > a {
+      display: inline-block;
+      text-align: center;
+      text-transform: capitalize;
+      color: rgb(247, 247, 247);
+      background-image: linear-gradient(176deg, rgba(0, 0, 0, 0.5), rgba(0, 38, 16, 0.25));
+      padding-top: 1em;
+      padding-bottom: 1em;
+      border-radius: 3px;
+    }
 
 #introVideo, #introVideo > video, #introVideo > .video {
   position: relative;
@@ -329,26 +329,6 @@ article > section > div > div {
   max-width: 700px;
 }
 
-@keyframes footerslideout {
-  from {
-    margin-bottom: -4.2em;
-  }
-
-  to {
-    margin-bottom: 0;
-  }
-}
-
-@keyframes footerslidein {
-  from {
-    margin-bottom: 0;
-  }
-
-  to {
-    margin-bottom: -4.2em;
-  }
-}
-
 footer {
   position: fixed;
   width: 100%;
@@ -361,28 +341,10 @@ footer {
   color: #f4f4f4;
   bottom: 0;
   padding-top: 0.5em;
-  margin-bottom: -4.2em;
   animation-name: footerslidein;
   animation-timing-function: ease-out;
   animation-duration: 0.25s;
 }
-
-  footer:hover {
-    margin-bottom: 0;
-    animation-name: footerslideout;
-    animation-timing-function: ease-out;
-    animation-duration: 0.25s;
-  }
-
-  footer:before {
-    content: "+";
-    float: left;
-    padding-left: 1em;
-  }
-
-  footer:hover:before {
-    content: "-";
-  }
 
 .rotator .pip {
   cursor: pointer;
@@ -435,13 +397,13 @@ label {
   color: rgb(255, 255, 255);
 }
 
-.primary:hover {
-  background-color: #15DC3E;
-}
+  .primary:hover {
+    background-color: #15DC3E;
+  }
 
-.primary:active {
-  background-color: #38AB58;
-}
+  .primary:active {
+    background-color: #38AB58;
+  }
 
 header, article:nth-child(odd) {
   color: #413E2D;
@@ -452,13 +414,13 @@ header, article:nth-child(odd) {
   color: #393B44;
 }
 
-.secondary:hover {
-  background-color: #3AD665;
-}
+  .secondary:hover {
+    background-color: #3AD665;
+  }
 
-.secondary:active {
-  background-color: #D0CF8D;
-}
+  .secondary:active {
+    background-color: #D0CF8D;
+  }
 
 .message {
   padding: 1em;
@@ -515,12 +477,12 @@ header, article:nth-child(odd) {
     opacity: 0.85;
   }
 
-  #services > section > div {
-    min-height: calc(200px + 2em);
-  }
+#services > section > div {
+  min-height: calc(200px + 2em);
+}
 
 @media (max-width: 768px) {
-  header > nav {
+  nav {
     font-size: 17pt;
   }
 }
@@ -533,8 +495,12 @@ header, article:nth-child(odd) {
     width: 30%;
   }
 
-  nav {
+  header > nav {
     font-size: 26pt;
+  }
+
+  footer > nav {
+    font-size: 12pt;
   }
 
   #announcement > img {
@@ -543,11 +509,10 @@ header, article:nth-child(odd) {
     padding: 1em;
   }
 
-  header > nav > ul > li {
+  nav > ul > li {
     display: inline-block;
     width: 15%;
     margin-left: auto;
-    font-size: 100%;
   }
 
   .disabled {

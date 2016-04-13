@@ -57,7 +57,20 @@ html
       block content
     footer
       block footer
-        div Copyright &copy; Highland FRS LLC, 2010 - 2016.
-        div The Raiser's Edge&trade; is a registered trademark of Blackbaud&reg;, Inc.
-        div Crystal Reports&trade; is a registered trademark of SAP SE&reg;.
-        div LinkedIn&reg; is a registered trademark of LinkedIn Corporation.
+        | Copyright &copy; Highland FRS LLC, 2010 - 2016.
+        | The Raiser's Edge&trade; is a registered trademark of Blackbaud&reg;, Inc.
+        | Crystal Reports&trade; is a registered trademark of SAP SE&reg;.
+        | LinkedIn&reg; is a registered trademark of LinkedIn Corporation.
+      #admin
+        a#login(href="/login") login
+        a#logout(href="/logout") logout
+        |  - 
+        a#contacts(href="/contacts") contacts
+        script(type="text/javascript").
+          window.addEventListener("load", function(){
+            var login = document.querySelector("#login"),
+              logout = document.querySelector("#logout"),
+              authed = /\btoken\b/.test(document.cookie);
+            login.style.display = authed ? "none" : "";
+            logout.style.display = authed ? "" : "none";
+          });

@@ -11,7 +11,7 @@ const core = require("./core.js"),
   };
 
 class Message {
-  constructor(httpStatusCode, httpBody, httpHeaders, cookies) {
+  constructor(httpStatusCode, httpBody, httpHeaders) {
     this.statusCode = httpStatusCode;
 
     this.headers = {};
@@ -23,18 +23,18 @@ class Message {
       }
     }
 
-    if (cookies) {
-      this.headers["set-cookie"] = cookies.map(cookie=> Object.keys(cookie)
-        .filter(key=> cookie[key] === false)
-        .map(key=> cookie[key] === true ? key : key + "=" + cookie[key])
-        .join("; "));
-    }
+    this.cookies = [];
 
     if (this.statusCode < 400 && this.headers["connection"] === undefined) {
       this.headers["connection"] = "keep-alive";
     }
 
     this.body = httpBody;
+  }
+
+  cookie(c) {
+    this.cookies.push(c);
+    return this;
   }
 
   get body() {
@@ -81,7 +81,24 @@ class Message {
       console.trace("Can't send a message over a finished response object.");
     }
     else {
-      response.writeHead(this.statusCode, this.headers);
+
+      this.headers["set-cookie"] = this.cookies.map((cookie) => Object.keys(cookie)
+        .filter((key) => cookie[key] !== false)
+        .map((key) => {
+          return cookie[key] === true ? key : key + "=" + cookie[key];
+        })
+        .join("; "));
+
+
+      var header = [];
+      for (var key in this.headers) {
+        var values = this.headers[key];
+        if (!(values instanceof Array)) {
+          values = [values];
+        }
+        values.forEach((v) => header.push([key, v]));
+      }
+      response.writeHead(this.statusCode, header);
       if (this.length === 0) {
         response.end();
       }
@@ -99,62 +116,81 @@ class Message {
   }
 }
 
-Message.OK = new Message(200);
-
-Message.json = function (obj, cookies) {
+Message.json = function (obj) {
   return new Message(200, obj, {
     mime: "application/json"
-  }, cookies);
+  });
 };
 
-Message.text = function (txt, cookies) {
+Message.text = function (txt) {
   return new Message(200, txt, {
     mime: "text/plain"
-  }, cookies);
+  });
 };
 
-Message.html = function (html, cookies) {
+Message.html = function (html) {
   return new Message(200, html, {
     mime: "text/html"
-  }, cookies);
+  });
 };
 
-Message.redirect = function (url, cookies) {
-  return new Message(307, null, {
-    "location": url
-  }, cookies);
-};
+Message.noContent = () => new Message(204);
 
-Message.file = function (fileName, cookies) {
+Message.file = function (fileName) {
   return new Promise((resolve, reject) => {
     fs.lstat(fileName, (err, stat) => {
       if (err) {
-        resolve(Message.error(404, request.url));
+        resolve(Message.NotFound);
       }
       else if (stat.isDirectory()) {
-        resolve(Message.redirect(request.url + "/"));
+        resolve(Message.redirect(fileName + "/"));
       }
       else {
         resolve(new Message(200, fs.createReadStream(fileName), {
           mime: mime.lookup(fileName),
           length: stat.size
-        }, cookies));
+        }));
       }
     });
   });
 };
 
-Message.error = function (httpStatusCode, requestedURL) {
-  var rest = Array.prototype.slice.call(arguments, 2),
-    msg = core.fmt("URL: [$1] $2: $3", requestedURL, httpStatusCode, http.STATUS_CODES[httpStatusCode]);
-  if (rest.length > 0) {
-    msg += core.fmt(" -> [$1]", rest.join("], ["));
-  }
-  return new Message(httpStatusCode, msg);
+Message.redirect = function (url) {
+  return new Message(307, null, {
+    "location": url
+  });
 };
 
-Message.methodNotAllowed = function (requestedURL) {
-  return Message.error(405, requestedURL);
-};
+Message.BadRequest = new Message(400);
+Message.Unauthorized = new Message(401);
+Message.PaymentRequired = new Message(402);
+Message.Forbidden = new Message(403);
+Message.NotFound = new Message(404);
+Message.MethodNotAllowed = new Message(405);
+Message.NotAcceptable = new Message(406);
+Message.ProxyAuthenticationRequired = new Message(407);
+Message.RequestTimeout = new Message(408);
+Message.Conflict = new Message(409);
+Message.Gone = new Message(410);
+Message.LengthRequired = new Message(411);
+Message.PreconditionFailed = new Message(412);
+Message.PayloadTooLarge = new Message(413);
+Message.URITooLong = new Message(414);
+Message.UnsupportedMediaType = new Message(415);
+Message.RangeNotSatisfiable = new Message(416);
+Message.ExpectationFailed = new Message(417);
+Message.IAmATeapot = new Message(418);
+Message.MisdirectedRequest = new Message(421);
+Message.UnprocessableEntity = new Message(422);
+Message.Locked = new Message(423);
+Message.FailedDependency = new Message(424);
+Message.UpgradeRequired = new Message(426);
+Message.PreconditionRequired = new Message(428);
+Message.TooManyRequests = new Message(429);
+Message.RequestHeaderFieldsTooLarge = new Message(431);
+Message.UnavailableForLegalReasons = new Message(451);
+
+Message.InternalServerError = new Message(500);
+Message.NotImplemented = new Message(501);
 
 module.exports = Message;

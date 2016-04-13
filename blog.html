@@ -68,10 +68,21 @@
       </article>
     </section>
     <footer>
-      <div>Copyright &copy; Highland FRS LLC, 2010 - 2016.</div>
-      <div>The Raiser's Edge&trade; is a registered trademark of Blackbaud&reg;, Inc.</div>
-      <div>Crystal Reports&trade; is a registered trademark of SAP SE&reg;.</div>
-      <div>LinkedIn&reg; is a registered trademark of LinkedIn Corporation.</div>
+      Copyright &copy; Highland FRS LLC, 2010 - 2016.
+      The Raiser's Edge&trade; is a registered trademark of Blackbaud&reg;, Inc.
+      Crystal Reports&trade; is a registered trademark of SAP SE&reg;.
+      LinkedIn&reg; is a registered trademark of LinkedIn Corporation.
+      <div id="admin"><a id="login" href="/login">login</a><a id="logout" href="/logout">logout</a> - <a id="contacts" href="/contacts">contacts</a>
+        <script type="text/javascript">
+          window.addEventListener("load", function(){
+            var login = document.querySelector("#login"),
+              logout = document.querySelector("#logout"),
+              authed = /\btoken\b/.test(document.cookie);
+            login.style.display = authed ? "none" : "";
+            logout.style.display = authed ? "" : "none";
+          });
+        </script>
+      </div>
     </footer>
   </body>
 </html>

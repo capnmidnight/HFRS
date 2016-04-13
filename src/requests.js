@@ -55,14 +55,22 @@ function post(type, url, options) {
   return XHR("POST", type, url, options);
 }
 
-function sendObject(url, options) {
+function sendObject(type, url, options) {
   options = options || {};
   options.headers = options.headers || {};
   options.headers["content-type"] = options.headers["content-type"] || "application/json;charset=UTF-8";
   if (typeof options.data !== "string") {
     options.data = JSON.stringify(options.data);
   }
-  return post("json", url, options);
+  return post(type, url, options);
+}
+
+function sendObjectGetText(url, options) {
+  return sendObject("text", url, options);
+}
+
+function sendObjectGetObject(url, options) {
+  return sendObject("json", url, options);
 }
 
 function get(type, url, options) {
@@ -71,6 +79,10 @@ function get(type, url, options) {
 
 function getText(url, options) {
   return get("text", url, options);
+}
+
+function getHTML(url, options) {
+  return get("document", url, options);
 }
 
 function getObject(url, options) {
