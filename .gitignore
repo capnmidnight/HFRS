@@ -31,3 +31,4 @@ nbproject/
 .vs/HFRS/v14/.suo
 contacts_list
 server/controllers/secrets.json
+server/data/secrets.json
