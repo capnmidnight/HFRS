@@ -77,7 +77,6 @@ function parseBody(request) {
       len = 0;
     request
       .on("data", (chunk) => {
-        console.log(chunk);
         body.push(chunk);
         if (size === 0) {
           len = request.headers["content-length"];

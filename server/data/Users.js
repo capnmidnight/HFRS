@@ -56,12 +56,14 @@ module.exports = {
   logout: (cookies) => findUser(cookies)
     .then((user) => {
       if (user) {
-        user.token = null;
+        user.token = "logged-out";
         return setUser(user);
       }
     }),
 
   get: getUser,
+
+  getAll: getAllUsers,
 
   getSalt: (userName) => getUser(userName)
     .catch((err) => {
@@ -82,6 +84,9 @@ module.exports = {
     .then((user) => {
       return user.salt
     }),
+
+  delete: (obj) => ready
+    .then(() => db.delete("users", obj.name, "")),
 
   authenticate: (userName, hash) => getUser(userName)
     .then((user) => {

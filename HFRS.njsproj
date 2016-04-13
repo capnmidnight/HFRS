@@ -35,6 +35,7 @@
     <Content Include="blog.html" />
     <Content Include="contact.jade" />
     <Content Include="contacts.html" />
+    <Content Include="users.html.jade" />
     <Content Include="css\style.css" />
     <Content Include="downloads.html.jade" />
     <Content Include="downloads.html" />
@@ -138,6 +139,7 @@
     <Content Include="package.json" />
     <Content Include="sitemap.xml" />
     <Compile Include="Gruntfile.js" />
+    <Compile Include="server\controllers\users.js" />
     <Compile Include="server\data\Contacts.js" />
     <Compile Include="server\data\Users.js" />
     <Compile Include="server\data\db.js" />
@@ -157,7 +159,7 @@
     <Compile Include="src\vid\VideoPlayer.js" />
     <Compile Include="server.js" />
     <Compile Include="server\controllers.js" />
-    <Compile Include="server\controllers\contact.js" />
+    <Compile Include="server\controllers\contacts.js" />
     <Compile Include="server\core.js" />
     <Compile Include="server\http\get.js" />
     <Compile Include="server\http\getBuffer.js" />
