@@ -118,6 +118,7 @@ nav > ul {
     width: 80%;
     margin-left: 10%;
     font-size: 150%;
+    margin-right: 3px;
   }
 
     header, nav > ul > li > a {
