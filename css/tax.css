@@ -20,6 +20,10 @@ td {
   vertical-align: top;
 }
 
+tr:nth-child(odd) {
+  background-color: rgba(70, 70, 70, 0.1);
+}
+
   td > input, td > select {
     width: 10em;
     float: right;
