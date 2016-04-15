@@ -1,14 +1,11 @@
 ﻿"use strict";
 
 var crypto = require("crypto"),
-  db = require("./db.js"),
-  ready = db.table("users"),
-  trans = {
-    "name": "PartitionKey"
-  },
-  untrans = {
-    "PartitionKey": "name"
-  };
+  db = require("./db.js");
+
+db.define("users", [
+  ["name", "PartitionKey", "String"]
+]);
 
 function makeNewSalt() {
   var bytes = crypto.randomBytes(256);
@@ -20,29 +17,23 @@ function makeNewSalt() {
 }
 
 function getUser(userName) {
-  return ready
-    .then(() => db.get("users", userName, ""))
-    .then((ent) => db.unwrap(untrans, ent));
+  return db.get("users", userName, "");
 }
 
-function getAllUsers() {
-  return ready
-    .then(() => db.search("users"))
-    .then((users) => users.entries.map(db.unwrap.bind(db, untrans)));
+function searchUsers() {
+  return db.search("users");
 }
 
-function findUser(cookies) {
+function getLoggedInUser(cookies) {
   var token = getCookie(cookies, "token");
   if (token !== null && token !== undefined) {
-    return getAllUsers()
+    return searchUsers()
       .then((users) => users.filter((u) => u.token === token)[0]);
   }
 }
 
 function setUser(user) {
-  return ready
-    .then(() => db.wrap(trans, user))
-    .then((ent) => db.set("users", ent));
+  return db.set("users", user);
 }
 
 function getCookie(cookies, name) {
@@ -51,9 +42,9 @@ function getCookie(cookies, name) {
 }
 
 module.exports = {
-  isAuthorized: findUser,
+  getLoggedInUser: getLoggedInUser,
 
-  logout: (cookies) => findUser(cookies)
+  logout: (cookies) => getLoggedInUser(cookies)
     .then((user) => {
       if (user) {
         user.token = "logged-out";
@@ -63,7 +54,7 @@ module.exports = {
 
   get: getUser,
 
-  getAll: getAllUsers,
+  search: searchUsers,
 
   getSalt: (userName) => getUser(userName)
     .catch((err) => {
@@ -81,12 +72,9 @@ module.exports = {
         throw err;
       }
     })
-    .then((user) => {
-      return user.salt
-    }),
+    .then((user) => user.salt),
 
-  delete: (obj) => ready
-    .then(() => db.delete("users", obj.name, "")),
+  delete: (obj) => db.delete("users", obj.name, ""),
 
   authenticate: (userName, hash) => getUser(userName)
     .then((user) => {

@@ -370,7 +370,7 @@ footer {
 }
 
 
-label, input, textarea {
+label, input, textarea, select {
   padding: 0.75em;
   border: 0;
   font-size: 110%;

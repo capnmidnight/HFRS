@@ -1,56 +1,95 @@
 ﻿var azure = require("azure-storage"),
   tables = azure.createTableService(process.env.NODE_ENV === "dev" && require("./secrets").connectionString || null),
-  ent = azure.TableUtilities.entityGenerator;
+  ent = azure.TableUtilities.entityGenerator,
+  meta = {};
+
+function wrap(table, obj) {
+  var map = meta[table],
+    trans = map.toEntity,
+    types = map.types,
+    entity = {};
+  for (var k in obj) {
+    if (obj[k] !== null && obj[k] !== undefined) {
+      entity[trans[k] || k] = ent[types[k] || "String"](obj[k]);
+    }
+  }
+  if (entity.RowKey === undefined) {
+    entity.RowKey = ent.String("");
+  }
+  return entity;
+}
+
+function unwrap(table, entity) {
+  var untrans = meta[table].toObject,
+    obj = {};
+  for (var k in entity) {
+    if (entity[k] !== null && entity[k] !== undefined) {
+      var value = entity[k]._,
+        key = untrans[k] || k;
+      if (key !== "RowKey") {
+        obj[key] = value;
+      }
+    }
+  }
+  return obj;
+}
+
+function promisify(table, thunk) {
+  var ready = meta[table].ready;
+  if (!ready) {
+    throw new Error("Don't know table " + table);
+  }
+  else {
+    return ready.then(() => new Promise((resolve, reject) => thunk((err, state) => {
+      if (err) {
+        reject(err);
+      }
+      else {
+        resolve(state);
+      }
+    })));
+  }
+}
 
 module.exports = {
 
-  azure: azure,
-  tables: tables,
-  ent: ent,
+  define: (table, trans) => {
+    var map = meta[table] = {
+      toEntity: {},
+      toObject: {},
+      types: {},
+      ready: new Promise((resolve, reject) =>
+        tables.createTableIfNotExists(table,
+          (err, state) => err && reject(err) || resolve(state)))
+    };
 
-  wrap: function (trans, obj1) {
-    var obj2 = {};
-    for (var k in obj1) {
-      if (obj1[k] !== null && obj1[k] !== undefined) {
-        obj2[trans[k] || k] = ent.String(obj1[k]);
-      }
+    for (var i = 0; i < trans.length; ++i) {
+      var def = trans[i],
+        objProperty = def[0],
+        entProperty = def[1],
+        type = def[2];
+
+      map.toEntity[objProperty] = entProperty;
+      map.toObject[entProperty] = objProperty;
+      map.types[objProperty] = type;
     }
-    return obj2;
   },
 
-  unwrap: function (untrans, obj1) {
-    var obj2 = {};
-    for (var k in obj1) {
-      if (obj1[k] !== null && obj1[k] !== undefined) {
-        var value = obj1[k]._;
-        obj2[untrans[k] || k] = value;
-      }
-    }
-    return obj2;
-  },
+  set: (table, obj) => promisify(table, (callback) => tables.insertOrMergeEntity(table, wrap(table, obj), callback)),
 
-  table: (name) => new Promise((resolve, reject) =>
-    tables.createTableIfNotExists(name,
-      (err, state) => err && reject(err) || resolve(state))),
+  get: (table, partitionKey, rowKey) => promisify(table, (callback) =>
+    tables.retrieveEntity(table, partitionKey, rowKey, callback))
+    .then((entity) => unwrap(table, entity)),
 
-  set: (table, ent) => new Promise((resolve, reject) =>
-    tables.insertOrMergeEntity(table, ent,
-      (err, state) => err && reject(err) || resolve(state))),
-
-  get: (table, partitionKey, rowKey) => new Promise((resolve, reject) =>
-    tables.retrieveEntity(table, partitionKey, rowKey,
-      (err, state) => err && reject(err) || resolve(state))),
-
-  delete: (table, partitionKey, rowKey) => new Promise((resolve, reject) => {
+  delete: (table, partitionKey, rowKey) => promisify(table, (callback) => {
     var task = {
       PartitionKey: ent.String(partitionKey),
       RowKey: ent.String(rowKey)
     };
-    return tables.deleteEntity(table, task,
-      (err, state) => err && reject(err) || resolve(state));
+    return tables.deleteEntity(table, task, callback);
   }),
 
-  search: (table, partitionKey, rowKey) => new Promise((resolve, reject) => {
+  search: (table, partitionKey, rowKey) => promisify(table, (callback) => {
     var query = new azure.TableQuery(),
       m = "where";
     if (partitionKey) {
@@ -60,7 +99,6 @@ module.exports = {
     if (rowKey) {
       query = query[m]("RowKey eq ?", rowKey);
     }
-    tables.queryEntities(table, query, null,
-      (err, state) => err && reject(err) || resolve(state));
-  })
+    return tables.queryEntities(table, query, null, callback);
+  }).then((entities) => entities.entries.map((entity) => unwrap(table, entity)))
 };

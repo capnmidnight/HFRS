@@ -1,24 +1,15 @@
-﻿var db = require("./db.js"),
-  ready = db.table("contacts"),
-  trans = {
-    "name": "PartitionKey",
-    "email": "RowKey"
-  },
-  untrans = {
-    "PartitionKey": "name",
-    "RowKey": "email"
-  };
+﻿var db = require("./db.js");
+
+db.define("contacts", [
+  ["name", "PartitionKey", "String"],
+  ["email", "RowKey", "String"],
+  ["date", "Timestamp", "Date"]
+]);
 
 module.exports = {
-  set: (obj) => ready
-    .then(() => {
-      return db.set("contacts", db.wrap(trans, obj))
-    }),
+  set: (obj) => db.set("contacts", obj),
 
-  get: (partitionKey, rowKey) => ready
-    .then(() => db.search("contacts", partitionKey, rowKey))
-    .then((contacts) => contacts.entries.map(db.unwrap.bind(db, untrans))),
+  get: (partitionKey, rowKey) => db.search("contacts", partitionKey, rowKey),
 
-  delete: (obj) => ready
-    .then(() => db.delete("contacts", obj.name, obj.email))
+  delete: (obj) => db.delete("contacts", obj.name, obj.email)
 };

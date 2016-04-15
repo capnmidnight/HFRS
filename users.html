@@ -1,46 +1,105 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="keywords" content="Consulting, data, integrity, data integry, non-profits, fund raising, stewardship, reporting, software development"><meta property="og:type" content="website"><meta property="og:url" content="http://www.highlandfrs.com/users.html"><meta property="og:site_name" content="Highland FRS"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@HighlandFRS"><meta name="web-app-capable" content="yes"><meta name="theme-color" content="#002610"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#002610"><meta name="description" content="Highland FRS is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations."><meta property="og:description" content="Highland FRS is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations."><meta name="twitter:description" content="Highland FRS is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations."><meta name="twitter:image" content="http://www.highlandfrs.com/images/logo.jpg"><meta property="og:image" content="http://www.highlandfrs.com/images/logo.jpg"><link rel="stylesheet" href="/css/style.min.css"><script type="text/javascript" src="/src/requests.js"></script></head><body><header><a id="mainLogoWrapper" href="/index.html"><img id="mainLogo" src="/images/logo.svg" alt="logo" title="Highland FRS logo"></a><nav><ul><li><a href="/#services">services</a></li><li><a href="/#about">about</a></li><li><a href="/#contact">contact</a></li><li><a href="/#customers">customers</a></li><li><a href="/#news">news</a></li><li><a href="/downloads.html">downloads</a></li></ul></nav></header><section id="content"><article id="about"><h1>Users</h1></article><div id="output"><h2>[No users (which seems like it should be impossible, so this is probably an error.)]</h2></div><style type="text/css">.primary {
-    display: inline-block;
-    width: auto;
-    margin-left: 1em;
-    padding: 0.5em;
-}</style><script type="text/javascript">var out = document.querySelector("#output");
-
-getObject("/users")
-  .then((users) => {
-    if(users.length > 0){
-      out.innerHTML = "";
-      users.map(function(user){
-        console.log(user);
-        var elem = document.createElement("article"),
-          del = document.createElement("button");
-        
-        elem.appendChild(document.createTextNode(user.name));
-        if(user.isLoggedIn){
-          elem.appendChild(document.createTextNode(" - Logged in"));
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Consulting, data, integrity, data integry, non-profits, fund raising, stewardship, reporting, software development">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://www.highlandfrs.com/users.html">
+    <meta property="og:site_name" content="Highland FRS">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HighlandFRS">
+        <meta name="web-app-capable" content="yes">
+        <meta name="theme-color" content="#002610">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#002610">
+        <meta name="description" content="Highland FRS is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations.">
+        <meta property="og:description" content="Highland FRS is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations.">
+        <meta name="twitter:description" content="Highland FRS is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations.">
+        <meta name="twitter:image" content="http://www.highlandfrs.com/images/logo.jpg">
+        <meta property="og:image" content="http://www.highlandfrs.com/images/logo.jpg">
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="/src/requests.js"></script>
+  </head>
+  <body>
+    <header><a id="mainLogoWrapper" href="/index.html"><img id="mainLogo" src="/images/logo.svg" alt="logo" title="Highland FRS logo"></a>
+      <nav>
+        <ul>
+          <li><a href="/#services">services</a></li>
+          <li><a href="/#about">about</a></li>
+          <li><a href="/#contact">contact</a></li>
+          <li><a href="/#customers">customers</a></li>
+          <li><a href="/#news">news</a></li>
+          <li><a href="/downloads.html">downloads</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section id="content">
+      <article id="about">
+        <h1>Users</h1>
+      </article>
+      <div id="output">
+        <h2>[No users (which seems like it should be impossible, so this is probably an error.)]</h2>
+      </div>
+      <style type="text/css">
+        .primary {
+            display: inline-block;
+            width: auto;
+            margin-left: 1em;
+            padding: 0.5em;
         }
-        elem.appendChild(del);
-
-        del.appendChild(document.createTextNode("Delete"));
-        del.className = "primary button";
-        del.addEventListener("click", function(){
-          delObject("/users", { data: {
-            name: user.name
-          }}).then(function(){
-            elem.parentElement.removeChild(elem);
-          }).catch(alert.bind(window, "Error while deleting record"));
-        }, false);
-
-        return elem;
-      }).forEach(out.appendChild.bind(out));
-    }
-  })
-  .catch(console.error.bind(console));</script></section><footer>Copyright &copy; Highland FRS LLC, 2010 - 2016.
-The Raiser's Edge&trade; is a registered trademark of Blackbaud&reg;, Inc.
-Crystal Reports&trade; is a registered trademark of SAP SE&reg;.
-LinkedIn&reg; is a registered trademark of LinkedIn Corporation.<div id="admin"><a id="login" href="/login">login</a><a id="logout" href="/logout">logout</a> - <a id="contacts" href="/contacts">contacts</a> - <a id="contacts" href="/users">users</a><script type="text/javascript">window.addEventListener("load", function(){
-  var login = document.querySelector("#login"),
-    logout = document.querySelector("#logout"),
-    authed = /\btoken\b/.test(document.cookie);
-  login.style.display = authed ? "none" : "";
-  logout.style.display = authed ? "" : "none";
-});</script></div></footer></body></html>
+      </style>
+      <script type="text/javascript">
+        var out = document.querySelector("#output");
+        
+        getObject("/users")
+          .then((users) => {
+            if(users.length > 0){
+              out.innerHTML = "";
+              users.map(function(user){
+                console.log(user);
+                var elem = document.createElement("article"),
+                  del = document.createElement("button");
+                
+                elem.appendChild(document.createTextNode(user.name));
+                if(user.isLoggedIn){
+                  elem.appendChild(document.createTextNode(" - Logged in"));
+                }
+                elem.appendChild(del);
+        
+                del.appendChild(document.createTextNode("Delete"));
+                del.className = "primary button";
+                del.addEventListener("click", function(){
+                  delObject("/users", { data: {
+                    name: user.name
+                  }}).then(function(){
+                    elem.parentElement.removeChild(elem);
+                  }).catch(alert.bind(window, "Error while deleting record"));
+                }, false);
+        
+                return elem;
+              }).forEach(out.appendChild.bind(out));
+            }
+          })
+          .catch(console.error.bind(console));
+      </script>
+    </section>
+    <footer>
+      Copyright &copy; Highland FRS LLC, 2010 - 2016.
+      The Raiser's Edge&trade; is a registered trademark of Blackbaud&reg;, Inc.
+      Crystal Reports&trade; is a registered trademark of SAP SE&reg;.
+      LinkedIn&reg; is a registered trademark of LinkedIn Corporation.
+      <div id="admin"><a id="login" href="/login">login</a><a id="logout" href="/logout" style="display: none">logout</a> - <a id="contacts" href="/contacts">contacts</a> - <a id="contacts" href="/users">users</a>
+        <script type="text/javascript">
+          window.addEventListener("load", function(){
+            var login = document.querySelector("#login"),
+              logout = document.querySelector("#logout"),
+              authed = /\btoken\b/.test(document.cookie);
+            login.style.display = authed ? "none" : "";
+            logout.style.display = authed ? "" : "none";
+          });
+        </script>
+      </div>
+    </footer>
+  </body>
+</html>

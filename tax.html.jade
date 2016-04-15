@@ -1,0 +1,109 @@
+﻿extends ./templates/main.jade
+block head
+  script(type="text/javascript", src="/src/requests.js")
+  link(rel="stylesheet", href="/css/tax.css")
+
+block content
+  article#about
+    h1 some tax kinda Stuffs
+    
+    h3 when to file
+    p Filing dates are
+      ul
+        li (FED) Apr 18, (VA) May 1
+        li Jun 15
+        li Sep 15
+        li Jan 15
+
+    h3 where to file
+    address 
+      | Department of Taxation,
+      br
+      | P.O. Box 1478, Richmond, VA 23218
+
+    mixin group()
+      table
+        block
+
+    mixin field(id, lbl, desc)
+      tr
+        td= id
+        if !lbl
+          td(colspan=3)
+            block
+        else
+          td= lbl
+          if !desc
+            td(colspan=2)
+              block
+          else
+            td!= desc.replace(/\n/g, "<br>")
+            td
+              block
+
+    mixin sub(lbl)
+      +field(lbl)
+        +group()
+          block
+    
+    mixin calcField(lbl, id, exp)
+      +field(id, lbl, exp)
+        input(id=id, type="number", disabled, data-expression=exp, min=attributes.min, max=attributes.max, step=attributes.step)
+    
+    mixin staticField(lbl, id, val)
+      +field(id, lbl)
+        input(id=id, type="number", disabled, value=val, min=attributes.min, max=attributes.max, step=attributes.step)
+    
+    mixin inputField(lbl, id, val)
+      +field(id, lbl)
+        input(id=id, type="number", value=val, min=attributes.min, max=attributes.max, step=attributes.step)
+
+    mixin exemptions(id)
+      +sub("Personal Exemptions")
+        +field("you")
+          input(id=id+"a", type="checkbox", checked)
+        +field("your spouse")
+          input(id=id+"b", type="checkbox", checked)
+        +field("dependent")
+          input(id=id+"c", type="checkbox", checked)        +calcField("total", id, id + "a + " + id + "b + " + id + "c")
+
+    mixin deductions(id, single, married, expression)
+      +sub
+        if typeof expression === "number"          +inputField("Itemized deductions", id + "a", expression)        else          +calcField("Itemized deductions", id + "a", expression)
+        +field("or Standard deduction")
+          select(id=id + "b")
+            option(value=single) single ($
+              = single
+              | )
+            option(value=married, selected) married ($
+              = married
+              | )        +calcField("Maximum deduction", id, "Math.max(" + id + "a, " + id + "b)")
+
+    h3 prelim    +group()      +inputField("Income so far", "PRELIM1", 4100)      +inputField("Weeks so far", "PRELIM2")(min=1, max=52)      +calcField("Projected income", "PROJECTED_GROSS_INCOME", "PRELIM1 * 48 / PRELIM2")      +inputField("Rental price", "RENTAL_PRICE", 1400)      +calcField("Projected rental income", "PROJECTED_RENTAL_INCOME", "RENTAL_PRICE * 12")      +inputField("Spouse's income", "SPOUSE_GROSS_INCOME", 98000)      +calcField("Total income", "GROSS_INCOME", "PROJECTED_GROSS_INCOME + PROJECTED_RENTAL_INCOME + SPOUSE_GROSS_INCOME")      +inputField("Spouse's federal withholding", "SPOUSE_FED_WITHHOLD", 8000)      +inputField("Spouse's state withholding", "SPOUSE_STATE_WITHHOLD", 4210)      +inputField("Last year's taxes", "LAST_YEARS_TAX", 26266)
+
+    h3 federal self-employed worksheet    +group()
+      +sub        +calcField("Expected income", "FW1a", "PROJECTED_GROSS_INCOME")        +staticField("Farm income", "FW1b", 0)      +calcField("Sub 1b from 1a", "FW2", "FW1a - FW1b")      +calcField("Mult line 2 by .9235", "FW3", "FW2 * 0.9235")      +calcField("Mult line 3 by .029", "FW4", "FW3 * 0.029")      +staticField("Social security tax maximum income", "FW5", 118500)      +calcField("Expected wages", "FW6", "SPOUSE_GROSS_INCOME")      +calcField("Sub line 6 from 5", "FW7", "FW5 - FW6")      +calcField("Smaller of line 3 or 7", "FW8", "Math.min(FW3, FW7)")      +calcField("Mult line 8 by .124", "FW9", "FW8 * 0.124")      +calcField("Add line 4 and 9", "FW10", "FW4 + FW9")      +calcField("Mult line 10 by .5 = expected deduction for self-employment tax", "FW11", "FW10 * 0.5")
+
+    h3 Federal estimate    +group()      +calcField("AGI", "FED1", "GROSS_INCOME - FW11")
+      +deductions("FED2", 6300, 12600, 21570)      +calcField("Line 1 - 2", "FED3", "FED1 - FED2")      +exemptions("FED4")      +calcField("Line 3 - 4", "FED5", "FED3 - FED4")      +calcField("Tax", "FED6", "(FED5 <= 18550) ? FED5 * 0.1\n\
+  : (FED5 <= 75300) ? 1855 + (FED5 - 18550) * 0.15\n\
+  : (FED5 <= 151900) ? 10367.50 + (FED5 - 75300) * 0.25\n\
+  : (FED5 <= 231450) ? 29517.50 + (FED5 - 151900) * .28\n\
+  : (FED5 <= 413350) ? 51791.50 + (FED5 - 231450) * .33\n\
+  : (FED5 <= 466950) ? 111818.50 + (FED5 - 413350) * .35\n\
+  : 130578.50 + (FED5 - 466950) * .396")      +staticField("AMT", "FED7", 0)      +calcField("Line 6 + 7", "FED8", "FED6 + FED7")      +inputField("Credits", "FED9", 0)      +calcField("Line 8 - 9", "FED10", "FED8 - FED9")      +calcField("Self employment tax", "FED11", "FW10")      +calcField("Other taxes", "FED12", "SPOUSE_FED_WITHHOLD")
+      +sub        +calcField("Line 10 + 11 + 12", "FED13a", "FED10 + FED11 + FED12")        +inputField("Other credits", "FED13b", 0)        +calcField("Total 2016 estimated tax", "FED13c", "Math.max(0, FED13a - FED13b)")
+      +sub        +calcField("Line 13c * 0.9", "FED14a", "FED13c * 0.9")        +calcField("Required annual payment based on last year", "FED14b", "LAST_YEARS_TAX * ((GROSS_INCOME >= 150000) ? 1.1 : 1)")        +calcField("Required annual payment", "FED14c", "Math.min(FED14a, FED14b)")      +calcField("Income tax withholding", "FED15", "SPOUSE_FED_WITHHOLD")
+      +sub        +calcField("Line 14c - 15", "FED16a", "FED14c - FED15")        +calcField("Line 13c - 15", "FED16b", "FED13c - FED15")      +calcField("Quarterly payment", "FED17", "FED16a <= 0 && FED16b < 1000 ? 0 : FED16a / 4")
+        
+        
+
+    h3 Virginia estimate    +group()      +calcField("AGI", "VA1", "FED1")
+      +deductions("VA2", 3000, 6000, "FED2a - VA13")      +inputField("Qualifying childcare expenses", "VA3", 3600)      +exemptions("VA4")      +calcField("Line 2 + 3 + 4", "VA5", "VA2 + VA3 + VA4")      +calcField("Estimated VA taxable income (line 1 - 5)", "VA6", "VA1 - VA5")      +calcField("VA income tax (see tax rate schedule)", "VA7", "(VA6 <= 3000) ? VA6 * 0.02\n\
+  : (VA6 <= 5000) ? 60 + (VA6 - 3000) * 0.03\n\
+  : (VA6 <= 17000) ? 120 + (VA6 - 5000) * 0.05\n\
+  : 720 + (VA6 - 17000) * 0.0575")      +staticField("Tax adjustments", "VA8", 0)      +calcField("Estimated VA income tax (line 7 - 8)", "VA11", "VA7 - VA8")      +calcField("Withholding", "VA12", "SPOUSE_STATE_WITHHOLD")      +calcField("Estimated tax due", "VA13", "VA11 - VA12")      +inputField("Number of payments", "VA14", 4)(min=1, max=4)      +calcField("Quarterly payment", "VA15", "VA13 / VA14")
+
+  p all done
+
+  script(type="text/javascript", src="src/tax.js")

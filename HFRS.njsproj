@@ -21,7 +21,7 @@
     <NodejsPort>80</NodejsPort>
     <StartWebBrowser>True</StartWebBrowser>
     <Environment>NODE_ENV=dev</Environment>
-    <LaunchUrl>login</LaunchUrl>
+    <LaunchUrl>tax.html</LaunchUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,6 +35,8 @@
     <Content Include="blog.html" />
     <Content Include="contact.jade" />
     <Content Include="contacts.html" />
+    <Content Include="css\tax.css" />
+    <Content Include="tax.html.jade" />
     <Content Include="users.html.jade" />
     <Content Include="css\style.css" />
     <Content Include="downloads.html.jade" />
@@ -139,6 +141,7 @@
     <Content Include="package.json" />
     <Content Include="sitemap.xml" />
     <Compile Include="Gruntfile.js" />
+    <Compile Include="server\controllers\taxes.js" />
     <Compile Include="server\controllers\users.js" />
     <Compile Include="server\data\Contacts.js" />
     <Compile Include="server\data\Users.js" />
@@ -154,6 +157,7 @@
     <Compile Include="src\requests.js" />
     <Compile Include="src\rotator.js" />
     <Compile Include="src\sha512.js" />
+    <Compile Include="src\tax.js" />
     <Compile Include="src\twitter.js" />
     <Compile Include="src\vid\VideoCue.js" />
     <Compile Include="src\vid\VideoPlayer.js" />

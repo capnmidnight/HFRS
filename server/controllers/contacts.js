@@ -8,7 +8,7 @@ module.exports = {
   URLPattern: /^\/contacts(?:\/|\.html)?$/,
   GET: {
     "text/html": (state) => {
-      if (Users.isAuthorized(state.cookies)) {
+      if (Users.getLoggedInUser(state.cookies)) {
         return Message.file("./contacts.html");
       }
       else {
@@ -16,7 +16,7 @@ module.exports = {
       }
     },
     "application/json": (state) => {
-      if (Users.isAuthorized(state.cookies)) {
+      if (Users.getLoggedInUser(state.cookies)) {
         return Contacts.get()
           .then(Message.json);
       }
@@ -30,7 +30,7 @@ module.exports = {
   },
   DELETE: {
     "*/*": (state) => {
-      if (Users.isAuthorized(state.cookies)) {
+      if (Users.getLoggedInUser(state.cookies)) {
         return Contacts.delete(state.body)
           .then(Message.noContent);
       }

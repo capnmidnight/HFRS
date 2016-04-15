@@ -7,7 +7,7 @@ module.exports = {
   URLPattern: /^\/users(?:\/|\.html)?$/,
   GET: {
     "text/html": (state) => {
-      if (Users.isAuthorized(state.cookies)) {
+      if (Users.getLoggedInUser(state.cookies)) {
         return Message.file("./users.html");
       }
       else {
@@ -15,8 +15,8 @@ module.exports = {
       }
     },
     "application/json": (state) => {
-      if (Users.isAuthorized(state.cookies)) {
-        return Users.getAll()
+      if (Users.getLoggedInUser(state.cookies)) {
+        return Users.search()
           .then((users) => users.map((user) => {
             return {
               name: user.name,
@@ -32,7 +32,7 @@ module.exports = {
   },
   DELETE: {
     "*/*": (state) => {
-      if (Users.isAuthorized(state.cookies)) {
+      if (Users.getLoggedInUser(state.cookies)) {
         return Users.delete(state.body)
           .then(Message.noContent);
       }

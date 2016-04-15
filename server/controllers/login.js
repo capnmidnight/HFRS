@@ -8,7 +8,7 @@ module.exports = {
   URLPattern: /^\/(login(?:\/?|.html?)|logout|salt|hash)(?:\?return=(\w+))?$/,
   GET: {
     "text/html": function (cmd, redir, state) {
-      if (Users.isAuthorized(state.cookies) && cmd !== "logout") {
+      if (Users.getLoggedInUser(state.cookies) && cmd !== "logout") {
         return Message.redirect("index.html");
       }
       else if (cmd === "logout") {
@@ -26,7 +26,7 @@ module.exports = {
   },
   POST: {
     "text/plain": function (cmd, redir, state) {
-      if (Users.isAuthorized(state.cookies) || (cmd !== "salt" && cmd !== "hash")) {
+      if (Users.getLoggedInUser(state.cookies) || (cmd !== "salt" && cmd !== "hash")) {
         return Message.MethodNotAllowed;
       }
       else if (cmd === "salt") {
