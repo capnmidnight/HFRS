@@ -20,9 +20,7 @@
     <ProjectView>ProjectFiles</ProjectView>
     <NodejsPort>80</NodejsPort>
     <StartWebBrowser>True</StartWebBrowser>
-    <Environment>NODE_ENV=dev
-AZURE_STORAGE_ACCOUNT=hfrs
-AZURE_STORAGE_ACCESS_KEY=8r/kJ0WD7xZpA5NO/zNjv3hSivkv9zp1UHWgKpApZI0UDPnFnDMK/EXo5trf6vkqkrmhxmKXGFaO5e3yM3ChHg==</Environment>
+    <Environment>NODE_ENV=dev</Environment>
     <LaunchUrl>tax.html</LaunchUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
