@@ -1,7 +1,4 @@
 ﻿extends ./templates/main.jade
-block head
-  script(type="text/javascript", src="/src/requests.js")
-  script(type="text/javascript", src="/src/sha512.js")
 
 block content
   article#about
@@ -14,31 +11,33 @@ block content
     #badAuth(style="display:none") Incorrect user name or password. Please try again.
     button#login.primary.button(type="button") Login
   script(type="text/javascript").
-    var btn = document.querySelector("#login"),
-      user = document.querySelector("#name"),
-      pass = document.querySelector("#password"),
-      bad = document.querySelector("#badAuth");
+    window.addEventListener("load", function(){
+      var btn = document.querySelector("#login"),
+        user = document.querySelector("#name"),
+        pass = document.querySelector("#password"),
+        bad = document.querySelector("#badAuth");
     
-    function hideBadAuthMsg(){
-      bad.style.display = "none";
-    }
+      function hideBadAuthMsg(){
+        bad.style.display = "none";
+      }
       
-    user.addEventListener("focus", hideBadAuthMsg, false);
-    pass.addEventListener("focus", hideBadAuthMsg, false);
-    btn.addEventListener("click", function(){
-      hideBadAuthMsg();
-      sendObjectGetText("/salt", { data: { name: user.value}})
-      .then(function(salt){
-        return sendObjectGetText("/hash", { data: {
-          name: user.value,
-          hash: CryptoJS.SHA512(salt + pass.value).toString()
-        }});
-      }).then((txt)=>{
-        var redir = location.search.match(/^\?return=(.+)$/);
-        location = redir && redir[1] || "/index.html";
-      }).catch((err)=>{
-        console.error(err);
-        bad.style.display = "block";
-        throw err;
+      user.addEventListener("focus", hideBadAuthMsg, false);
+      pass.addEventListener("focus", hideBadAuthMsg, false);
+      btn.addEventListener("click", function(){
+        hideBadAuthMsg();
+        sendObjectGetText("/salt", { data: { name: user.value}})
+        .then(function(salt){
+          return sendObjectGetText("/hash", { data: {
+            name: user.value,
+            hash: CryptoJS.SHA512(salt + pass.value).toString()
+          }});
+        }).then(function(txt){
+          var redir = location.search.match(/^\?return=(.+)$/);
+          location = redir && redir[1] || "/index.html";
+        }).catch(function(err){
+          console.error(err);
+          bad.style.display = "block";
+          throw err;
+        });
       });
     });

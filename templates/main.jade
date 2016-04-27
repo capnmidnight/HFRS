@@ -38,21 +38,23 @@ html
     +logo("http://www.highlandfrs.com/images/logo.jpg")
 
     if debug
-      link(rel="stylesheet", href="/css/style.css")
+      link(rel="stylesheet", href=fileRoot + "css/style.css")
     else
-      link(rel="stylesheet", href="/css/style.min.css")
-    block head
+      link(rel="stylesheet", href=fileRoot + "css/style.min.css")
+    block head      
+      each file in headerFiles
+        script(type="text/javascript", src=fileRoot + file, async, defer)
   body
     header
-      a#mainLogoWrapper(href="/index.html"): img#mainLogo(src="/images/logo.svg", alt="logo", title="Highland FRS logo")
+      a#mainLogoWrapper(href=fileRoot + "index.html"): img#mainLogo(src=fileRoot + "images/logo.svg", alt="logo", title="Highland FRS logo")
       nav
         ul
-          li: a(href="/#services") services
-          li: a(href="/#about") about
-          li: a(href="/#contact") contact
-          li: a(href="/#customers") customers
-          li: a(href="/#news") news
-          li: a(href="/downloads.html") downloads
+          li: a(href=indexFile + "#services") services
+          li: a(href=indexFile + "#about") about
+          li: a(href=indexFile + "#contact") contact
+          li: a(href=indexFile + "#customers") customers
+          li: a(href=indexFile + "#news") news
+          li: a(href=fileRoot + "downloads.html") downloads
     section#content
       block content
     footer
@@ -62,12 +64,12 @@ html
         | Crystal Reports&trade; is a registered trademark of SAP SE&reg;.
         | LinkedIn&reg; is a registered trademark of LinkedIn Corporation.
       #admin
-        a#login(href="/login") login
-        a#logout(href="/logout", style="display: none") logout
+        a#login(href=fileRoot + "login") login
+        a#logout(href=fileRoot + "logout", style="display: none") logout
         |  - 
-        a#contacts(href="/contacts") contacts
+        a#contacts(href=fileRoot + "contacts") contacts
         |  - 
-        a#contacts(href="/users") users
+        a#contacts(href=fileRoot + "users") users
         script(type="text/javascript").
           window.addEventListener("load", function(){
             var login = document.querySelector("#login"),

@@ -8,7 +8,6 @@ function XHR(method, responseType, url, options) {
     options = options || {};
     options.headers = options.headers || {};
     options.headers.Accept = options.headers.Accept || typeMappings[responseType] || responseType;
-
     var req = new XMLHttpRequest();
     req.onerror = function (evt) { reject(new Error("Request error: " + evt.message)) };
     req.onabort = function (evt) { reject(new Error("Request abort: " + evt.message)) };
@@ -18,7 +17,16 @@ function XHR(method, responseType, url, options) {
       // successful requests, i.e. those with HTTP status code in the 200 or 300
       // range.
       if (req.status < 400) {
-        resolve(req.response);
+        var value = req.response;
+        if (responseType === "json" && typeof value === "string") {
+          if (value.length > 0) {
+            value = JSON.parse(value);
+          }
+          else {
+            value = null;
+          }
+        }
+        resolve(value);
       }
       else {
         reject(req);

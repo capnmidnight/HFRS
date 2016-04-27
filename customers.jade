@@ -2,7 +2,7 @@
   h3: a(name="customers") Customers
   p The professionals at Highland Fundraising Solutions have been able to help many fundraising operations across the US. A few are listed below.
   section#customer_logos
-    img(src="images/clients.jpg", alt="image map", usemap="#clientsMap")
+    img(src=fileRoot + "images/clients.jpg", alt="image map", usemap="#clientsMap")
     map(name="clientsMap")
       area(shape="rect", coords="556,516,666,631", href="http://nmwa.org/", title="National Museum of Women in the Arts - Washington, D.C.", alt="logo", target="_blank")
       area(shape="rect", coords="35,666,673,791", href="http://www.brookwood.edu/", title="Brookwood School - Manchester, Massachusetts", alt="logo", target="_blank")
@@ -16,8 +16,8 @@
       area(shape="rect", coords="500,18,674,140", href="http://gru.edu/", title="Georgia Regents University Foundation - Augusta, Georgia", alt="logo", target="_blank")
       area(shape="rect", coords="309,17,451,138", href="http://www.oes.edu/", title="Oregon Episcopal School - Portland, Oregon", alt="logo", target="_blank")
       area(shape="rect", coords="46,48,282,108", href="http://www.marylhurst.edu/", title="Marylhurst University - Marylhurst, Oregon", alt="logo", target="_blank")
-  a.primary.button(href="#contact", title="Jump to contact form")
+  a.primary.button(href=indexFile + "#contact", title="Jump to contact form")
     | People seem to like us!
     br
     small Schedule a meeting and find out why.
-  a(href="#top") top
+  a(href=indexFile + "#top") top

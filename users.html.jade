@@ -1,6 +1,4 @@
 ﻿extends ./templates/main.jade
-block head
-  script(type="text/javascript", src="/src/requests.js")
 
 block content
   article#about
@@ -15,35 +13,36 @@ block content
         padding: 0.5em;
     }
   script(type="text/javascript").
-    var out = document.querySelector("#output");
+    window.addEventListener("load", function(){
+      var out = document.querySelector("#output");
     
-    getObject("/users")
-      .then((users) => {
-        if(users.length > 0){
-          out.innerHTML = "";
-          users.map(function(user){
-            console.log(user);
-            var elem = document.createElement("article"),
-              del = document.createElement("button");
+      getObject("/users")
+        .then(function(users) {
+          if(users.length > 0){
+            out.innerHTML = "";
+            users.map(function(user){
+              var elem = document.createElement("article"),
+                del = document.createElement("button");
             
-            elem.appendChild(document.createTextNode(user.name));
-            if(user.isLoggedIn){
-              elem.appendChild(document.createTextNode(" - Logged in"));
-            }
-            elem.appendChild(del);
+              elem.appendChild(document.createTextNode(user.name));
+              if(user.isLoggedIn){
+                elem.appendChild(document.createTextNode(" - Logged in"));
+              }
+              elem.appendChild(del);
 
-            del.appendChild(document.createTextNode("Delete"));
-            del.className = "primary button";
-            del.addEventListener("click", function(){
-              delObject("/users", { data: {
-                name: user.name
-              }}).then(function(){
-                elem.parentElement.removeChild(elem);
-              }).catch(alert.bind(window, "Error while deleting record"));
-            }, false);
+              del.appendChild(document.createTextNode("Delete"));
+              del.className = "primary button";
+              del.addEventListener("click", function(){
+                delObject("/users", { data: {
+                  name: user.name
+                }}).then(function(){
+                  elem.parentElement.removeChild(elem);
+                }).catch(alert.bind(window, "Error while deleting record"));
+              }, false);
 
-            return elem;
-          }).forEach(out.appendChild.bind(out));
-        }
-      })
-      .catch(console.error.bind(console));
+              return elem;
+            }).forEach(out.appendChild.bind(out));
+          }
+        })
+        .catch(console.error.bind(console));
+      });

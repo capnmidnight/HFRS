@@ -52,14 +52,16 @@
   }
 
   window.addEventListener("load", function () {
-    Array.prototype.slice.call(document.forms.contactForm.querySelectorAll(
-      "input, textarea"))
-      .forEach(function (elem) {
-        elem.addEventListener("blur", trimField.bind(elem), false);
-      });
+    if (document.forms && document.forms.contactForm) {
+      Array.prototype.slice.call(document.forms.contactForm.querySelectorAll(
+        "input, textarea"))
+        .forEach(function (elem) {
+          elem.addEventListener("blur", trimField.bind(elem), false);
+        });
 
-    btn = document.getElementById("submitContact");
-    btn.addEventListener("click", sendContact);
+      btn = document.getElementById("submitContact");
+      btn.addEventListener("click", sendContact);
+    }
   }, false);
 
   function sendContact() {

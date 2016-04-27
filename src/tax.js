@@ -3,7 +3,7 @@ var PER_EXEMPTION = 930,
   DATA = {},
   SCRIPT = "";
 
-Array.prototype.forEach.call(document.querySelectorAll("*[id]"), (elem) => {
+Array.prototype.forEach.call(document.querySelectorAll("*[id]"), function(elem) {
   Object.defineProperty(DATA, elem.id, {
     get: getter.bind(null, elem),
     set: setter.bind(null, elem)

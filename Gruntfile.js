@@ -1,7 +1,13 @@
 /* global module */
 
+function scriptFile(f) {
+  return "src/" + f + ".js";
+}
+
 var pkg = require("./package.json"),
-  indexFiles = ["analytics", "ga", "requests", "contactForm", "imageFader", "mapResizer", "rotator"];
+  headerFiles = ["analytics", "ga", "promise", "requests", "sha512"].map(scriptFile),
+  indexFiles = ["contactForm", "imageFader", "mapResizer", "rotator"].map(scriptFile),
+  allFiles = headerFiles.concat(indexFiles);
 
 function jadeConfiguration(options, defaultData) {
   var config = {
@@ -17,16 +23,20 @@ function jadeConfiguration(options, defaultData) {
 
   defaultData.pkg = pkg;
   if (defaultData.debug) {
-    defaultData.indexFiles = indexFiles.map(function (f) {
-      return "/src/" + f + ".js";
-    });
+    defaultData.headerFiles = headerFiles;
+    defaultData.indexFiles = indexFiles;
   }
   else {
-    defaultData.indexFiles = ["/src/code.min.js"];
+    defaultData.headerFiles = ["src/code.min.js"];
+    defaultData.indexFiles = [];
   }
 
   config.options.data = function (dest, src) {
     defaultData.filename = dest;
+    defaultData.fileRoot = dest.replace(/\\/g, "/").split("/").map(function (p) {
+      return "";
+    }).join("../");
+    defaultData.indexFile = dest === "index.html" ? "" : defaultData.fileRoot + "index.html";
     return defaultData;
   }.bind(config);
 
@@ -71,7 +81,7 @@ module.exports = function (grunt) {
       default: {
         files: [{
           expand: true,
-          src: ["src/*.js", "!src/*.min.js"],
+          src: allFiles,
           dest: "",
           ext: ".min.js"
         }]
@@ -87,12 +97,12 @@ module.exports = function (grunt) {
   <%= pkg.homepage %>\n\
   <%= pkg.repository.url %>\n\
 */\n",
-        separator: ";"
+        separator: ";\n"
       },
       default: {
         files: {
-          "src/code.min.js": indexFiles.map(function (f) {
-            return "src/" + f + ".min.js";
+          "src/code.min.js": allFiles.map(function (f) {
+            return f.replace(".js", ".min.js");
           })
         }
       }

@@ -1,6 +1,6 @@
 extends ./templates/main.jade
 
-block head
+append head
   +fullTitle("Highland FRS - non-profit fundraising consultancy - Downloads")
   style #mainLogo{display:block;margin:0 auto;width:50%;}
  
@@ -15,7 +15,7 @@ block content
           cite= descrip
           span(class="icon-" + ico, title=ico + " logo")
           = size
-      +download("/resources/The_Economics_of_Data_Integrity.pdf", "The Economics of Data Integrity (abridged)", "AASP Summit, 29 OCT 2015, as presented by Melody Allen McBeth", "pdf", "(PDF 6.8MB)")
-      +download("/resources/CASE_CCA_2015_Economics.pptx", "The Economics of Data Integrity", "CASE Conference for Community Colleges, 2 OCT 2015, as presented by Melody Allen McBeth and Lynn Andrews", "powerpoint", "(PPTX 1.5MB)")
+      +download(fileRoot + "resources/The_Economics_of_Data_Integrity.pdf", "The Economics of Data Integrity (abridged)", "AASP Summit, 29 OCT 2015, as presented by Melody Allen McBeth", "pdf", "(PDF 6.8MB)")
+      +download(fileRoot + "resources/CASE_CCA_2015_Economics.pptx", "The Economics of Data Integrity", "CASE Conference for Community Colleges, 2 OCT 2015, as presented by Melody Allen McBeth and Lynn Andrews", "powerpoint", "(PPTX 1.5MB)")
 
-    a(href="index.html") back
+    a(href=fileRoot + "index.html") back
