@@ -315,11 +315,11 @@ article > section > div > div {
   text-align: left;
 }
 
-#leadership ul {
+.leadership ul {
   list-style: none;
 }
 
-#leadership > div > img {
+.leadership > div > img {
   width: 80%;
   border-radius: 50%;
   margin: 1em 10%;
@@ -541,7 +541,7 @@ header, article:nth-child(odd) {
     display: none;
   }
 
-  #leadership > div {
+  .leadership > div {
     width: 49%;
   }
 
