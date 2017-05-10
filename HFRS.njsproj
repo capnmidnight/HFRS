@@ -21,7 +21,7 @@
     <NodejsPort>80</NodejsPort>
     <StartWebBrowser>True</StartWebBrowser>
     <Environment>NODE_ENV=dev</Environment>
-    <LaunchUrl>tax.html</LaunchUrl>
+    <LaunchUrl>index.html</LaunchUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,16 +30,14 @@
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="about.jade" />
-    <Content Include="blog.html.jade" />
+    <Content Include="about.pug" />
+    <Content Include="blog.html.pug" />
     <Content Include="blog.html" />
-    <Content Include="contact.jade" />
+    <Content Include="contact.pug" />
     <Content Include="contacts.html" />
-    <Content Include="css\tax.css" />
-    <Content Include="tax.html.jade" />
-    <Content Include="users.html.jade" />
+    <Content Include="users.html.pug" />
     <Content Include="css\style.css" />
-    <Content Include="downloads.html.jade" />
+    <Content Include="downloads.html.pug" />
     <Content Include="downloads.html" />
     <Content Include="favicon.gif" />
     <Content Include="images\aasp.jpg" />
@@ -115,14 +113,14 @@
     <Content Include="images\Wayne_Combs_full.jpg" />
     <Content Include="images\Wayne_Combs_thumb.jpg" />
     <Content Include="images\wvdo.jpg" />
-    <Content Include="intro.jade" />
+    <Content Include="intro.pug" />
     <Content Include="LICENSE" />
-    <Content Include="customers.jade" />
+    <Content Include="customers.pug" />
     <Content Include="login.html" />
-    <Content Include="contacts.html.jade" />
-    <Content Include="login.html.jade" />
-    <Content Include="news.jade" />
-    <Content Include="partnership.html.jade" />
+    <Content Include="contacts.html.pug" />
+    <Content Include="login.html.pug" />
+    <Content Include="news.pug" />
+    <Content Include="partnership.html.pug" />
     <Content Include="partnership.html" />
     <Content Include="README" />
     <Content Include="resources\calculator.mp4" />
@@ -130,9 +128,9 @@
     <Content Include="resources\CASE_CCA_2015_Economics.pptx" />
     <Content Include="resources\The_Economics_of_Data_Integrity.pdf" />
     <Content Include="server\data\secrets.json" />
-    <Content Include="services.jade" />
-    <Content Include="templates\main.jade" />
-    <Content Include="index.html.jade" />
+    <Content Include="services.pug" />
+    <Content Include="templates\main.pug" />
+    <Content Include="index.html.pug" />
     <Content Include="robots.txt" />
     <Content Include="index.html" />
     <Content Include="missing.html" />
@@ -141,7 +139,6 @@
     <Content Include="package.json" />
     <Content Include="sitemap.xml" />
     <Compile Include="Gruntfile.js" />
-    <Compile Include="server\controllers\taxes.js" />
     <Compile Include="server\controllers\users.js" />
     <Compile Include="server\data\Contacts.js" />
     <Compile Include="server\data\Users.js" />
@@ -157,7 +154,6 @@
     <Compile Include="src\requests.js" />
     <Compile Include="src\rotator.js" />
     <Compile Include="src\sha512.js" />
-    <Compile Include="src\tax.js" />
     <Compile Include="src\twitter.js" />
     <Compile Include="src\vid\VideoCue.js" />
     <Compile Include="src\vid\VideoPlayer.js" />

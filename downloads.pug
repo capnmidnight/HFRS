@@ -1,9 +1,9 @@
-extends ./templates/main.jade
+extends ./templates/main.pug
 
 append head
   +fullTitle("Highland FRS - non-profit fundraising consultancy - Downloads")
   style #mainLogo{display:block;margin:0 auto;width:50%;}
- 
+
 block content
   article#downloads
     h3 Downloads
@@ -11,7 +11,7 @@ block content
       mixin download(url, title, descrip, ico, size)
         li
           a(href=url)= title
-          | - 
+          | -
           cite= descrip
           span(class="icon-" + ico, title=ico + " logo")
           = size

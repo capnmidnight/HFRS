@@ -1,4 +1,4 @@
-﻿extends ./templates/main.jade
+﻿extends ./templates/main.pug
 
 block content
   article#about
@@ -15,7 +15,7 @@ block content
           elem.href = pre + txt;
         }
       }
-    
+
       getObject("/contacts")
         .then(function(contacts){
           if(contacts.length > 0){
@@ -34,7 +34,7 @@ block content
                 email = document.createElement("a"),
                 msg = document.createElement("blockquote"),
                 del = document.createElement("button");
-            
+
               elem.appendChild(name);
               elem.appendChild(document.createTextNode("  email: "));
               elem.appendChild(email);

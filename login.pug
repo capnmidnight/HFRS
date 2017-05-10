@@ -1,4 +1,4 @@
-﻿extends ./templates/main.jade
+﻿extends ./templates/main.pug
 
 block content
   article#about
@@ -16,11 +16,11 @@ block content
         user = document.querySelector("#name"),
         pass = document.querySelector("#password"),
         bad = document.querySelector("#badAuth");
-    
+
       function hideBadAuthMsg(){
         bad.style.display = "none";
       }
-      
+
       user.addEventListener("focus", hideBadAuthMsg, false);
       pass.addEventListener("focus", hideBadAuthMsg, false);
       btn.addEventListener("click", function(){

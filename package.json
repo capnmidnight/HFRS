@@ -22,7 +22,8 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "grunt"
   },
   "dependencies": {
     "azure-storage": "^0.10.0",
@@ -33,12 +34,13 @@
   "devDependencies": {
     "ansi-regex": "^2.0.0",
     "grunt": "^1.0.1",
-    "grunt-contrib-concat": "^1.0.0",
     "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.0",
     "grunt-contrib-cssmin": "^1.0.1",
-    "grunt-contrib-jade": "^1.0.0",
+    "grunt-contrib-pug": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
-    "jade": "^1.11.0"
+    "pug": "^2.0.0-rc.1",
+    "marigold-build": "^1.5.10"
   }
 }

@@ -9,12 +9,12 @@ var pkg = require("./package.json"),
   indexFiles = ["contactForm", "imageFader", "mapResizer", "rotator"].map(scriptFile),
   allFiles = headerFiles.concat(indexFiles);
 
-function jadeConfiguration(options, defaultData) {
+function pugConfiguration(options, defaultData) {
   var config = {
     options: options,
     files: [{
       expand: true,
-      src: ["*.html.jade"],
+      src: ["*.html.pug"],
       dest: "",
       ext: "",
       extDot: "last"
@@ -50,19 +50,19 @@ module.exports = function (grunt) {
 
     pkg: pkg,
 
-    jade: {
-      release: jadeConfiguration({}, {}),
-      debug: jadeConfiguration({ pretty: true }, { debug: true })
+    pug: {
+      release: pugConfiguration({}, {}),
+      debug: pugConfiguration({ pretty: true }, { debug: true })
     },
 
     watch: {
       debug: {
-        files: ["*.jade", "templates/*.jade"],
-        tasks: ["jade:debug"]
+        files: ["*.pug", "templates/*.pug"],
+        tasks: ["pug:debug"]
       },
       release: {
-        files: ["src/*.js", "*.jade", "templates/*.jade", "css/*.css", "!src/*.min.js", "!css/*.min.css"],
-        tasks: ["clean", "cssmin", "uglify", "concat", "jade:release", "jade:release"]
+        files: ["src/*.js", "*.pug", "templates/*.pug", "css/*.css", "!src/*.min.js", "!css/*.min.css"],
+        tasks: ["clean", "cssmin", "uglify", "concat", "pug:release", "pug:release"]
       }
     },
 
@@ -114,10 +114,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-clean");
-  grunt.loadNpmTasks("grunt-contrib-jade");
+  grunt.loadNpmTasks("grunt-contrib-pug");
 
   grunt.registerTask("none", []);
-  grunt.registerTask("debug", ["jade:debug", "watch:debug"]);
-  grunt.registerTask("release", ["clean", "cssmin", "uglify", "concat", "jade:release", "watch:release"]);
+  grunt.registerTask("debug", ["pug:debug", "watch:debug"]);
+  grunt.registerTask("release", ["clean", "cssmin", "uglify", "concat", "pug:release", "watch:release"]);
   grunt.registerTask("default", ["debug"]);
 };

@@ -1,4 +1,4 @@
-﻿extends ./templates/main.jade
+﻿extends ./templates/main.pug
 
 block content
   article#about
@@ -15,7 +15,7 @@ block content
   script(type="text/javascript").
     window.addEventListener("load", function(){
       var out = document.querySelector("#output");
-    
+
       getObject("/users")
         .then(function(users) {
           if(users.length > 0){
@@ -23,7 +23,7 @@ block content
             users.map(function(user){
               var elem = document.createElement("article"),
                 del = document.createElement("button");
-            
+
               elem.appendChild(document.createTextNode(user.name));
               if(user.isLoggedIn){
                 elem.appendChild(document.createTextNode(" - Logged in"));

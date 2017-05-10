@@ -1,4 +1,4 @@
-extends ./templates/main.jade
+extends ./templates/main.pug
 
 append head
   +fullTitle("Highland FRS - non-profit fundraising consultancy")
@@ -6,9 +6,9 @@ append head
     script(type="text/javascript", src=fileRoot + file, async, defer)
 
 block content
-  include ./intro.jade
-  include ./services.jade
-  include ./about.jade
-  include ./contact.jade
-  include ./customers.jade
-  include ./news.jade
+  include ./intro.pug
+  include ./services.pug
+  include ./about.pug
+  include ./contact.pug
+  include ./customers.pug
+  include ./news.pug
