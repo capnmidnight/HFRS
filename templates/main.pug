@@ -12,12 +12,12 @@ html
       meta(name="description", content=txt)
       meta(property="og:description", content=txt)
       meta(name="twitter:description", content=txt)
-    
+
     mixin logo(img)
       meta(name="twitter:image", content=img)
       meta(property="og:image", content=img)
 
-    mixin fullTitle(txt)  
+    mixin fullTitle(txt)
       meta(property="og:title", content=txt)
       meta(name="twitter:title", content=txt)
       title= txt
@@ -38,10 +38,11 @@ html
     +logo("http://www.highlandfrs.com/images/logo.jpg")
 
     if debug
+      != liveReload
       link(rel="stylesheet", href=fileRoot + "css/style.css")
     else
       link(rel="stylesheet", href=fileRoot + "css/style.min.css")
-    block head      
+    block head
       each file in headerFiles
         script(type="text/javascript", src=fileRoot + file, async, defer)
   body
@@ -66,9 +67,9 @@ html
       #admin
         a#login(href=fileRoot + "login") login
         a#logout(href=fileRoot + "logout", style="display: none") logout
-        |  - 
+        |  -
         a#contacts(href=fileRoot + "contacts") contacts
-        |  - 
+        |  -
         a#contacts(href=fileRoot + "users") users
         script(type="text/javascript").
           window.addEventListener("load", function(){
