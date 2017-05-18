@@ -37,24 +37,21 @@ html
     +description(pkg.description)
     +logo("http://www.highlandfrs.com/images/logo.jpg")
 
-    if debug
-      != liveReload
-      link(rel="stylesheet", href=fileRoot + "css/style.css")
-    else
-      link(rel="stylesheet", href=fileRoot + "css/style.min.css")
+    != liveReload
+    link(rel="stylesheet", href=fileRoot + "css/style" + cssExt)
     block head
       each file in headerFiles
-        script(type="text/javascript", src=fileRoot + file, async, defer)
+        script(src=fileRoot + file, async, defer)
   body
     header
       a#mainLogoWrapper(href=fileRoot + "index.html"): img#mainLogo(src=fileRoot + "images/logo.svg", alt="logo", title="Highland FRS logo")
       nav
         ul
-          li: a(href=indexFile + "#services") services
-          li: a(href=indexFile + "#about") about
-          li: a(href=indexFile + "#contact") contact
-          li: a(href=indexFile + "#customers") customers
-          li: a(href=indexFile + "#news") news
+          li: a(href=fileRoot + "#services") services
+          li: a(href=fileRoot + "#about") about
+          li: a(href=fileRoot + "#contact") contact
+          li: a(href=fileRoot + "#customers") customers
+          li: a(href=fileRoot + "#news") news
           li: a(href=fileRoot + "downloads.html") downloads
     section#content
       block content

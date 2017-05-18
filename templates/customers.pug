@@ -1,0 +1,25 @@
+﻿article#customers
+  h3: a(name="customers") Customers
+  p The professionals at Highland Fundraising Solutions have been able to help many fundraising operations across the US. A few are listed below.
+  section#customer_logos
+    mixin customer(title, url, logo)
+      a(href=url, target="_blank")
+        img(src="images/" + logo, title=title, alt="logo")
+    +customer("Brookwood School - Manchester, Massachusetts", "http://www.brookwood.edu/", "brookwood-logo.png")
+    +customer("http://www.tesu.edu/alumni/index.cfm", "Thomas Edison State College - Trenton, New Jersey", "tesu-logo.png")
+    +customer("http://www.easternflorida.edu/foundation/", "Easter Florida State College - Melbourne, Florida", "efsc-logo.png")
+    +customer("http://www.stmaryspdx.org/", "St. Mary's Academy - Portland, Oregon", "st-marys-logo.png")
+    +customer("http://nmwa.org/", "National Museum of Women in the Arts - Washington, D.C.", "nmwa-logo.png")
+    +customer("http://www.woods.org/", "Woods - Langhorne, Pennsylvania", "woods-logo.png")
+    +customer("http://www.mercersburg.edu/", "Mercersburg Academy - Mercersburg, Pennsylvania", "mercersburg-logo.png")
+    +customer("http://childrensnational.org/", "Children's National Foundation - Silver Spring, Maryland", "chop-logo.png")
+    +customer("http://www.hra.org/", "Hampton Roads Academy - Newport News, Virginia", "hampton-roads-logo.png")
+    +customer("http://www.mcleanschool.org/", "The McLean School - Potomac, Maryland", "mclean-logo.png")
+    +customer("http://gru.edu/", "Georgia Regents University Foundation - Augusta, Georgia", "gru-logo.png")
+    +customer("http://www.oes.edu/", "Oregon Episcopal School - Portland, Oregon", "oes-logo.png")
+    +customer("http://www.marylhurst.edu/", "Marylhurst University - Marylhurst, Oregon", "marylhurst-logo.png")
+  a.primary.button(href=fileRoot + "#contact", title="Jump to contact form")
+    | People seem to like us!
+    br
+    small Schedule a meeting and find out why.
+  a(href=fileRoot + "#top") top
