@@ -1,14 +1,14 @@
 ﻿mixin person(name, title, img, contact, links)
   div
     img(src=fileRoot + "images/" + img, alt="photo", title=name)
-    div
+    .bio
       h4
         a(href=contact, target="_blank")= name
         |
         | &ndash; #{title}
       block
       if links
-        ul: each link in links
+        ul.social: each link in links
           li: a(href=link.href, target="_blank")
             span(class="icon-" + link.type, title=link.type + " logo")
             != link.desc

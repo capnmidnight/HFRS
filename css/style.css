@@ -270,6 +270,8 @@ article > section div div {
 }
 .leadership ul {
   list-style: none;
+  font-size: 80%;
+  padding: 0;
 }
 .leadership > div > img {
   width: 80%;
