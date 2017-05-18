@@ -15,7 +15,7 @@ var gulp = require("gulp"),
 
   css = marigold.css(["css/*.styl"]),
 
-  images = marigold.images(["images/*.png", "images/*.jpg"]),
+  images = marigold.images(["images/*.png", "images/*.jpg", "images/*.svg"]),
 
   devServer = marigold.devServer(
     [
