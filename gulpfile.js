@@ -15,6 +15,8 @@ var gulp = require("gulp"),
 
   css = marigold.css(["css/*.styl"]),
 
+  images = marigold.images(["images/*.png", "images/*.jpg"]),
+
   devServer = marigold.devServer(
     [
       "*.pug",
@@ -30,4 +32,6 @@ var gulp = require("gulp"),
       "*.html"
     ]);
 
-marigold.taskify([html, css], { default: devServer });
+marigold.taskify([html, css, images], { default: devServer });
+
+gulp.task("test", ["release"], devServer);
