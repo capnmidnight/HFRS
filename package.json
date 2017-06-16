@@ -40,7 +40,7 @@
     "grunt-contrib-pug": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
-    "pug": "^2.0.0-rc.1",
-    "marigold-build": "^1.5.10"
+    "marigold-build": "^1.10.3",
+    "pug": "^2.0.0-rc.2"
   }
 }
