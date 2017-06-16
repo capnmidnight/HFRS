@@ -86,6 +86,11 @@ img.thumbnail {
 .icon-telephone {
   background-position: 0px -263px;
 }
+.download-icon {
+  zoom: 0.5;
+  margin-left: 12.5px;
+  margin-top: -5px;
+}
 a {
   text-decoration: none;
   color: inherit;

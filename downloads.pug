@@ -13,8 +13,15 @@ block content
           a(href=url)= title
           | -
           cite= descrip
-          span(class="icon-" + ico, title=ico + " logo")
+          span(class="download-icon icon-" + ico, title=ico + " icon")
           = size
+          if block
+            block
+      +download(fileRoot + "resources/How_a_Partnership_Can_Improve_Your_Stewardship.pdf", "How a Partnership Can Improve Your Stewardship", "South East Donor Relations Conference - 9 JUN 2017, as presented by Melody Allen McBeth", "pdf", "(PDF 0.8MB)")
+        ul
+          +download(fileRoot + "resources/HFRS-Event_Comm_Request_Form-Event.pdf", "Template Request Form - Events", "attachment", "pdf", "(PDF 0.4MB)")
+          +download(fileRoot + "resources/HFRS-Event_Comm_Request_Form-Gala.pdf", "Template Request Form - Gala", "attachment", "pdf", "(PDF 0.4MB)")
+          +download(fileRoot + "resources/HFRS-Event_Comm_Request_Form-Sol.pdf", "Template Request Form - Solicitation", "attachment", "pdf", "(PDF 0.3MB)")
       +download(fileRoot + "resources/The_Economics_of_Data_Integrity.pdf", "The Economics of Data Integrity (abridged)", "AASP Summit, 29 OCT 2015, as presented by Melody Allen McBeth", "pdf", "(PDF 6.8MB)")
       +download(fileRoot + "resources/CASE_CCA_2015_Economics.pptx", "The Economics of Data Integrity", "CASE Conference for Community Colleges, 2 OCT 2015, as presented by Melody Allen McBeth and Lynn Andrews", "powerpoint", "(PPTX 1.5MB)")
 
