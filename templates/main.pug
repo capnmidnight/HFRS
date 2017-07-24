@@ -49,7 +49,7 @@ html
         ul
           li: a(href=fileRoot + "index.html#services_anchor") services
           li: a(href=fileRoot + "index.html#about_anchor") about
-          li: a(href=fileRoot + "index.html#contact_anchor") contact
+          li: a(href="https://calendly.com/melody-mcbeth", target="_blank") contact
           li: a(href=fileRoot + "index.html#customers_anchor") customers
           li: a(href=fileRoot + "index.html#news_anchor") news
           li: a(href=fileRoot + "downloads.html") downloads
@@ -61,18 +61,3 @@ html
         | The Raiser's Edge&trade; is a registered trademark of Blackbaud&reg;, Inc.
         | Crystal Reports&trade; is a registered trademark of SAP SE&reg;.
         | LinkedIn&reg; is a registered trademark of LinkedIn Corporation.
-      #admin
-        a#login(href=fileRoot + "login") login
-        a#logout(href=fileRoot + "logout", style="display: none") logout
-        |  -
-        a#contacts(href=fileRoot + "contacts") contacts
-        |  -
-        a#contacts(href=fileRoot + "users") users
-        script(type="text/javascript").
-          window.addEventListener("load", function(){
-            var login = document.querySelector("#login"),
-              logout = document.querySelector("#logout"),
-              authed = /\btoken\b/.test(document.cookie);
-            login.style.display = authed ? "none" : "";
-            logout.style.display = authed ? "" : "none";
-          });
