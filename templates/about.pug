@@ -3,13 +3,13 @@
     img(src=fileRoot + "images/" + img, alt="photo", title=name)
     .bio
       h4
-        a(href=contact, target="_blank")= name
+        a(href=contact, target="_blank", rel="noopener")= name
         |
         | &ndash; #{title}
       block
       if links
         ul.social: each link in links
-          li: a(href=link.href, target="_blank")
+          li: a(href=link.href, target="_blank", rel="noopener")
             span(class="icon-" + link.type, title=link.type + " logo")
             != link.desc
 
@@ -35,22 +35,22 @@ article#about
       ])
       p Melody has more than 15 years of experience in fundraising, almost 10 of which were spent in independent secondary school development. She has served as a solicitor, volunteer manager, event coordinator, the database/systems administrator and senior Crystal Reports&trade; architect, and as the Director of Advancement Services. Her work has been recognized by her peers, other consultants, and software manufacturers alike.
       p Before entering the development field, Melody served in the Armed Forces, managed various other businesses including a karate studio, and held state and local offices with the Pennsylvania Jaycees. Her cross industry experience has proven vital to formulating highly successful solutions to sticky data challenges.
-      p Melody currently serves on the #[a(href="http://www.advserv.org/?page=Committees", target="_blank") Curriculum Committee, FundSvcs Committee, and chairs the Program Committee] with the #[a(href="http://www.advserv.org/", target="_blank") Association of Advancement Services Professionals].
+      p Melody currently serves on the #[a(href="http://www.advserv.org/?page=Committees", target="_blank", rel="noopener") Curriculum Committee, FundSvcs Committee, and chairs the Program Committee] with the #[a(href="http://www.advserv.org/", target="_blank", rel="noopener") Association of Advancement Services Professionals].
 
     +person(
-      "Roxanne Globis",
+      "Roxanne Thurston",
       "Sr. Consultant",
-      "Roxanne_Globis" + jpgExt,
-      "mailto:roxanne.globis@highlandfrs.com?subject=\"Website contact\"", [
+      "Roxanne_Thurston" + jpgExt,
+      "mailto:roxanne.thurston@highlandfrs.com?subject=\"Website contact\"", [
         { type: "linkedin",
           desc: "View Roxanne's profile on LinkedIn",
-          href: "https://www.linkedin.com/in/roxanneglobis" }
+          href: "https://www.linkedin.com/in/roxannethurston" }
       ])
-      p Globis joined HFRS as a seasoned Advancement professional with experience in constituent relationship management technology, strategy, and implementation for a wide range of complex organizations.
+      p Thurston joined HFRS as a seasoned Advancement professional with experience in constituent relationship management technology, strategy, and implementation for a wide range of complex organizations.
 
       p As a Senior Consultant at HFRS she evaluates, implements, and empowers users to get the most out of The Raiser’s Edge.
 
-      p Globis holds Blackbaud Certification in The Raiser's Edge-Professional Level (bCRE-Pro) and a Cybersecurity Certificate from Texas A&amp;M Engineering Extension Service. She is a member of the Association of Advancement Services Professionals (AASP), Council for Advancement and Support of Education (CASE), Association of Professional Researchers for Advancement (APRA), and the Princeton Regional Chamber of Commerce Community Development Fund.
+      p Thurston holds Blackbaud Certification in The Raiser's Edge-Professional Level (bCRE-Pro) and a Cybersecurity Certificate from Texas A&amp;M Engineering Extension Service. She is a member of the Association of Advancement Services Professionals (AASP), Council for Advancement and Support of Education (CASE), Association of Professional Researchers for Advancement (APRA), and the Princeton Regional Chamber of Commerce Community Development Fund.
 
       p Prior to joining HFRS, Roxanne was the Director of Alumni Affairs at Thomas Edison State University where she focused on the design, development, and delivery of cost-effective, high-performance technology solutions to meet challenging organization demands.
 
@@ -69,7 +69,7 @@ article#about
           desc: "View Sean's profile on GitHub",
           href: "https://github.com/capnmidnight" }
       ])
-      p Sean serves in a dual capacity at Highland FRS. He maintains the corporate IT infrastructure&mdash;including email and this website&mdash;while also performing cutting edge research and development in Virtual Reality software development. If you would like to know more about how VR can help your non-profit organization engage constituents in exciting new ways, please visit #[a(href="http://www.primrosevr.com", target="_blank") Primrose VR].
+      p Sean serves in a dual capacity at Highland FRS. He maintains the corporate IT infrastructure&mdash;including email and this website&mdash;while also performing cutting edge research and development in Virtual Reality software development. If you would like to know more about how VR can help your non-profit organization engage constituents in exciting new ways, please visit #[a(href="http://www.primrosevr.com", target="_blank", rel="noopener") Primrose VR].
 
   h3 Strategic Partners
   section.leadership
@@ -87,7 +87,7 @@ article#about
           href: "https://www.linkedin.com/in/dr-wayne-combs-104a21" }
       ])
       p Combs has more than 20 years of experience in fundraising and will be a key asset in Highland's capital and comprehensive campaign division. Combs' experience in performing organizational assessments, evaluating business systems and data management, applying process improvement techniques in advancement services, directing budget management, and supporting a $6 billion dollar campaign will augment the firm's current services.
-      p Combs earned his Ed.D. in higher education administration at USC Rossier School of Education where he teaches doctoral courses in creativity, innovation and entrepreneurship.  He is actively involved in supporting the field of philanthropy as a #[a(href="http://www.advserv.org/?page=Committees", target="_blank") member of the board of directors] for the #[a(href="http://www.advserv.org/", target="_blank") Association of Advancement Services Professionals (AASP)] and as chair/faculty for the #[a(href="http://www.case.org/", target="_blank") Council for the Advancement and Support of Education (CASE)].
+      p Combs earned his Ed.D. in higher education administration at USC Rossier School of Education where he teaches doctoral courses in creativity, innovation and entrepreneurship.  He is actively involved in supporting the field of philanthropy as a #[a(href="http://www.advserv.org/?page=Committees", target="_blank", rel="noopener") member of the board of directors] for the #[a(href="http://www.advserv.org/", target="_blank", rel="noopener") Association of Advancement Services Professionals (AASP)] and as chair/faculty for the #[a(href="http://www.case.org/", target="_blank", rel="noopener") Council for the Advancement and Support of Education (CASE)].
 
     +person(
       "Lynn Becker",
@@ -132,7 +132,7 @@ article#about
     blockquote
       p I have worked with Sean on several projects&hellip; He pays close attention to detail and listens to the clients' requirements. He is able to effectively communicate with his peers as well as upper management. Sean has been known to do whatever it takes to get the job done and still maintain his professionalism! Definitely a true team player&hellip; It was a wonderful experience working with Sean.
       cite Anna Succi-Kozlowski, Business Analyst, The Manitowoc Company, worked directly with Sean at Global Data Consultants, LLC
-  a.primary.button(href="https://calendly.com/melody-mcbeth", target="_blank", title="Schedule a meeting")
+  a.primary.button(href="https://calendly.com/melody-mcbeth", target="_blank", rel="noopener", title="Schedule a meeting")
     | Find out more!
     br
     small We're like magical elves, except we work on data, not shoes.

@@ -3,7 +3,7 @@
   p The professionals at Highland Fundraising Solutions have been able to help many fundraising operations across the US. A few are listed below.
   section#customer_logos
     mixin customer(title, url, logo)
-      a(href=url, target="_blank")
+      a(href=url, target="_blank", rel="noopener")
         img(src="images/" + logo, title=title, alt="logo")
     +customer("Brookwood School - Manchester, Massachusetts", "http://www.brookwood.edu/", "brookwood-logo" + pngExt)
     +customer("http://www.tesu.edu/alumni/index.cfm", "Thomas Edison State College - Trenton, New Jersey", "tesu-logo" + pngExt)
@@ -18,7 +18,7 @@
     +customer("http://gru.edu/", "Georgia Regents University Foundation - Augusta, Georgia", "gru-logo" + pngExt)
     +customer("http://www.oes.edu/", "Oregon Episcopal School - Portland, Oregon", "oes-logo" + pngExt)
     +customer("http://www.marylhurst.edu/", "Marylhurst University - Marylhurst, Oregon", "marylhurst-logo" + pngExt)
-  a.primary.button(href="https://calendly.com/melody-mcbeth", target="_blank", title="Schedule a meeting")
+  a.primary.button(href="https://calendly.com/melody-mcbeth", target="_blank", rel="noopener", title="Schedule a meeting")
     | People seem to like us!
     br
     small Schedule a meeting and find out why.
