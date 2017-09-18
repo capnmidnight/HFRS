@@ -11,6 +11,20 @@ body {
 #customer_logos {
   text-align: center;
 }
+#callout {
+  background-color: #fffe8c;
+  padding: 1rem;
+  position: relative;
+}
+#closeButton {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 5px;
+  padding-right: 10px;
+  font-size: 20px;
+}
 body {
   background-color: #ddd;
   background-image: linear-gradient(0deg, #fff, rgba(255,255,255,0));
