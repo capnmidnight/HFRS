@@ -2,6 +2,9 @@
 html
   head
 
+    mixin closeButton()
+      a#closeButton(onclick="this.parentElement.style.display='none';") &times;
+
     mixin themeColor(color)
       meta(name="web-app-capable", content="yes")
       meta(name="theme-color", content=color)
