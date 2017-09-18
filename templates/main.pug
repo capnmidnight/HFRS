@@ -2,8 +2,9 @@
 html
   head
 
-    mixin closeButton()
-      a#closeButton(onclick="this.parentElement.style.display='none';") &times;
+    mixin callout(title, href)
+      #callout #[= title] (#[a(href=href) read more...])
+        a#closeButton(onclick="this.parentElement.style.display='none';") &times;
 
     mixin themeColor(color)
       meta(name="web-app-capable", content="yes")
