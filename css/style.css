@@ -323,7 +323,7 @@ footer {
   background-color: #f4f4f4;
   padding-bottom: 1em;
 }
-#announcement > img {
+.announcement > img {
   width: 100%;
 }
 label,
