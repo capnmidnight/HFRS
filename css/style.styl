@@ -11,10 +11,15 @@ body
 #customer_logos
   text-align center
 
-#callout
+.callout
   background-color #fffe8c
   padding 1rem
-  position relative
+  position absolute
+  width 100%
+  top 0
+  left 0
+  border-bottom solid 2px red
+  opacity 1
 
 #closeButton
   cursor pointer
@@ -237,11 +242,6 @@ blockquote
     display block
     padding 0.5em
     font-size 16pt
-
-  small
-    white-space nowrap
-    display block
-    clear left
 
 blockquote:nth-child(odd) > img
   float right
@@ -473,7 +473,7 @@ article:nth-child(even)
   footer > nav
     font-size 12pt
 
-  #announcement > img
+  .announcement > img
     width 50%
     float right
     padding 1em

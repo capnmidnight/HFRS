@@ -3,8 +3,30 @@ html
   head
 
     mixin callout(title, href)
-      #callout #[= title] (#[a(href=href) read more...])
+      .callout #[= title] (#[a(href=href) read more...])
         a#closeButton(onclick="this.parentElement.style.display='none';") &times;
+        script.
+          (function(boxes){
+            var box = boxes[boxes.length - 1], y = -box.clientHeight, w = 3000, o = 1;
+            box.style.top = y + "px";
+            var timer = setInterval(function(){
+              if(y < 0){
+                y += 2  ;
+                box.style.top = Math.min(0, y) + "px";
+              }
+              else if(w > 0) {
+                w -= 10;
+              }
+              else if(o > 0){
+                o -= 0.025;
+                box.style.opacity = o;
+              }
+              else {
+                clearInterval(timer);
+                box.style.display = "none";
+              }
+            }, 10);
+          })(document.querySelectorAll(".callout"));
 
     mixin themeColor(color)
       meta(name="web-app-capable", content="yes")
