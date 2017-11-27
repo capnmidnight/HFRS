@@ -2,8 +2,7 @@ extends ./templates/main.pug
 
 append head
   +fullTitle("Highland FRS - non-profit fundraising consultancy")
-  each file in indexFiles
-    script(type="text/javascript", src=fileRoot + file, async, defer)
+  script(src= fileRoot + "home" + jsExt, async, defer)
 
 block content
   include ./templates/intro.pug

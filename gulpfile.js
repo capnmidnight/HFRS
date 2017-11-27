@@ -1,19 +1,24 @@
-function scriptFile(f) {
-  return "src/" + f + ".js";
+function jsBuild(name) {
+  return marigold.js({
+    name,
+    entry: `src/${name}/index.js`
+  });
 }
 
 var gulp = require("gulp"),
   pkg = require("./package.json"),
   marigold = require("marigold-build").setup(gulp, pkg),
+
+  jsHeader = jsBuild("header"),
+  jsHome = jsBuild("home"),
+
+  css = marigold.css(["css/*.styl"]),
+  
   html = marigold.html(["*.pug"], {
     watch: ["*.md", "templates/**/*.pug"],
     data: {
-      indexFile: "/index.html",
-      headerFiles: ["analytics", "ga", "promise", "requests", "sha512"].map(scriptFile),
-      indexFiles: ["contactForm", "imageFader", "mapResizer", "rotator"].map(scriptFile),
+      indexFile: "/index.html"
     } }),
-
-  css = marigold.css(["css/*.styl"]),
 
   images = marigold.images(["images/*.png", "images/*.jpg", "images/*.svg"]),
 
@@ -32,6 +37,12 @@ var gulp = require("gulp"),
       "*.html"
     ]);
 
-marigold.taskify([html, css, images], { default: devServer });
+marigold.taskify([
+  jsHeader,
+  jsHome, 
+  html, 
+  css, 
+  images
+], { default: devServer });
 
 gulp.task("test", ["release"], devServer);

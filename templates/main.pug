@@ -66,8 +66,7 @@ html
     != liveReload
     link(rel="stylesheet", href=fileRoot + "css/style" + cssExt)
     block head
-      each file in headerFiles
-        script(src=fileRoot + file, async, defer)
+      script(src=fileRoot + "header" + jsExt, async, defer)
   body
     header
       a#mainLogoWrapper(href=fileRoot + "index.html"): img#mainLogo(src=fileRoot + "images/logo" + svgExt, alt="logo", title="Highland FRS logo")
