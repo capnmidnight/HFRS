@@ -3,7 +3,7 @@
     img(src=fileRoot + "images/" + img, alt="photo", title=name)
     .bio
       h4
-        a(href=contact, target="_blank", rel="noopener")= name
+        != offsite(contact, name)
         |
         | &ndash; #{title}
       block
@@ -35,7 +35,7 @@ article#about
       ])
       p Melody has more than 15 years of experience in fundraising, almost 10 of which were spent in independent secondary school development. She has served as a solicitor, volunteer manager, event coordinator, the database/systems administrator and senior Crystal Reports architect, and as the Director of Advancement Services. Her work has been recognized by her peers, other consultants, and software manufacturers alike.
       p Before entering the development field, Melody served in the Armed Forces, managed various other businesses including a karate studio, and held state and local offices with the Pennsylvania Jaycees. Her cross industry experience has proven vital to formulating highly successful solutions to sticky data challenges.
-      p Melody currently serves on the #[a(href="http://www.advserv.org/?page=Committees", target="_blank", rel="noopener") Curriculum Committee, FundSvcs Committee, and chairs the Program Committee] with the #[a(href="http://www.advserv.org/", target="_blank", rel="noopener") Association of Advancement Services Professionals].
+      p Melody currently serves on the #[!= offsite("http://www.advserv.org/?page=Committees", "Curriculum Committee, FundSvcs Committee, and chairs the Program Committee")] with the #[!= offsite("http://www.advserv.org/", "Association of Advancement Services Professionals")].
 
     +person(
       "Roxanne Thurston",
@@ -69,7 +69,7 @@ article#about
           href: "https://www.linkedin.com/in/dr-wayne-combs-104a21" }
       ])
       p Combs has more than 20 years of experience in fundraising and will be a key asset in Highland's capital and comprehensive campaign division. Combs' experience in performing organizational assessments, evaluating business systems and data management, applying process improvement techniques in advancement services, directing budget management, and supporting a $6 billion dollar campaign will augment the firm's current services.
-      p Combs earned his Ed.D. in higher education administration at USC Rossier School of Education where he teaches doctoral courses in creativity, innovation and entrepreneurship.  He is actively involved in supporting the field of philanthropy as a #[a(href="http://www.advserv.org/?page=Committees", target="_blank", rel="noopener") member of the board of directors] for the #[a(href="http://www.advserv.org/", target="_blank", rel="noopener") Association of Advancement Services Professionals (AASP)] and as chair/faculty for the #[a(href="http://www.case.org/", target="_blank", rel="noopener") Council for the Advancement and Support of Education (CASE)].
+      p Combs earned his Ed.D. in higher education administration at USC Rossier School of Education where he teaches doctoral courses in creativity, innovation and entrepreneurship.  He is actively involved in supporting the field of philanthropy as a #[!= offsite("http://www.advserv.org/?page=Committees", "member of the board of directors")] for the #[!= offsite("http://www.advserv.org/", "Association of Advancement Services Professionals (AASP)")] and as chair/faculty for the #[!= offsite("http://www.case.org/", "Council for the Advancement and Support of Education (CASE)")].
 
     +person(
       "Lynne Becker",

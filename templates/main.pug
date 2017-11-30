@@ -28,45 +28,16 @@ html
             }, 10);
           })(document.querySelectorAll(".callout"));
 
-    mixin themeColor(color)
-      meta(name="web-app-capable", content="yes")
-      meta(name="theme-color", content=color)
-      meta(name="apple-mobile-web-app-capable", content="yes")
-      meta(name="apple-mobile-web-app-status-bar-style", content=color)
-
-    mixin description(txt)
-      meta(name="description", content=txt)
-      meta(property="og:description", content=txt)
-      meta(name="twitter:description", content=txt)
-
-    mixin logo(img)
-      meta(name="twitter:image", content=img)
-      meta(property="og:image", content=img)
-
-    mixin fullTitle(txt)
-      meta(property="og:title", content=txt)
-      meta(name="twitter:title", content=txt)
-      title= txt
-
-    meta(charset="utf-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-
-    meta(name="keywords", content=pkg.keywords.join(", "))
-
-    meta(property="og:type", content="website")
-    meta(property="og:url", content=pkg.homepage + filename)
-    meta(property="og:site_name", content="Highland FRS")
-    meta(name="twitter:card", content="summary_large_image")
-    meta(name="twitter:site", content="@HighlandFRS")
-
-    +themeColor("#002610")
-    +description(pkg.description)
-    +logo("http://www.highlandfrs.com/images/logo" + jpgExt)
-
+    != lang("en")
+    != viewport(true)
+    != webapp("#002610")
+    != screenshot("http://www.highlandfrs.com/images/logo" + jpgExt)
+    != twitter("@HighlandFRS")
     != liveReload
-    link(rel="stylesheet", href=fileRoot + "css/style" + cssExt)
+    != css(fileRoot + "css/style" + cssExt)
     block head
       script(src=fileRoot + "header" + jsExt, async, defer)
+      script(src="https://js.stripe.com/v3/")
   body
     header
       a#mainLogoWrapper(href=fileRoot + "index.html"): img#mainLogo(src=fileRoot + "images/logo" + svgExt, alt="logo", title="Highland FRS logo")
@@ -74,7 +45,7 @@ html
         ul
           li: a(href=fileRoot + "index.html#services_anchor") services
           li: a(href=fileRoot + "index.html#about_anchor") about
-          li: a(href="https://calendly.com/melody-mcbeth", target="_blank", rel="noopener") contact
+          li: != offsite("https://calendly.com/melody-mcbeth", "contact")
           li: a(href=fileRoot + "index.html#customers_anchor") customers
           li: a(href=fileRoot + "index.html#news_anchor") news
           li: a(href=fileRoot + "downloads.html") downloads

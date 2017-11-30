@@ -1,7 +1,7 @@
 extends ./templates/main.pug
 
 append head
-  +fullTitle("Highland FRS - non-profit fundraising consultancy")
+  != identity(pkg.homepage + filename, "Highland FRS", "Home", pkg.description, pkg.keywords)
   script(src= fileRoot + "home" + jsExt, async, defer)
 
 block content

@@ -2,23 +2,23 @@
   h3: a(name="customers_anchor") Customers
   p The professionals at Highland Fundraising Solutions have been able to help many fundraising operations across the US. A few are listed below.
   section#customer_logos
-    mixin customer(url, title)
-      li: a(href=url, target="_blank", rel="noopener")= title
+    mixin customer(url, title, location)
+      li: != offsite(url, `${title} - ${location}`)
     ul
-      +customer("http://www.augusta.edu/", "Augusta University - Augusta, Georgia")
-      +customer("http://www.brookwood.edu/", "Brookwood School - Manchester, Massachusetts")
-      +customer("http://childrensnational.org/", "Children's National Medical System Foundation - Silver Spring, Maryland")
-      +customer("http://www.easternflorida.edu/foundation/", "Eastern Florida State College - Melbourne, Florida")
-      +customer("http://www.hra.org/", "Hampton Roads Academy - Newport News, Virginia")
-      +customer("http://www.marylhurst.edu/", "Marylhurst University - Marylhurst, Oregon")
-      +customer("http://www.mcleanschool.org/", "The McLean School - Potomac, Maryland")
-      +customer("http://www.mercersburg.edu/", "Mercersburg Academy - Mercersburg, Pennsylvania")
-      +customer("http://nmwa.org/", "National Museum of Women in the Arts - Washington, D.C.")
-      +customer("http://www.oes.edu/", "Oregon Episcopal School - Portland, Oregon")
-      +customer("http://www.stmaryspdx.org/", "St. Mary's Academy - Portland, Oregon")
-      +customer("http://www.swosu.edu/", "Southwestern Oklahoma State University - Weatherford, Oklahoma")
-      +customer("http://www.tesu.edu/alumni/index.cfm", "Thomas Edison State University - Trenton, New Jersey")
-      +customer("http://www.woods.org/", "Woods Services - Langhorne, Pennsylvania")
+      +customer("http://www.augusta.edu/", "Augusta University", "Augusta, Georgia")
+      +customer("http://www.brookwood.edu/", "Brookwood School", "Manchester, Massachusetts")
+      +customer("http://childrensnational.org/", "Children's National Medical System Foundation", "Silver Spring, Maryland")
+      +customer("http://www.easternflorida.edu/foundation/", "Eastern Florida State College", "Melbourne, Florida")
+      +customer("http://www.hra.org/", "Hampton Roads Academy", "Newport News, Virginia")
+      +customer("http://www.marylhurst.edu/", "Marylhurst University", "Marylhurst, Oregon")
+      +customer("http://www.mcleanschool.org/", "The McLean School", "Potomac, Maryland")
+      +customer("http://www.mercersburg.edu/", "Mercersburg Academy", "Mercersburg, Pennsylvania")
+      +customer("http://nmwa.org/", "National Museum of Women in the Arts", "Washington, D.C.")
+      +customer("http://www.oes.edu/", "Oregon Episcopal School", "Portland, Oregon")
+      +customer("http://www.stmaryspdx.org/", "St. Mary's Academy", "Portland, Oregon")
+      +customer("http://www.swosu.edu/", "Southwestern Oklahoma State University", "Weatherford, Oklahoma")
+      +customer("http://www.tesu.edu/alumni/index.cfm", "Thomas Edison State University", "Trenton, New Jersey")
+      +customer("http://www.woods.org/", "Woods Services", "Langhorne, Pennsylvania")
 
   a.primary.button(href="https://calendly.com/melody-mcbeth", target="_blank", rel="noopener", title="Schedule a meeting")
     | People seem to like us!

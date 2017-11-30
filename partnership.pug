@@ -1,7 +1,7 @@
 extends ./templates/main.pug
 
 append head
-  +fullTitle("Highland FRS - non-profit fundraising consultancy - Partnerships")
+  != identity(pkg.homepage + filename, "Highland FRS", "Partnerships", pkg.description, pkg.keywords)
   style #mainLogo{display:block;margin:0 auto;width:50%;}
 
 block content
