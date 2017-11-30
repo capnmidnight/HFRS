@@ -2,7 +2,6 @@ extends ./templates/main.pug
 
 append head
   != identity(pkg.homepage + filename, "Highland FRS", "Home", pkg.description, pkg.keywords)
-  script(src= fileRoot + "home" + jsExt, async, defer)
 
 block content
   include ./templates/intro.pug
@@ -10,3 +9,6 @@ block content
   include ./templates/about.pug
   include ./templates/customers.pug
   include ./templates/news.pug
+
+append footer
+  != js(fileRoot + "home" + jsExt)
