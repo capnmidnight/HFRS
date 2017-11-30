@@ -283,12 +283,5 @@
   }, false);
 })();
 
-/*
-pliny.namespace({
-  name: "HFRS",
-  description: "Highland Fundraising Solutions"
-});
-*/
-
 })));
 //# sourceMappingURL=home.js.map
