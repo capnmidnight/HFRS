@@ -10,6 +10,7 @@ var gulp = require("gulp"),
   marigold = require("marigold-build").setup(gulp, pkg),
 
   jsTasks = [
+    "download",
     "header",
     "home"
   ].map(jsBuild),
@@ -32,7 +33,8 @@ var gulp = require("gulp"),
       "css/*.css",
       "*.html"
     ], {
-      express: require("./src/server/express")
+      express: require("./src/server/express"),
+      keepOpenOnLastDisconnect: true
     });
 
 marigold.taskify(

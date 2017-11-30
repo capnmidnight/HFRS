@@ -5,6 +5,12 @@ append head
   style #mainLogo{display:block;margin:0 auto;width:50%;}
 
 block content
+
+  article#purchase
+    h3 CPT Mr. Who?
+    form(method="POST", action="/charge")
+      != js(fileRoot + "download" + jsExt)
+
   article#downloads
     h3 Downloads
     ul
