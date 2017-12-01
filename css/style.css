@@ -121,6 +121,41 @@ a {
 }
 ul {
   text-align: left;
+  list-style-type: circle;
+}
+#downloads .item-title {
+  padding-top: 2em;
+}
+#downloads .item-attachment {
+  padding-left: 1em;
+  padding-top: 0;
+}
+#downloads dl {
+  margin: 0;
+  display: inline-block;
+}
+#downloads dt {
+  font-weight: bold;
+}
+#downloads dd {
+  font-style: italic;
+  margin: 0;
+}
+#downloads .item-type,
+#downloads .item-price,
+#downloads button {
+  white-space: nowrap;
+}
+#downloads .item-price,
+#downloads .item-action {
+  text-align: right;
+}
+#downloads .item-price {
+  padding-left: 1em;
+  padding-right: 2em;
+}
+#downloads form {
+  display: inline-block;
 }
 nav > ul {
   list-style: none;
@@ -203,9 +238,6 @@ h4 h4 > a {
 }
 #mainLogo {
   width: 10vw;
-}
-ul {
-  list-style-type: circle;
 }
 #alt_services {
   display: none;

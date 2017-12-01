@@ -1,91 +1,27 @@
 extends ./templates/main.pug
 
+mixin download(id)
+  script(src= fileRoot + "purchase" + jsExt, data-id= id)
+
 append head
   != identity(pkg.homepage + filename, "Highland FRS", "Downloads", pkg.description, pkg.keywords)
   style #mainLogo{display:block;margin:0 auto;width:50%;}
 
 block content
 
-  article#purchase
-    h3 CPT Mr. Who?
-    form(method="POST", action="/charge")
-      != js(fileRoot + "download" + jsExt)
-
   article#downloads
     h3 Downloads
-    ul
-      mixin download(url, title, descrip, ico, size)
-        li
-          a(href=url)= title
-          | -
-          cite= descrip
-          span(class="download-icon icon-" + ico, title=ico + " icon")
-          = size
-          if block
-            block
-
-      +download(
-        fileRoot + "resources/2017_ADRP_Conference_HighlandFrS_Session_8B.pptx",
-        "CPT Mr. Who: How Bad Add/Sals Can Sink Your Stewardship",
-        "ADRP International Conference, Las Vegas, NV - 27 SEP 2017 - as presented by Melody Allen McBeth and Roxanne (Globis) Thurston",
-        "powerpoint",
-        "(PPTX 0.9MB)")
-
-        ul
-          +download(
-            fileRoot + "resources/HFRS - add_sal suggested formats.pdf",
-            "Standard Addressee and Salutation Formats",
-            "attachment",
-            "pdf",
-            "(PDF 0.9MB)")
-
-
-      +download(
-        fileRoot + "resources/How_a_Partnership_Can_Improve_Your_Stewardship.pdf",
-        "How a Partnership Can Improve Your Stewardship",
-        "South East Donor Relations Conference - 9 JUN 2017, as presented by Melody Allen McBeth and Michael Dotson",
-        "pdf",
-        "(PDF 0.8MB)")
-
-        ul
-          +download(
-            fileRoot + "resources/HFRS-Event_Comm_Request_Form-Event.pdf",
-            "Template Request Form - Events",
-            "attachment",
-            "pdf",
-            "(PDF 0.4MB)")
-          +download(
-            fileRoot + "resources/HFRS-Event_Comm_Request_Form-Gala.pdf",
-            "Template Request Form - Gala",
-            "attachment",
-            "pdf",
-            "(PDF 0.4MB)")
-          +download(
-            fileRoot + "resources/HFRS-Event_Comm_Request_Form-Sol.pdf",
-            "Template Request Form - Solicitation",
-            "attachment",
-            "pdf",
-            "(PDF 0.3MB)")
-
-      +download(
-        fileRoot + "resources/AASP_Reg_Dallas_03172017.zip",
-        "Looking a Gift Horse in the Mouth",
-        "Dallas AASP Regional Symposium - 17 MAR 2017, as presented by Melody Allen McBeth and Anita Lawson",
-        "powerpoint",
-        "(ZIP 5.8MB)")
-
-      +download(
-        fileRoot + "resources/The_Economics_of_Data_Integrity.pdf",
-        "The Economics of Data Integrity (abridged)",
-        "AASP Summit, 29 OCT 2015, as presented by Melody Allen McBeth",
-        "pdf",
-        "(PDF 6.8MB)")
-
-      +download(
-        fileRoot + "resources/CASE_CCA_2015_Economics.pptx",
-        "The Economics of Data Integrity",
-        "CASE Conference for Community Colleges, 2 OCT 2015, as presented by Melody Allen McBeth and Lynn Andrews",
-        "powerpoint",
-        "(PPTX 1.5MB)")
+      +download()
+    table
+      +download("ranks")
+      +download("who")
+      +download("who-attach-1")
+      +download("partnership")
+      +download("partnership-attach-1")
+      +download("partnership-attach-2")
+      +download("partnership-attach-3")
+      +download("gift-horse")
+      +download("data-integrity-pdf")
+      +download("data-integrity-ppt")
 
     a(href=fileRoot + "index.html") back
