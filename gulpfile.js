@@ -33,6 +33,10 @@ var gulp = require("gulp"),
       "css/*.css",
       "*.html"
     ], {
+      env: {
+        STRIPE_PUBLIC_KEY: "pk_test_6pRNASCoBOKtIshFeQd4XMUh",
+        STRIPE_PRIVATE_KEY: "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
+      },
       url: "HFRS/downloads.html",
       express: require("./src/server/stripe"),
       keepOpenOnLastDisconnect: true
