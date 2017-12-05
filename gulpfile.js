@@ -1,5 +1,6 @@
 function jsBuild(name) {
   return marigold.js({
+    advertise: false,
     name,
     entry: `src/${name}/index.js`
   });
