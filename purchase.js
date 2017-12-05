@@ -148,7 +148,7 @@ function getObject(url, options) {
           Object.assign(script.dataset, stripe);
           form.appendChild(script);
         }
-        else if(info.path) {
+        else {
           const button = document.createElement("button");
           button.type = "button";
           button.className = "stripe-button-el";

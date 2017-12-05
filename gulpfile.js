@@ -34,7 +34,9 @@ var gulp = require("gulp"),
       "*.html"
     ], {
       env: {
-        STRIPE_PUBLIC_KEY: "pk_test_6pRNASCoBOKtIshFeQd4XMUh",
+        // These are Stripe's own publicly published keys, they won't actually
+        // charge any cards or send any money anywhere.
+        STRIPE_PUBLIC_KEY: "pk_test_HJOlWoH2inHcxBfGWUtxzH4G",
         STRIPE_PRIVATE_KEY: "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
       },
       path: ".",

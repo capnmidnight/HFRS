@@ -15,7 +15,8 @@ const dataFilePath = path.join(__dirname, "fileData.json"),
         default: "powerpoint"
       };
 
-let files = null;
+let files = null,
+  publicFiles = null;
 
 function formatFileSize(size) {
   if(size < 0) {
@@ -38,10 +39,13 @@ function formatFileSize(size) {
 
 async function getFiles() {
   const file = await readFile(dataFilePath, "utf8");
+
   files = JSON.parse(file);
+  publicFiles = JSON.parse(file);
 
   for(let name in files) {
-    const file = files[name];
+    const file = files[name],
+      publicFile = publicFiles[name];
     if(file) {
       try {
         const parts = path.parse(file.fileName),
@@ -56,9 +60,14 @@ async function getFiles() {
           icon,
           size: `(${ext.toLocaleUpperCase()} ${size})`
         });
+
+        Object.assign(publicFile, file);
+        delete publicFile.path;
+
       }
       catch(exp) {
         delete files[name];
+        delete publicFiles[name]
       }
     }
   }
@@ -111,20 +120,14 @@ module.exports = function express(appServer) {
         locale: "auto",
         zipCode: true,
       },
-      files: JSON.parse(JSON.stringify(files))
+      files: publicFiles
     };
-
-    for(let key in info.files) {
-      if(info.files[key].amount) {
-        delete info.files[key].path;
-      }
-    }
 
     res.status(200).send(info);
   }));
 
   appServer.get("/download/:id", withFile(function(req, res, next, stripePublicKey, stripePrivateKey, stripe, file) {
-    if(file.amount > 0) {
+    if(file.amount) {
       res.status(402)
         .send(`The price for ${file.name} is USD${file.amount/100}.`);
     }
