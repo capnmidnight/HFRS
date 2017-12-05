@@ -67,17 +67,15 @@ function getObject(url, options) {
     lastScript = scripts.length > 0 && scripts[scripts.length - 1];
 
   if(lastScript) {
-    const id = lastScript.dataset.id;
-    if(!id) {
-      window.STORE_DATA_PROMISE = getObject("/store-data");
-    }
-    else {
-      const data = await window.STORE_DATA_PROMISE,
-        stripe = data.stripe,
-        info = data.files[id];
+    const { stripe, files } = await getObject("/store-data"),
+        table = document.createElement("table");
+
+    for(let id in files) {
+      const info = files[id];
 
       if(info) {
         const item = document.createElement("tr");
+        table.appendChild(item);
 
         const titleCell = document.createElement("td");
         titleCell.className = "item-title";
@@ -160,10 +158,10 @@ function getObject(url, options) {
           label.appendChild(document.createTextNode("Download"));
           button.appendChild(label);
         }
-
-        lastScript.parentElement.replaceChild(item, lastScript);
       }
     }
+
+    lastScript.parentElement.replaceChild(table, lastScript);
   }
 })();
 

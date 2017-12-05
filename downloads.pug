@@ -1,8 +1,5 @@
 extends ./templates/main.pug
 
-mixin download(id)
-  script(src= fileRoot + "purchase" + jsExt, data-id= id)
-
 append head
   != identity(pkg.homepage + filename, "Highland FRS", "Downloads", pkg.description, pkg.keywords)
   style #mainLogo{display:block;margin:0 auto;width:50%;}
@@ -11,17 +8,6 @@ block content
 
   article#downloads
     h3 Downloads
-      +download()
-    table
-      +download("ranks")
-      +download("who")
-      +download("who-attach-1")
-      +download("partnership")
-      +download("partnership-attach-1")
-      +download("partnership-attach-2")
-      +download("partnership-attach-3")
-      +download("gift-horse")
-      +download("data-integrity-pdf")
-      +download("data-integrity-ppt")
+    script(src= fileRoot + "purchase" + jsExt)
 
     a(href=fileRoot + "index.html") back
