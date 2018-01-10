@@ -1,32 +1,9 @@
 ﻿doctype html
 html
   head
-
     mixin callout(title, href)
-      .callout #[= title] (#[a(href=href) read more...])
+      .callout(style="display:none") #[= title] (#[a(href=href) read more...])
         a#closeButton(onclick="this.parentElement.style.display='none';") &times;
-        script.
-          (function(boxes){
-            var box = boxes[boxes.length - 1], y = -box.clientHeight, w = 3000, o = 1;
-            box.style.top = y + "px";
-            var timer = setInterval(function(){
-              if(y < 0){
-                y += 2  ;
-                box.style.top = Math.min(0, y) + "px";
-              }
-              else if(w > 0) {
-                w -= 10;
-              }
-              else if(o > 0){
-                o -= 0.025;
-                box.style.opacity = o;
-              }
-              else {
-                clearInterval(timer);
-                box.style.display = "none";
-              }
-            }, 10);
-          })(document.querySelectorAll(".callout"));
 
     != lang("en")
     != viewport(true)
@@ -54,3 +31,39 @@ html
     footer
       block footer
         | Copyright &copy; Highland FRS LLC, 2010 - 2017. #[i The Raiser's Edge]&trade; and #[i Raiser's Edge NXT]&trade; are registered trademarks of Blackbaud&reg;, Inc. #[i Crystal Reports]&trade; is a registered trademark of SAP.
+    script.
+      (function(){
+        var lastBoxPromise = Promise.resolve();
+        var boxes = document.querySelectorAll(".callout");
+        for(var i = 0; i < boxes.length; ++i) {
+          lastBoxPromise = lastBoxPromise.then(function(box) {
+            var y = -150,
+              w = 3000,
+              o = 1;
+
+            box.style.top = y + "px";
+            box.style.display = "";
+
+            return new Promise(function (resolve, reject){
+              var timer = setInterval(function(){
+                if(y < 0){
+                  y += 2  ;
+                  box.style.top = Math.min(0, y) + "px";
+                }
+                else if(w > 0) {
+                  w -= 10;
+                }
+                else if(o > 0){
+                  o -= 0.025;
+                  box.style.opacity = o;
+                }
+                else {
+                  clearInterval(timer);
+                  box.style.display = "none";
+                  resolve();
+                }
+              }, 10);
+            });
+          }.bind(window, boxes[i]));
+        }
+      })();
