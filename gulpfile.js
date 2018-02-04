@@ -8,7 +8,7 @@ function jsBuild(name) {
 
 var gulp = require("gulp"),
   pkg = require("./package.json"),
-  marigold = require("marigold-build").setup(gulp, pkg),
+  marigold = require("marigold").setup(gulp, pkg),
 
   jsTasks = [
     "purchase",
