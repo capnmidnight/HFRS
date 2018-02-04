@@ -77,7 +77,7 @@ function getText(url, options) {
     amount: 1500,
     name: "CPT Mr. Who?",
     description: "How Bad Add/Sals Can Sink Your Stewardship",
-    image: "https://www.highlandfrs.com/images/logo.min.png",
+    image: "https://www.highlandas.com/images/logo.min.png",
     locale: "auto",
     zipCode: true
   });

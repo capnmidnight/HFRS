@@ -1,9 +1,9 @@
 {
-  "name": "hfrs",
+  "name": "highland-advancement-services",
   "version": "4.1.2",
   "private": true,
   "author": "Sean T. McBeth",
-  "description": "Highland FRS is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations.",
+  "description": "Highland Advancement Services is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations.",
   "keywords": [
     "Consulting",
     "data",
@@ -15,7 +15,7 @@
     "reporting",
     "software development"
   ],
-  "homepage": "http://www.highlandfrs.com/",
+  "homepage": "http://www.highlandas.com/",
   "repository": "http://www.github.com/capnmidnight/HFRS.git",
   "license": "none",
   "engines": {

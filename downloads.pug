@@ -1,7 +1,7 @@
 extends ./templates/main.pug
 
 append head
-  != identity(pkg.homepage + filename, "Highland FRS", "Downloads", pkg.description, pkg.keywords)
+  != identity(pkg.homepage + filename, "Highland AS", "Downloads", pkg.description, pkg.keywords)
   style #mainLogo{display:block;margin:0 auto;width:50%;}
 
 block content
@@ -10,4 +10,4 @@ block content
     h3 Downloads
     script(src= fileRoot + "purchase" + jsExt)
 
-    a(href=fileRoot + "index.html") back
+    a(href="/") back

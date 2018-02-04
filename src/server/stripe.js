@@ -7,7 +7,7 @@ const stripe = require("stripe"),
 
 
 const dataFilePath = path.join(__dirname, "fileData.json"),
-      logo = "https://www.highlandfrs.com/images/logo.min.png",
+      logo = "https://www.highlandas.com/images/logo.min.png",
       icons = {
         ppt: "powerpoint",
         pptx: "powerpoint",

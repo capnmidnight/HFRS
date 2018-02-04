@@ -8,7 +8,7 @@ html
     != lang("en")
     != viewport(true)
     != webapp("#002610")
-    != screenshot("http://www.highlandfrs.com/images/logo" + jpgExt)
+    != screenshot("http://www.highlandas.com/images/logo" + jpgExt)
     != twitter("@HighlandFRS")
     != liveReload
     != css(fileRoot + "css/style" + cssExt)
@@ -17,20 +17,20 @@ html
       script(src="https://js.stripe.com/v3/")
   body
     header
-      a#mainLogoWrapper(href=fileRoot + "index.html"): img#mainLogo(src=fileRoot + "images/logo" + svgExt, alt="logo", title="Highland FRS logo")
+      a#mainLogoWrapper(href="/"): img#mainLogo(src=fileRoot + "images/logo" + svgExt, alt="logo", title="Highland AS logo")
       nav
         ul
-          li: a(href=fileRoot + "index.html#services_anchor") services
-          li: a(href=fileRoot + "index.html#about_anchor") about
+          li: a(href="/#services") services
+          li: a(href="/#about") about
           li: != offsite("https://calendly.com/melody-mcbeth", "contact")
-          li: a(href=fileRoot + "index.html#customers_anchor") customers
-          li: a(href=fileRoot + "index.html#news_anchor") news
-          li: a(href=fileRoot + "downloads.html") downloads
+          li: a(href="/#customers") customers
+          li: a(href="/#news") news
+          li: a(href="/downloads.html") downloads
     section#content
       block content
     footer
       block footer
-        | Copyright &copy; Highland FRS LLC, 2010 - 2017. #[i The Raiser's Edge]&trade; and #[i Raiser's Edge NXT]&trade; are registered trademarks of Blackbaud&reg;, Inc. #[i Crystal Reports]&trade; is a registered trademark of SAP.
+        | Copyright &copy; Highland AS LLC, 2010 - 2017. #[i The Raiser's Edge]&trade; and #[i Raiser's Edge NXT]&trade; are registered trademarks of Blackbaud&reg;, Inc. #[i Crystal Reports]&trade; is a registered trademark of SAP.
     script.
       (function(){
         var lastBoxPromise = Promise.resolve();
