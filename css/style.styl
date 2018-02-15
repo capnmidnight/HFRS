@@ -326,15 +326,17 @@ article > section
   background-color white
   margin-right 1em
 
-.leadership ul
+.leadership ul, .partners ul
   list-style none
   font-size 80%
   padding 0
 
-.leadership > div > img
+.leadership > div > img, .partners > div > img
   width 80%
-  border-radius 50%
   margin 1em 10%
+  
+.leadership > div > img
+  border-radius 50%
 
 #customer_logos > a > img
   max-width calc(100% - 20px)
@@ -535,7 +537,7 @@ article:nth-child(even)
   #main_services
     display none
 
-  .leadership > div
+  .leadership > div, .partners > div
     width 33%
 
   #news > blockquote > img
