@@ -530,7 +530,9 @@ article:nth-child(even) {
   #main_services {
     display: none;
   }
-  .leadership > div,
+  .leadership > div {
+    width: 49%;
+  }
   .partners > div {
     width: 33%;
   }
