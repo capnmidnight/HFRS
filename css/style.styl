@@ -332,8 +332,13 @@ article > section
   padding 0
 
 .leadership > div > img, .partners > div > img
-  width 80%
+  width 50%
   margin 1em 10%
+  border solid 20px white
+  box-shadow 0 0 25px #ccc
+  
+.partners > div > img
+  padding 10px
   
 .leadership > div > img
   border-radius 50%
@@ -476,7 +481,12 @@ article:nth-child(even)
 
 #services > section > div
   min-height calc(200px + 2em)
-
+    
+.tagline
+  position relative
+  display block    
+  width 50%
+  left 25%
 
 @media (max-width 768px)
   nav
@@ -489,6 +499,9 @@ article:nth-child(even)
 
   #mainLogo
     width 100%
+    
+  #taglineHoriz
+    display none
 
 
 @media (min-width 769px)
@@ -496,6 +509,9 @@ article:nth-child(even)
     min-width 200px
     height 18em
     width 30%
+    
+  #taglineVert
+    display none
 
   header > nav
     font-size 26pt

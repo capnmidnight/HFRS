@@ -41,7 +41,7 @@ var gulp = require("gulp"),
         STRIPE_PRIVATE_KEY: "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
       },
       path: ".",
-      url: "downloads.html",
+      url: "",
       express: require("./src/server/stripe")
     });
 
