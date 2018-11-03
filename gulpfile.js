@@ -54,4 +54,4 @@ marigold.taskify(
     default: devServer
   });
 
-gulp.task("test", ["release"], devServer);
+gulp.task("test", gulp.series(["release"]), devServer);

@@ -10,6 +10,10 @@ body
 
 #customer_logos
   text-align center
+  
+  ul
+    column-count 2
+    margin 10px
 
 .callout
   background-color #fffe8c
@@ -187,8 +191,13 @@ nav > ul
   margin-top 2em
   margin-bottom 2em
 
-#alt_services > .button
-  margin-bottom 1em
+#alt_services
+  .button
+    margin-bottom 1em
+    
+  p
+    font-size 120%
+    font-weight bold
 
 header
   width 100%
@@ -334,18 +343,14 @@ article > section
 .leadership > div > img, .partners > div > img
   width 50%
   margin 1em 10%
-  border solid 20px white
+  border solid 10px white
   box-shadow 0 0 25px #ccc
-  
-.partners > div > img
-  padding 10px
   
 .leadership > div > img
   border-radius 50%
-
-#customer_logos > a > img
-  max-width calc(100% - 20px)
-  margin 10px
+  
+.partners > div > img
+  padding 10px
 
 input[type=text],
 input[type=email],
@@ -418,6 +423,19 @@ label
 
 .primary:active
   background-color #38AB58
+
+.secondary
+  background-color #00BB27 !important
+  background-image linear-gradient(0deg, rgba(0, 0, 0, .25), rgba(0, 0, 0, 0)) !important
+  color rgb(255, 255, 255) !important
+  padding 10px !important
+  font-size 80% !important
+
+.secondary:hover
+  background-color #15DC3E !important
+
+.secondary:active
+  background-color #38AB58 !important
 
 header,
 article:nth-child(odd)
@@ -553,8 +571,15 @@ article:nth-child(even)
   #main_services
     display none
 
-  .leadership > div
-    width 49%
+  .leadership
+    display grid
+    grid-gap 10px
+    grid-template-areas "a a a"
+    grid-auto-columns 1fr
+  
+  .consultants
+    grid-template-areas "a a"
+    grid-auto-columns 1fr
   
   .partners > div
     width 33%

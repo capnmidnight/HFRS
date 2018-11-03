@@ -26,10 +26,10 @@
     "dev": "gulp"
   },
   "devDependencies": {
-    "marigold": "^1.0.0"
+    "marigold": "^1.0.2"
   },
   "dependencies": {
-    "marigold-server": "^1.0.0",
-    "stripe": "^5.3.0"
+    "marigold-server": "^1.0.1",
+    "stripe": "^5.10.0"
   }
 }

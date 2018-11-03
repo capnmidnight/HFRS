@@ -10,7 +10,6 @@ html
     != webapp("#002610")
     != screenshot("http://www.highlandas.com/images/logo" + jpgExt)
     != twitter("@HighlandFRS")
-    != liveReload
     != css(fileRoot + "css/style" + cssExt)
     block head
       script(src=fileRoot + "header" + jsExt, async, defer)
@@ -22,15 +21,19 @@ html
         ul
           li: a(href="/#services") services
           li: a(href="/#about") about
-          li: != offsite("https://calendly.com/melody-mcbeth", "contact")
-          li: a(href="/#customers") customers
+          li: a(href="/#customers") clients
           // li: a(href="/#news") news
-          li: a(href="/downloads.html") downloads
+          li: a(href="/downloads.html") resources
+          li: != offsite("https://twitter.com/HighlandFRS", "HighlandAS on Twitter")
+          li: a.secondary.button(href="https://calendly.com/melody-mcbeth", target="_blank", rel="noopener", title="Schedule a meeting")
+            | Start now
+            | |&nbsp;
+            small Schedule a conversation!
     section#content
       block content
     footer
       block footer
-        | Copyright &copy; Highland AS LLC, 2010 - 2017. Various trademarks held by their respective owners.
+        | Copyright &copy; Highland AS LLC, 2010 - #[script document.write(new Date().getFullYear())]. Various trademarks held by their respective owners.
     script.
       (function(){
         var lastBoxPromise = Promise.resolve();
