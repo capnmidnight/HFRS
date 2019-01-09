@@ -1,6 +1,7 @@
 ﻿mixin social(link)
   li.social: a(href=link.href, target="_blank", rel="noopener")
-    span(class="icon-" + link.type, title=link.type + " logo") #[= link.desc]
+    span(class="icon-" + link.type, title=link.type + " logo")
+    != link.desc
 
 doctype html
 html
