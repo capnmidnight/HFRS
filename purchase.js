@@ -147,16 +147,14 @@ function getObject(url, options) {
           form.appendChild(script);
         }
         else {
-          const button = document.createElement("button");
-          button.type = "button";
-          button.className = "stripe-button-el";
-          button.addEventListener("click", () =>
-            document.location = path);
-          action.appendChild(button);
+          const link = document.createElement("a");
+          link.className = "stripe-button-el";
+          link.href = path;
+          action.appendChild(link);
 
           const label = document.createElement("span");
           label.appendChild(document.createTextNode("Download"));
-          button.appendChild(label);
+          link.appendChild(label);
         }
       }
     }
