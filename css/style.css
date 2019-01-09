@@ -399,7 +399,8 @@ footer {
   padding-bottom: 1em;
 }
 .announcement > img,
-.events > img {
+.events > img,
+.events > a > img {
   width: 100%;
 }
 label,
