@@ -1,9 +1,10 @@
-﻿article#customers
+﻿mixin customer(url, title, location)
+  li: != offsite(url, `${title} - ${location}`)
+
+article#customers
   h3 Customers
   p The professionals at Highland Advancement Solutions have been able to help many fundraising operations across the US. A few are listed below.
   section#customer_logos
-    mixin customer(url, title, location)
-      li: != offsite(url, `${title} - ${location}`)
     ul
       +customer("http://www.augusta.edu/", "Augusta University", "Augusta, Georgia")
       +customer("http://www.brookwood.edu/", "Brookwood School", "Manchester, Massachusetts")

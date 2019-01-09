@@ -89,13 +89,20 @@ img.thumbnail {
 .icon-telephone {
   width: 33px;
   height: 33px;
+}
+.bio > ul.social .icon-linkedin,
+.bio > ul.social .icon-twitter,
+.bio > ul.social .icon-github,
+.bio > ul.social .icon-pdf,
+.bio > ul.social .icon-powerpoint,
+.bio > ul.social .icon-telephone {
   margin-right: 7px;
 }
 .icon-linkedin {
   background-position: 0 -99px;
 }
 .icon-twitter {
-  background-position: 0 -131px;
+  background-position: 0 -132px;
 }
 .icon-github {
   background-position: 0 -164px;
@@ -201,6 +208,9 @@ nav > ul > li > a {
 #alt_services p {
   font-size: 120%;
   font-weight: bold;
+}
+#alt_services > ul > li {
+  font-size: 110%;
 }
 header {
   width: 100%;
@@ -335,7 +345,7 @@ article > section div div {
 }
 .leadership > div > img,
 .partners > div > img {
-  width: 50%;
+  width: 67%;
   margin: 1em 10%;
   border: solid 10px #fff;
   box-shadow: 0 0 25px #ccc;
@@ -573,6 +583,7 @@ article:nth-child(even) {
   .consultants {
     grid-template-areas: "a a";
     grid-auto-columns: 1fr;
+    padding: 0 16.67%;
   }
   .partners > div {
     width: 33%;

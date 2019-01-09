@@ -1,9 +1,10 @@
-﻿doctype html
+﻿mixin social(link)
+  li.social: a(href=link.href, target="_blank", rel="noopener")
+    span(class="icon-" + link.type, title=link.type + " logo") #[= link.desc]
+
+doctype html
 html
   head
-    mixin callout(title, href)
-      .callout(style="display:none") #[= title] (#[a(href=href) read more...])
-        a#closeButton(onclick="this.parentElement.style.display='none';") &times;
 
     != lang("en")
     != viewport(true)
@@ -24,7 +25,18 @@ html
           li: a(href="/#customers") clients
           // li: a(href="/#news") news
           li: a(href="/downloads.html") resources
-          li: != offsite("https://twitter.com/HighlandAdvSol", "HighlandAdvSol on Twitter")
+          +social({
+            type: "twitter",
+            href: "https://twitter.com/HighlandAdvSol"
+          })
+          +social({
+            type: "linkedin",
+            href: "https://www.linkedin.com/company/highland-as-llc/about/"
+          })
+          +social({
+            type: "facebook",
+            href: "https://www.facebook.com/HighlandAS/?eid=ARAUEyvRshz77nWVzQFfYUz-Y7BJBZXyBP1CPatlBtRj_UAdCR3MbFr_xmPcTGlDtLpW8ny0OP1-dEns"
+          })
           li: a.secondary.button(href="https://calendly.com/melody-mcbeth", target="_blank", rel="noopener", title="Schedule a meeting")
             | Start now
             | |&nbsp;
@@ -33,40 +45,42 @@ html
       block content
     footer
       block footer
-        | Copyright &copy; Highland AS LLC, 2010 - #[script document.write(new Date().getFullYear())]. Various trademarks held by their respective owners.
-    script.
-      (function(){
-        var lastBoxPromise = Promise.resolve();
-        var boxes = document.querySelectorAll(".callout");
-        for(var i = 0; i < boxes.length; ++i) {
-          lastBoxPromise = lastBoxPromise.then(function(box) {
-            var y = -150,
-              w = 3000,
-              o = 1;
+        | Copyright &copy; Highland AS LLC, 2010 - #[script document.write(new Date().getFullYear())]. 100% Veteran-owned business. Various trademarks held by their respective owners.
 
-            box.style.top = y + "px";
-            box.style.display = "";
+      
+  script.
+    (function(){
+      var lastBoxPromise = Promise.resolve();
+      var boxes = document.querySelectorAll(".callout");
+      for(var i = 0; i < boxes.length; ++i) {
+        lastBoxPromise = lastBoxPromise.then(function(box) {
+          var y = -150,
+            w = 3000,
+            o = 1;
 
-            return new Promise(function (resolve, reject){
-              var timer = setInterval(function(){
-                if(y < 0){
-                  y += 2  ;
-                  box.style.top = Math.min(0, y) + "px";
-                }
-                else if(w > 0) {
-                  w -= 10;
-                }
-                else if(o > 0){
-                  o -= 0.025;
-                  box.style.opacity = o;
-                }
-                else {
-                  clearInterval(timer);
-                  box.style.display = "none";
-                  resolve();
-                }
-              }, 10);
-            });
-          }.bind(window, boxes[i]));
-        }
-      })();
+          box.style.top = y + "px";
+          box.style.display = "";
+
+          return new Promise(function (resolve, reject){
+            var timer = setInterval(function(){
+              if(y < 0){
+                y += 2;
+                box.style.top = Math.min(0, y) + "px";
+              }
+              else if(w > 0) {
+                w -= 10;
+              }
+              else if(o > 0){
+                o -= 0.025;
+                box.style.opacity = o;
+              }
+              else {
+                box.style.display = "none";
+                clearInterval(timer);
+                resolve();
+              }
+            }, 10);
+          });
+        }.bind(window, boxes[i]));
+      }
+    })();

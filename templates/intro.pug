@@ -1,10 +1,12 @@
-﻿article#intro
-  //- +callout(
-  //-   "Highland Advancement Solutions Welcomes Donor Relations Guru Partnership",
-  //-   fileRoot + "partnership.html#drg")
-  //- +callout(
-  //-   "Melody Interviews with \"Lead to Succeed\" Podcast.",
-  //-   fileRoot + "#podcast")
+﻿mixin callout(title, href, skipTimer)
+  .callout(style="display:none", data-skiptimer=skipTimer||false) #[= title] (#[a(href=href) read more...])
+    a#closeButton(onclick="this.parentElement.style.display='none';") &times;
+
+article#intro
+  +callout(
+    "Register for our Development Operations Symposium at Southwestern Oklahoma State University.",
+    "https://www.eventbrite.com/e/development-operations-symposium-central-oklahoma-tickets-54173163390",
+    true)
 
   img.tagline#taglineHoriz(src=fileRoot + "images/headline-horiz" + svgExt, alt="tagline", title="Manage data, build relationships")
   img.tagline#taglineVert(src=fileRoot + "images/headline-vert" + svgExt, alt="tagline", title="Manage data, build relationships")

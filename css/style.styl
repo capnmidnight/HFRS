@@ -80,7 +80,7 @@ img.thumbnail
 
 .icon-data
   background-position 0 -400px
-
+  
 .icon-linkedin,
 .icon-twitter,
 .icon-github,
@@ -89,13 +89,21 @@ img.thumbnail
 .icon-telephone
   width 33px
   height 33px
-  margin-right 7px
+
+.bio > ul.social
+  .icon-linkedin,
+  .icon-twitter,
+  .icon-github,
+  .icon-pdf,
+  .icon-powerpoint,
+  .icon-telephone
+    margin-right 7px
 
 .icon-linkedin
   background-position 0 -99px
 
 .icon-twitter
-  background-position 0 -131px
+  background-position 0 -132px
 
 .icon-github
   background-position 0 -164px
@@ -198,6 +206,9 @@ nav > ul
   p
     font-size 120%
     font-weight bold
+    
+  > ul > li
+    font-size 110%
 
 header
   width 100%
@@ -341,7 +352,7 @@ article > section
   padding 0
 
 .leadership > div > img, .partners > div > img
-  width 50%
+  width 67%
   margin 1em 10%
   border solid 10px white
   box-shadow 0 0 25px #ccc
@@ -580,6 +591,7 @@ article:nth-child(even)
   .consultants
     grid-template-areas "a a"
     grid-auto-columns 1fr
+    padding 0 16.67%
   
   .partners > div
     width 33%
