@@ -7,6 +7,9 @@ req.onload = function () {
         && req.response.length > 0) {
         buildStore(JSON.parse(req.response));
     }
+    else {
+        console.error(req);
+    }
 };
 
 req.open("GET", "/store-data");
@@ -17,7 +20,7 @@ req.send();
 function buildStore(evt) {
     var stripe = evt.stripe,
         files = evt.files,
-        table = document.querySelector("#downloads");
+        table = document.querySelector("#downloadsList");
 
     for (var id in files) {
         var info = files[id];
