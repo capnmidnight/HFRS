@@ -1,3 +1,3 @@
 require("marigold-server")({
-  express: require("./stripe")
+    express: require("./stripe")
 });
