@@ -33,3 +33,8 @@ contacts_list
 server/controllers/secrets.json
 server/data/secrets.json
 /*.map
+/.vs/
+/[Bb]in/
+/[Oo]bj/
+*.*proj.user
+*.*proj
