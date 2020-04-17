@@ -2,13 +2,15 @@ var req = new XMLHttpRequest();
 req.onerror = console.error.bind(console);
 req.onabort = console.error.bind(console);
 req.onload = function () {
-    if (req.status < 400
-        && typeof req.response === "string"
+    if (req.status >= 400) {
+        console.error(req);
+    }
+    else if(typeof req.response === "string"
         && req.response.length > 0) {
         buildStore(JSON.parse(req.response));
     }
-    else {
-        console.error(req);
+    else if (typeof req.response === "object") {
+        buildStore(req.response);
     }
 };
 
@@ -20,7 +22,8 @@ req.send();
 function buildStore(evt) {
     var stripe = evt.stripe,
         files = evt.files,
-        table = document.querySelector("#downloadsList");
+        realTable = document.querySelector("#downloadsList"),
+        table = document.createElement("tbody");
 
     for (var id in files) {
         var info = files[id];
@@ -110,4 +113,6 @@ function buildStore(evt) {
             }
         }
     }
+
+    realTable.appendChild(table);
 }
