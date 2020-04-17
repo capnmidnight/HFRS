@@ -1,6 +1,6 @@
 var req = new XMLHttpRequest();
-req.onerror = function (evt) { reject(new Error("Request error: " + evt.message)) };
-req.onabort = function (evt) { reject(new Error("Request abort: " + evt.message)) };
+req.onerror = console.error.bind(console);
+req.onabort = console.error.bind(console);
 req.onload = function () {
     if (req.status < 400
         && typeof req.response === "string"
@@ -17,7 +17,7 @@ req.send();
 function buildStore(evt) {
     var stripe = evt.stripe,
         files = evt.files,
-        table = document.createElement("table");
+        table = document.querySelector("#downloads");
 
     for (var id in files) {
         var info = files[id];
@@ -107,6 +107,4 @@ function buildStore(evt) {
             }
         }
     }
-
-    lastScript.parentElement.replaceChild(table, lastScript);
 }

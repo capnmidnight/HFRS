@@ -38,3 +38,4 @@ server/data/secrets.json
 /[Oo]bj/
 *.*proj.user
 *.*proj
+*.sln
