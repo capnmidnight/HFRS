@@ -19,6 +19,7 @@ chmod 600 ~/.ssh/id_rsa
 nano ~/.ssh/id_rsa # <- paste it in
 
 ## open the firewall
+sudo ufw allow ssh
 sudo ufw allow http
 sudo ufw allow https
 
@@ -33,7 +34,7 @@ git submodule update --recursive --depth 1
 mkdir ~/bin
 
 ## test
-cd src/HFRS
+cd ~/src/HFRS/HFRS
 dotnet run
 
 ## CTRL+C to cancel test, then publish
@@ -44,6 +45,8 @@ cd ~/bin/HFRS
 ./HFRS
 
 ## CTRL+C to cancel, then publish the systemd service
+sudo cp ~/src/HFRS/etc/HFRS.service ~/
+vim ~/HFRS.service
 sudo cp ~/HFRS.service /etc/systemd/system/
 sudo systemctl daemon-reload
 
