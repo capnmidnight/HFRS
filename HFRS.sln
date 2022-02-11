@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HFRS", "HFRS\HFRS.csproj", "{BD410E25-39F8-4121-9A62-589424C7D3DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Juniper.Root", "Juniper\src\Juniper.Root\Juniper.Root.csproj", "{CEB635CE-0501-4280-BE84-B36255DF17C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Juniper.Server", "Juniper\src\Juniper.Server\Juniper.Server.csproj", "{ADF8D05D-5E76-4E4E-A7FD-48F188245B41}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Legacy", "Legacy\", "{381A8E93-3C7A-4750-817C-6D2D2D4B33C5}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60168"
+		Debug.AspNetCompiler.PhysicalPath = "Legacy\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60168\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60168"
+		Release.AspNetCompiler.PhysicalPath = "Legacy\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60168\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "60168"
+		SlnRelativePath = "Legacy\"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "etc", "etc", "{5F4E0095-718B-4F5A-AF3E-0D555A363F44}"
+	ProjectSection(SolutionItems) = preProject
+		etc\deploy.sh = etc\deploy.sh
+		etc\get-latest.sh = etc\get-latest.sh
+		etc\HFRS.service = etc\HFRS.service
+		etc\install.sh = etc\install.sh
+		etc\rebuild.sh = etc\rebuild.sh
+		etc\update-service.sh = etc\update-service.sh
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Juniper.Processes", "Juniper\src\Juniper.Processes\Juniper.Processes.csproj", "{12519942-08BE-40CF-B12B-FF6D68D1708E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD410E25-39F8-4121-9A62-589424C7D3DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD410E25-39F8-4121-9A62-589424C7D3DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD410E25-39F8-4121-9A62-589424C7D3DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD410E25-39F8-4121-9A62-589424C7D3DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEB635CE-0501-4280-BE84-B36255DF17C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEB635CE-0501-4280-BE84-B36255DF17C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEB635CE-0501-4280-BE84-B36255DF17C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEB635CE-0501-4280-BE84-B36255DF17C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADF8D05D-5E76-4E4E-A7FD-48F188245B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF8D05D-5E76-4E4E-A7FD-48F188245B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF8D05D-5E76-4E4E-A7FD-48F188245B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF8D05D-5E76-4E4E-A7FD-48F188245B41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{381A8E93-3C7A-4750-817C-6D2D2D4B33C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{381A8E93-3C7A-4750-817C-6D2D2D4B33C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{381A8E93-3C7A-4750-817C-6D2D2D4B33C5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{381A8E93-3C7A-4750-817C-6D2D2D4B33C5}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{12519942-08BE-40CF-B12B-FF6D68D1708E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12519942-08BE-40CF-B12B-FF6D68D1708E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12519942-08BE-40CF-B12B-FF6D68D1708E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12519942-08BE-40CF-B12B-FF6D68D1708E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1ED3843-9165-410D-B778-74B3601C6EB1}
+	EndGlobalSection
+EndGlobal

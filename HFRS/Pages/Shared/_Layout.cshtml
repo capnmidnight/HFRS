@@ -1,29 +1,24 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en-us">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Language" content="en">
-    <meta name="viewport" content="width=device-width, shrink-to-fit=0, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=0, initial-scale=1.0">
     <meta name="apple-mobile-web-app-status-bar-style" content="#002610">
     <meta name="theme-color" content="#002610">
-    <meta name="apple-touch-fullscreen" content="yes">
-    <meta name="web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta property="og:image" content="http://www.highlandas.com/images/logo.jpg">
-    <meta name="twitter:image" content="http://www.highlandas.com/images/logo.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@HighlandAdvSol">
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/style.css" />
+    <title>Highland AS: @ViewData["Title"]</title>
+    @RenderSection("Head", false)
 </head>
 <body>
     <header>
-        <a id="mainLogoWrapper" href="/"><img id="mainLogo" src="images/logo.min.svg" alt="logo" title="Highland AS logo"></a><nav>
+        <a id="mainLogoWrapper" href="/"><img id="mainLogo" src="~/images/logo.min.svg" alt="logo" title="Highland AS logo"></a><nav>
             <ul>
                 <li><a href="/#services">services</a></li>
-                <li><a href="/support.html">support</a></li>
+                <li><a href="~/support">support</a></li>
                 <li><a href="/#about">about</a></li>
                 <li><a href="/#customers">clients</a></li>
-                <li><a href="/downloads.html">resources</a></li>
+                <li><a href="~/downloads">resources</a></li>
                 <li class="social"><a href="https://www.linkedin.com/company/highland-as-llc/about/" target="_blank" rel="noopener"><span class="icon-linkedin" title="linkedin logo"></span></a></li>
                 <li class="social"><a href="https://twitter.com/HighlandAdvSol" target="_blank" rel="noopener"><span class="icon-twitter" title="twitter logo"></span></a></li>
                 <li class="social"><a href="https://www.facebook.com/HighlandAS/?eid=ARAUEyvRshz77nWVzQFfYUz-Y7BJBZXyBP1CPatlBtRj_UAdCR3MbFr_xmPcTGlDtLpW8ny0OP1-dEns" target="_blank" rel="noopener"><span class="icon-facebook" title="facebook logo"></span></a></li>
@@ -36,20 +31,6 @@
             </ul>
         </nav>
     </header>
-    <section id="content">
-        <article id="downloads">
-            <h3>Downloads</h3>
-            <script src="https://js.stripe.com/v3/"></script>
-            <table id="downloadsList"></table>
-            <script src="purchase.js"></script>
-            <a href="/">back</a>
-        </article>
-    </section>
-    <footer>
-        Copyright &copy; Highland AS LLC, 2010 -
-        <script src="copyright.js"></script>. 
-        100% Veteran-owned business. Various trademarks held by their respective owners.
-    </footer>
-    <script src="callout.js"></script>
+    @RenderBody()
 </body>
 </html>

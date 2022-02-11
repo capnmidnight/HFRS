@@ -1,0 +1,26 @@
+[Unit]
+Description=HFRS ASP.NET Core web app
+
+[Service]
+Type=notify
+SyslogIdentifier=HFRS
+
+WorkingDirectory=/home/azureuser/bin/HFRS
+ExecStart=/home/azureuser/bin/HFRS/HFRS
+User=azureuser
+
+Restart=always
+RestartSec=5
+KillSignal=SIGINT
+
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+Environment=DOTNET_ROOT=/usr/share/dotnet
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=ASPNETCORE_URLS=http://*:80;https://*:443
+Environment=STRIPE__PRIVATE_KEY=<elided>
+Environment=STRIPE__PUBLIC_KEY=<elided>
+
+[Install]
+WantedBy=multi-user.target

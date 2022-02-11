@@ -1,0 +1,71 @@
+﻿@page "{id?}"
+@model HFRS.Pages.DownloadsModel
+@{
+    Layout = "_MainLayout";
+    ViewData["Title"] = "Resources";
+}
+
+@section Head
+{
+<link type="text/css" rel="stylesheet" href="https://checkout.stripe.com/v3/checkout/button-qpwW2WfkB0oGWVWIASjIOQ.css">
+}
+
+<article id="downloads">
+    <h3>Downloads</h3>
+    <script src="https://js.stripe.com/v3/"></script>
+    <table id="downloadsList">
+        <tbody>
+            @foreach (var entry in Model.Downloads.Values)
+            {
+                @if (entry is not null && entry.Amount is null)
+                {
+                    <tr>
+                        <td class="item-title @(entry.IsAttachment ? "item-attachment": null)">
+                            <dl>
+                                <dt>
+                                    <span class="download-icon icon-@entry.Icon" title="@entry.Type"></span>
+                                    @entry.Name
+                                    <span> (@entry.Type?.ToUpperInvariant() @entry.Size)</span>
+                                </dt>
+                                @if (!entry.IsAttachment)
+                                {
+                                    <dd class="item-description">
+                                        @entry.Description
+                                    </dd>
+                                }
+                            </dl>
+                        </td>
+                        <td class="item-price">
+                            @entry.Price
+                        </td>
+                        @if (entry.Amount is null)
+                        {
+                            <td class="item-action">
+                                <a class="stripe-button-el" href="~/downloads/@entry.ID">
+                                    <span>Download</span>
+                                </a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="item-action">
+                                <form method="POST" action="~/Downloads/@entry.ID">
+                                    <script class="stripe-button active"
+                                src="https://checkout.stripe.com/checkout.js"
+                                data-key="pk_live_qXCKiYBbs9XDylWeAJ9N6cOC"
+                                data-image="@Model.StripePublicKey"
+                                data-locale="auto"
+                                data-zip-code="true"></script>
+                                    <button type="submit" class="stripe-button-el" style="visibility: visible">
+                                        <span style="display: block; min-height: 30px;">Pay with Card</span>
+                                    </button>
+                                </form>
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a href="~/">back</a>
+</article>

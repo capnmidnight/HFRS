@@ -1,0 +1,10 @@
+﻿@page "{statusCode:int}"
+@model HFRS.Pages.StatusModel
+@{
+    Layout = "_MainLayout";
+    ViewData["Title"] = Model.MyStatusCode;
+}
+
+<article>
+    <img src="https://http.cat/@Model.MyStatusCode" style="display:block;margin:0 auto" />
+</article>

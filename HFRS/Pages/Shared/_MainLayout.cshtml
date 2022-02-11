@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@section Head 
+{
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta property="og:image" content="http://www.highlandas.com/images/logo.jpg">
+    <meta name="twitter:image" content="http://www.highlandas.com/images/logo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@@HighlandAdvSol">
+    <meta name="description" content="Highland Advancement Solutions is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations.">
+    <meta name="keywords" content="Consulting, data, integrity, data integry, non-profits, fund raising, stewardship, reporting, software development">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://www.highlandas.com/@Context.Request.Path.Value">
+    <meta property="og:site_name" content="Highland AS">
+    <meta property="og:title" content="Highland AS: @ViewData["Title"]">
+    <meta property="og:description" content="Highland Advancement Solutions is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations.">
+    <meta name="twitter:title" content="Highland AS: @ViewData["Title"]">
+    <meta name="twitter:description" content="Highland Advancement Solutions is a full-service consultancy focusing on assisting fundraising departments of non-profit organizations.">
+    <script type="module" async defer src="~/js/callout.js"></script>
+    @RenderSection("Head", false)
+}
+
+<section id="content">
+    @RenderBody()
+</section>
+
+<footer>
+    Copyright &copy; Highland AS LLC, 2010 - @DateTime.Now.Year. 100% Veteran-owned business. Various trademarks held by their respective owners.
+</footer>
