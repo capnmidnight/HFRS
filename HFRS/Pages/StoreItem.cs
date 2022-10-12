@@ -109,7 +109,7 @@ namespace HFRS.Pages
                     _contentType = MediaType.GuessByFileName(FileName).FirstOrDefault();
                 }
 
-                return _contentType ?? MediaType.Application.Octet_Stream;
+                return _contentType ?? MediaType.Application_Octet_Stream;
             }
         }
     }

@@ -71,7 +71,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ServiceStack.Stripe" Version="6.0.2" />
+    <PackageReference Include="ServiceStack.Stripe" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>

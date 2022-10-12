@@ -40,8 +40,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "etc", "etc", "{5F4E0095-718
 		etc\update-service.sh = etc\update-service.sh
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Juniper.Processes", "Juniper\src\Juniper.Processes\Juniper.Processes.csproj", "{12519942-08BE-40CF-B12B-FF6D68D1708E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,10 +62,6 @@ Global
 		{381A8E93-3C7A-4750-817C-6D2D2D4B33C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{381A8E93-3C7A-4750-817C-6D2D2D4B33C5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{381A8E93-3C7A-4750-817C-6D2D2D4B33C5}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{12519942-08BE-40CF-B12B-FF6D68D1708E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12519942-08BE-40CF-B12B-FF6D68D1708E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12519942-08BE-40CF-B12B-FF6D68D1708E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12519942-08BE-40CF-B12B-FF6D68D1708E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

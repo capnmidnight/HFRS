@@ -4,21 +4,23 @@ namespace Yarrow.Server
 {
     public class Program
     {
-        public static void Main(string[] args) => 
+        private static readonly DefaultConfiguration.PortOptions ports = new()
+        {
+            HttpPort = 80,
+            HttpsPort = 443
+        };
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+                Host.CreateDefaultBuilder(args)
+                    .ConfigureJuniperHost<Program>(ports);
+        public static void Main(string[] args) =>
             CreateHostBuilder(args)
                 .Build()
                 .Run();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureJuniperHost<Program>(new DefaultConfiguration.PortOptions
-                {
-                    HttpPort = 80,
-                    HttpsPort = 443
-                });
-
         private IWebHostEnvironment Environment { get; }
-        public IConfiguration Configuration { get; }
+
+        private IConfiguration Configuration { get; }
 
         public Program(IConfiguration configuration, IWebHostEnvironment env)
         {
@@ -26,10 +28,10 @@ namespace Yarrow.Server
             Environment = env;
         }
 
-        public void ConfigureServices(IServiceCollection services) => 
+        public void ConfigureServices(IServiceCollection services) =>
             services.ConfigureDefaultServices(Environment);
 
-        public void Configure(IApplicationBuilder app) => 
-            app.ConfigureRequestPipeline(Environment, Configuration);
+        public void Configure(IApplicationBuilder app) =>
+            app.ConfigureRequestPipeline(Environment, Configuration, ports);
     }
 }
