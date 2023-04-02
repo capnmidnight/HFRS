@@ -1,6 +1,6 @@
 using Juniper.Services;
 
-namespace Yarrow.Server
+namespace HFRS
 {
     public class Program
     {

@@ -1,61 +1,41 @@
-# ONE TIME
+# Get .NET 7, Zip, Unzip, and Certbot
+sudo apt-get update
+sudo apt-get install -y \
+    dotnet-sdk-7.0 \
+    zip \
+    unzip
 
-## get dotnet core 3.1
-wget https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
+sudo snap install --classic certbot
 
-sudo apt-get update; \
-  sudo apt-get install -y apt-transport-https && \
-  sudo apt-get update && \
-  sudo apt-get install -y dotnet-sdk-6.0
+# Create a directory for it
+mkdir ~/bin ~/bin/HFRS ~/bin/HFRS/certs
 
-## Setup project to use LettuceEncrypt
-# --> https://github.com/natemcmaster/LettuceEncrypt
+# Unpack the package
+unzip ~/HFRS.linux.zip -d ~/bin/HFRS
 
-## :> install your private key
-touch ~/.ssh/id_rsa
-chmod 600 ~/.ssh/id_rsa
-nano ~/.ssh/id_rsa # <- paste it in
+# Set executable bits
+chmod 700 ~/bin/HFRS/HFRS
 
-## open the firewall
-sudo ufw allow ssh
-sudo ufw allow http
-sudo ufw allow https
+# Install the Let's Encrypt renewal hooks
+sudo cp -r ~/letsencrypt/* /etc/letsencrypt/
+sudo chown -R root:root /etc/letsencrypt/renewal-hooks/*
 
-## clone repo
-mkdir src
-cd src
-git clone --depth 1 git@github.com:capnmidnight/HFRS.git
-cd HFRS
-git submodule init
-git submodule update --recursive --depth 1
+# Copy the Let's Encrypt certs so we can use them from the server
+for certfile in cert.pem chain.pem fullchain.pem privkey.pem ; do
+	sudo cp -L /etc/letsencrypt/live/highlandas.com/"${certfile}" ~/bin/HFRS.new/certs/"${certfile}"
+	sudo chown azureuser:azureuser ~/bin/HFRS.new/certs/"${certfile}"
+done
 
-mkdir ~/bin
-
-## test
-cd ~/src/HFRS/HFRS
-dotnet run
-
-## CTRL+C to cancel test, then publish
-dotnet publish ~/src/HFRS/HFRS -c Release -o ~/bin/HFRS
-
-## run it
-cd ~/bin/HFRS
-./HFRS
-
-## CTRL+C to cancel, then publish the systemd service
-sudo cp ~/src/HFRS/etc/HFRS.service ~/
-vim ~/HFRS.service
-sudo cp ~/HFRS.service /etc/systemd/system/
+# Create the SystemD service
+sudo mv ~/HFRS.service /etc/systemd/system/HFRS.service
+sudo chown root:root /etc/systemd/system/HFRS.service
 sudo systemctl daemon-reload
-
-## Allow app to run on port 80/443
 sudo setcap CAP_NET_BIND_SERVICE=+eip ~/bin/HFRS/HFRS
-
-## enable auto startup
 sudo systemctl enable HFRS
 
-## start systemd service
+# Startup
 sudo systemctl start HFRS
-sudo systemctl status HFRS
+
+# Cleanup
+rm ~/HFRS.linux.zip
+rm -rf ~/letsencrypt/

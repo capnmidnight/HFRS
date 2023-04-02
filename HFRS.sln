@@ -30,14 +30,25 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Legacy", "Legacy\", "{381A8
 		SlnRelativePath = "Legacy\"
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "etc", "etc", "{5F4E0095-718B-4F5A-AF3E-0D555A363F44}"
-	ProjectSection(SolutionItems) = preProject
-		etc\deploy.sh = etc\deploy.sh
-		etc\get-latest.sh = etc\get-latest.sh
-		etc\HFRS.service = etc\HFRS.service
-		etc\install.sh = etc\install.sh
-		etc\rebuild.sh = etc\rebuild.sh
-		etc\update-service.sh = etc\update-service.sh
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "etc", "etc\", "{4827E34D-AC81-40F9-A3BA-887DAA83FEB4}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_51470"
+		Debug.AspNetCompiler.PhysicalPath = "etc\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51470\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_51470"
+		Release.AspNetCompiler.PhysicalPath = "etc\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51470\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "51470"
+		SlnRelativePath = "etc\"
 	EndProjectSection
 EndProject
 Global
@@ -62,6 +73,10 @@ Global
 		{381A8E93-3C7A-4750-817C-6D2D2D4B33C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{381A8E93-3C7A-4750-817C-6D2D2D4B33C5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{381A8E93-3C7A-4750-817C-6D2D2D4B33C5}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{4827E34D-AC81-40F9-A3BA-887DAA83FEB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4827E34D-AC81-40F9-A3BA-887DAA83FEB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4827E34D-AC81-40F9-A3BA-887DAA83FEB4}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{4827E34D-AC81-40F9-A3BA-887DAA83FEB4}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
