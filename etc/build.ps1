@@ -4,17 +4,14 @@ if($args.Length -ne 1 -or $args[0] -notmatch "^(Debug|Release)$") {
 else {
     $config = $args[0]
 
-    cd ..\src
-        # Bundle the TypeScript code
-        # dotnet run --project ".\HFRS.Build\"
+    # Bundle the TypeScript code
+    # dotnet run --project ".\HFRS.Build\"
 
-        # Create the .NET package
+    # Create the .NET package
 
-        if(-not (Test-Path ..\deploy\linux -PathType Container)) {
-            mkdir ..\deploy\
-        }
+    if(-not (Test-Path ..\deploy\ -PathType Container)) {
+        mkdir ..\deploy\
+    }
 
-        dotnet publish ".\HFRS\" --configuration $config --no-self-contained --runtime linux-x64 --output ..\deploy\linux\
-
-    cd ..\etc
+    dotnet publish "..\HFRS\" --configuration $config --no-self-contained --runtime linux-x64 --output ..\deploy\linux\
 }

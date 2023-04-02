@@ -1,8 +1,8 @@
 # Ocassionally clean the deploy directory to make sure old scripts get deleted
 
 # Clean the .NET code output
-if(Test-Path ..\deploy\linux\ -PathType Container) {
-    rm -Force -Recurse ..\deploy\linux\
+if(Test-Path ..\deploy\ -PathType Container) {
+    rm -Force -Recurse ..\deploy\
 }
 
 # Clean the TypeScript output

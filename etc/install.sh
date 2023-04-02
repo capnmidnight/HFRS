@@ -1,7 +1,7 @@
-# Get .NET 7, Zip, Unzip, and Certbot
+# Get .NET 6, Zip, Unzip, and Certbot
 sudo apt-get update
 sudo apt-get install -y \
-    dotnet-sdk-7.0 \
+    dotnet-sdk-6.0 \
     zip \
     unzip
 
